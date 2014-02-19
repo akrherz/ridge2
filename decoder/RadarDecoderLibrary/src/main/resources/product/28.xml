@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : 28.xml
+    Created on : October 9, 2005, 2:52 PM
+    Author     : jason.burks
+    Description:
+        Purpose of the document follows.
+-->
+
+<root>
+    <colorcurve>VelocityColorCurveManager</colorcurve>
+    <rangeofproduct units="Km">60.</rangeofproduct>
+    <resolution units="Km">0.25</resolution>
+    <decodertype>FourBitRadialDecoder</decodertype>
+    <renderertype>RadialRenderer</renderertype>
+    <numDataLevels>8</numDataLevels>
+</root>

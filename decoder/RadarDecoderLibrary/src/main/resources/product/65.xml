@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : 65.xml
+    Created on : October 9, 2005, 2:52 PM
+    Author     : jason.burks
+    Description: Layer 1 Max Reflectivity
+        Purpose of the document follows.
+-->
+
+<root>
+    <colorcurve>ReflectivityColorCurveManager</colorcurve>
+    <rangeofproduct units="Km">230.</rangeofproduct>
+    <resolution units="Km">4.0</resolution>
+    <decodertype>CompositeDecoder</decodertype>
+    <renderertype>CompositeRenderer</renderertype>
+    <numDataLevels>8</numDataLevels>
+</root>

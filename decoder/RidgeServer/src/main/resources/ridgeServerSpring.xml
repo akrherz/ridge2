@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd 
+       http://www.springframework.org/schema/aop 
+       http://www.springframework.org/schema/aop/spring-aop-2.5.xsd 
+       http://www.springframework.org/schema/rabbit 
+       http://www.springframework.org/schema/rabbit/spring-rabbit-1.0.xsd">
+       
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="ignoreResourceNotFound" value="true"/>
+        <property name="locations">
+            <list>
+                <value>classpath:ridgeServer.properties</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="timeManager" class="gov.noaa.nws.ridgeserver.chains.TimeManager">
+        <constructor-arg value="25" />
+    </bean>
+
+    <bean id="directoryScanner" class="gov.noaa.nws.ridgeserver.fileutils.TimedDirectoryScanner" scope="singleton">
+       <constructor-arg value="${directorytowatch}" />
+       <constructor-arg value="${directorypollinginterval}" />
+       <property name="listener" ref="decoderManager"/>
+    </bean>
+
+    <bean id="decoderManager" class="gov.noaa.nws.ridgeserver.chains.DecodeManager" >
+        <property name="decoderExecutor" ref="decoderExecutor"/>
+        <property name="productManager" ref="radarTypeManager"/>
+       <!--  <property name="processer" ref="amqppublisher"/> -->
+       <property name="processer" ref="processer"/>
+        <property name="timeManager" ref="timeManager"/>
+    </bean>
+
+    <bean id="decoderExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <property name="corePoolSize" value="${decoder.corePoolSize}" />
+        <property name="maxPoolSize" value="${decoder.maxPoolSize}" /><!--
+        <property name="queueCapacity" value="${decoder.queueSize}" />
+        --><property name="daemon" value="true"/>
+    </bean>
+    
+    <bean id="deleteExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <property name="corePoolSize" value="${delete.corePoolSize}" />
+        <property name="maxPoolSize" value="${delete.maxPoolSize}" /><!--
+        <property name="queueCapacity" value="${delete.queueSize}" />
+        --><property name="daemon" value="true"/>
+    </bean>
+    
+    <bean id="deleteSingleton" class="gov.noaa.nws.ridgeserver.chains.DeleteSingleton" factory-method="getInstance">
+    	<property name="executor" ref ="deleteExecutor"/>
+    </bean>
+
+ 	<import resource="${connectorName}-spring.xml"/> 
+ 
+    <bean id="geoGraphic" class="gov.noaa.nws.radardecoderlib.gis.GeographicSingleton" factory-method="getInstance"/>
+<!--  
+    <bean id="processedAdvice" class="gov.noaa.nws.ridgeserver.statistics.StatisticAdvice" >
+        <property name="statsHolder" ref="statsHolder"/>
+    </bean>
+    <bean id="processedAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="advice" ref="processedAdvice"/>
+        <property name="pattern" value=".*processFileEvent"/>
+    </bean>-->
+    <!--                                 JMXBean for monitoring the app                                    
+    <bean id="statsHolder" class="gov.noaa.nws.ridgeserver.statistics.StatisticHolder"  />
+       <bean id="rmi" class="org.springframework.remoting.rmi.RmiServiceExporter" >
+           <property name="serviceName" value="StatsHolder"/>
+            <property name="service" ref="statsHolder"/>
+            <property name="serviceInterface" value="gov.noaa.nws.ridgeserver.statistics.RidgeStatus"/>
+           <property name="registryPort" value="1099"/>
+        </bean>
+        <bean id="exporter" class="org.springframework.jmx.export.MBeanExporter">
+    <property name="beans">
+      <map>
+        <entry key="bean:name=statsHolder" value-ref="statsHolder"/>
+      </map>
+    </property>
+    <property name="server" ref="mbeanServer"/>
+  </bean>
+   <bean id="mbeanServer" class="org.springframework.jmx.support.MBeanServerFactoryBean"/>
+    <bean id="serverConnector" class="org.springframework.jmx.support.ConnectorServerFactoryBean">
+  <property name="objectName" value="connector:name=rmi"/>
+  <property name="serviceUrl" value="service:jmx:rmi://localhost/jndi/rmi://localhost:1099/ridgestats"/>
+</bean>-->
+   <!--                                         End of JMX section                                              -->
+   <!--                                         Stats management                                                -->
+  <!-- <bean id="statsJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="gov.noaa.nws.ridgeserver.statistics.ComputeStatsJob" />
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="holder" value-ref="statsHolder"/>
+                <entry key="dt" value="10000"/>
+            </map>
+        </property>
+    </bean>
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="simpleTrigger"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+        <property name="jobDetail" ref="statsJob" />
+        <property name="startDelay" value="0" />
+       <property name="repeatInterval" value="10000" />
+    </bean>-->
+    <!--                                          End stats Management                                     -->
+    <!--  <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>-->
+
+    <bean id="radarTypeManager" class="gov.noaa.nws.ridgeserver.chains.RadarTypeManager">
+        <property name="types">
+            <map>
+            <entry key="N0R" value-ref="N0R"/>
+            <entry key="N1R" value-ref="N0R"/>
+            <entry key="N2R" value-ref="N0R"/>
+            <entry key="N3R" value-ref="N0R"/>
+            <entry key="N0Z" value-ref="N0Z"/>
+            <entry key="N0V" value-ref="N0V"/>
+            <entry key="N1V" value-ref="N0V"/>
+            <entry key="N2V" value-ref="N0V"/>
+            <entry key="TZL" value-ref="TZL"/>
+            <entry key="NET" value-ref="NET"/>
+            <entry key="NTP" value-ref="NTP"/>
+            <entry key="TR0" value-ref="TR0"/>
+            <entry key="TR1" value-ref="TR0"/>
+            <entry key="TR2" value-ref="TR0"/>
+            <entry key="TV0" value-ref="TV0"/>
+            <entry key="TV1" value-ref="TV0"/>
+            <entry key="TV2" value-ref="TV0"/>
+            <entry key="N1P" value-ref="N1P"/>
+            <entry key="N0S" value-ref="N0S"/>
+            <entry key="N1S" value-ref="N0S"/>
+            <entry key="N2S" value-ref="N0S"/>
+            <entry key="N3S" value-ref="N0S"/>
+            <entry key="NCR" value-ref="NCR"/>
+            <entry key="NVL" value-ref="NVL"/>
+            <entry key="NVW" value-ref="NVW"/>
+            <entry key="4R0" value-ref="t4R0"/>
+            <entry key="1R0" value-ref="t1R0"/>
+            <entry key="N0Q" value-ref="N0Q"/>
+            <entry key="N0U" value-ref="N0U"/>
+            <entry key="PTA" value-ref="PTA"/>
+			<entry key="N0H" value-ref="N0H"/>
+			<entry key="N0X" value-ref="N0X"/>
+			<entry key="N0K" value-ref="N0K"/>
+            </map>
+        </property>
+    </bean>
+    <bean id="N0R" class="gov.noaa.nws.ridgeserver.chains.RadarProductType">
+        <constructor-arg value="19"/>
+        <constructor-arg value="ReflectivityColorCurveManager"/>
+        <constructor-arg  value="240760." />
+        <constructor-arg  value="1000"/>
+        <constructor-arg  value="1000"/>
+    </bean>
+     <bean id="N0Z" class="gov.noaa.nws.ridgeserver.chains.RadarProductType">
+        <constructor-arg value="20"/>
+        <constructor-arg value="ReflectivityColorCurveManager"/>
+        <constructor-arg  value="463000." />
+        <constructor-arg  value="1000"/>
+        <constructor-arg  value="1000"/>
+    </bean>
+    <bean id="N0V" class="gov.noaa.nws.ridgeserver.chains.RadarProductType">
+        <constructor-arg value="27"/>
+        <constructor-arg value="VelocityColorCurveManager"/>
+        <constructor-arg value="240760." />
+        <constructor-arg value="1000"/>
+        <constructor-arg value="1000"/>
+    </bean>
+
+    <bean id="TZL" class="gov.noaa.nws.ridgeserver.chains.RadarProductType">
+        <constructor-arg value="186"/>
+        <constructor-arg value="ReflectivityColorCurveManager"/>
+        <constructor-arg value="333360." />
+        <constructor-arg value="1000"/>
+        <constructor-arg value="1000"/>
+    </bean>
+     <bean id="NTP" class="gov.noaa.nws.ridgeserver.chains.RadarProductType">
+        <constructor-arg value="80"/>
+        <constructor-arg value="NTPColorCurveManager"/>
+        <constructor-arg value="240760." />
+        <constructor-arg value="1000"/>
+        <constructor-arg value="1000"/>
+    </bean>
+    <bean id="NET" class="gov.noaa.nws.ridgeserver.chains.RadarProductType">
+        <constructor-arg value="41"/>
+        <constructor-arg value="NETNVLColorCurveManager"/>
+        <constructor-arg value="240760." />
+        <constructor-arg value="1000"/>
+        <constructor-arg value="1000"/>
+    </bean>
+    <bean id="TR0" class="gov.noaa.nws.ridgeserver.chains.RadarProductType">
+        <constructor-arg value="181"/>
+        <constructor-arg value="ReflectivityColorCurveManager"/>
+        <constructor-arg value="92600." />
+        <constructor-arg value="1000"/>
+        <constructor-arg value="1000"/>
+    </bean>
+    <bean id="TV0" class="gov.noaa.nws.ridgeserver.chains.RadarProductType">
+        <constructor-arg value="182"/>
+        <constructor-arg value="VelocityColorCurveManager"/>
+        <constructor-arg value="92600." />
+        <constructor-arg value="1000"/>
+        <constructor-arg value="1000"/>
+    </bean>
+    <bean id="N1P" class="gov.noaa.nws.ridgeserver.chains.RadarProductType">
+        <constructor-arg value="78"/>
+        <constructor-arg value="N1_3PColorCurveManager"/>
+        <constructor-arg value="240760." />
+        <constructor-arg value="1000"/>
+        <constructor-arg value="1000"/>
+    </bean>
+    <bean id="NVW" class="gov.noaa.nws.ridgeserver.chains.RadarProductType">
+        <constructor-arg value="48"/>
+        <constructor-arg value="VelocityColorCurveManager"/>
+        <constructor-arg value="240760." />
+        <constructor-arg value="1000"/>
+        <constructor-arg value="1000"/>
+    </bean>
+    <bean id="NVL" class="gov.noaa.nws.ridgeserver.chains.RadarProductType">
+        <constructor-arg value="57"/>
+        <constructor-arg value="NETNVLColorCurveManager"/>
+        <constructor-arg value="240760." />
+        <constructor-arg value="1000"/>
+        <constructor-arg value="1000"/>
+    </bean>
+    <bean id="NCR" class="gov.noaa.nws.ridgeserver.chains.RadarProductType">
+        <constructor-arg value="37"/>
+        <constructor-arg value="ReflectivityColorCurveManager"/>
+        <constructor-arg value="240760." />
+        <constructor-arg value="1000"/>
+        <constructor-arg value="1000"/>
+    </bean>
+    <bean id="N0S" class="gov.noaa.nws.ridgeserver.chains.RadarProductType">
+        <constructor-arg value="56"/>
+        <constructor-arg value="SRMColorCurveManager"/>
+        <constructor-arg value="240760." />
+        <constructor-arg value="1000"/>
+        <constructor-arg value="1000"/>
+    </bean>
+    <bean id="t1R0" class="gov.noaa.nws.ridgeserver.chains.RadarProductType">
+        <constructor-arg value="550"/>
+        <constructor-arg value="ReflectivityColorCurveManager"/>
+        <constructor-arg value="111000." />
+        <constructor-arg value="1000"/>
+        <constructor-arg value="1000"/>
+    </bean>
+     <bean id="t4R0" class="gov.noaa.nws.ridgeserver.chains.RadarProductType">
+        <constructor-arg value="500"/>
+        <constructor-arg value="ReflectivityColorCurveManager"/>
+        <constructor-arg value="463000." />
+        <constructor-arg value="1000"/>
+        <constructor-arg value="1000"/>
+    </bean>
+    <bean id="N0Q" class="gov.noaa.nws.ridgeserver.chains.RadarProductType">
+        <constructor-arg value="94"/>
+        <constructor-arg value="ReflectivityColorCurveManager"/>
+        <constructor-arg value="463000." />
+        <constructor-arg value="1000"/>
+        <constructor-arg value="1000"/>
+    </bean>
+    <bean id="N0U" class="gov.noaa.nws.ridgeserver.chains.RadarProductType">
+        <constructor-arg value="99"/>
+        <constructor-arg value="VelocityColorCurveManager"/>
+        <constructor-arg value="463000." />
+        <constructor-arg value="1000"/>
+        <constructor-arg value="1000"/>
+    </bean>
+    <bean id="PTA" class="gov.noaa.nws.ridgeserver.chains.RadarProductType">
+        <constructor-arg value="171"/>
+        <constructor-arg value="N1_3PColorCurveManager"/>
+        <constructor-arg value="463000." />
+        <constructor-arg value="1000"/>
+        <constructor-arg value="1000"/>
+    </bean>
+    <bean id="N0H" class="gov.noaa.nws.ridgeserver.chains.RadarProductType">
+        <constructor-arg value="165"/>
+        <constructor-arg value="HIDColorCurveManager"/>
+        <constructor-arg value="463000." />
+        <constructor-arg value="1000"/>
+        <constructor-arg value="1000"/>
+    </bean>
+    <bean id="N0X" class="gov.noaa.nws.ridgeserver.chains.RadarProductType">
+        <constructor-arg value="159"/>
+        <constructor-arg value="ZDRColorCurveManager"/>
+        <constructor-arg value="556000." />
+        <constructor-arg value="1000"/>
+        <constructor-arg value="1000"/>
+    </bean>
+     <bean id="N0K" class="gov.noaa.nws.ridgeserver.chains.RadarProductType">
+        <constructor-arg value="163"/>
+        <constructor-arg value="ZDRColorCurveManager"/>
+        <constructor-arg value="556000." />
+        <constructor-arg value="1000"/>
+        <constructor-arg value="1000"/>
+    </bean>
+</beans>

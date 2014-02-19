@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : 48.xml
+    Created on : October 9, 2005, 2:52 PM
+    Author     : jason.burks
+    Description:
+        Purpose of the document follows.
+-->
+
+<root>
+    <colorcurve>VelocityColorCurveManager</colorcurve>
+    <rangeofproduct units="Km">0.</rangeofproduct>
+    <resolution units="Km">0.0</resolution>
+    <decodertype>VADWindProfileDecoder</decodertype>
+    <renderertype>VADWindProfileRenderer</renderertype>
+    <numDataLevels>5</numDataLevels>
+</root>

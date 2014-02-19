@@ -1,0 +1,197 @@
+MAP
+
+  NAME "RIDGE Lite Images"
+
+  PROJECTION
+    "init=epsg:4269"
+  END
+
+  FONTSET "/usr/local/mapserver-5.4.0/fonts/fonts.list"
+
+  OUTPUTFORMAT
+    NAME png32
+    DRIVER GD/PNG
+    MIMETYPE "image/png"
+    IMAGEMODE RGBA
+    EXTENSION "png"
+    FORMATOPTION "INTERLACE=OFF"
+  END
+
+
+  WEB
+    METADATA
+      "wms_title"              "RIDGE2 Lite Images"
+      "wms_srs"                "EPSG:4269 EPSG:4326 EPSG:900913"
+      "wms_exceptions_format"  "application/vnd.ogc.se_xml"
+    END
+  END
+
+  EXTENT  -180 -90 180 90
+
+ #RADAR_LAYER
+
+ LAYER
+  PROJECTION
+    "init=epsg:4269"
+  END
+  EXTENT  -180 -90 180 90
+  CONNECTIONTYPE postgis
+  NAME "state"
+  STATUS OFF
+  CONNECTION "user=postgres password='' dbname=iris host=10.1.5.117"
+  DATA "geometry FROM iris.state USING UNIQUE state_abbr USING SRID=4326"
+  TYPE POLYGON
+  CLASS
+   STYLE
+      WIDTH 3
+      OUTLINECOLOR 0 0 0
+   END
+  END
+  PROCESSING "CLOSE_CONNECTION=DEFER"
+ END
+
+ LAYER
+  PROJECTION
+    "init=epsg:4269"
+  END
+   EXTENT  -180 -90 180 90
+  CONNECTIONTYPE postgis
+  NAME "county"
+  STATUS OFF
+  CONNECTION "user=postgres password='' dbname=iris host=10.1.5.117"
+  DATA "the_geom FROM iris.awips_county USING UNIQUE gid USING SRID=4269"
+  TYPE POLYGON
+  CLASS
+   STYLE
+      WIDTH 1
+      OUTLINECOLOR 0 0 0
+   END
+  END
+ PROCESSING "CLOSE_CONNECTION=DEFER"
+ END
+
+ SYMBOL
+  NAME "highway"
+  TYPE ellipse
+  FILLED true
+  POINTS
+    1.5 1
+  END
+  GAP 10
+ END
+
+ LAYER
+  PROJECTION
+    "init=epsg:4269"
+  END
+   EXTENT  -180 -90 180 90
+  CONNECTIONTYPE postgis
+  NAME "roads"
+  STATUS OFF
+  CONNECTION "user=postgres password='' dbname=iris host=10.1.5.117"
+  DATA "the_geom FROM public.ridge_roads USING UNIQUE gid USING SRID=4326"
+  TYPE LINE
+  CLASS
+   STYLE
+      WIDTH 1
+      OUTLINECOLOR 128 0 0
+   END
+  END
+ PROCESSING "CLOSE_CONNECTION=DEFER"
+ END
+
+
+ SYMBOL
+  NAME 'cross'
+  TYPE VECTOR
+  POINTS
+   2 0
+   2 4
+   -99 -99
+   0 2
+   4 2
+  END
+ END
+
+ LAYER
+  PROJECTION
+    "init=epsg:4269"
+  END
+   EXTENT  -180 -90 180 90
+  CONNECTIONTYPE postgis
+  NAME "cities"
+  STATUS OFF
+  CONNECTION "user=postgres password='' dbname=iris host=10.1.5.117"
+  DATA "the_geom FROM public.ridge_city USING UNIQUE gid USING SRID=4326"
+  TYPE POINT
+  LABELITEM city
+  CLASS
+   LABEL
+      TYPE TRUETYPE
+      ANTIALIAS TRUE
+      FONT "LiberationSans-Bold"
+      SIZE 10
+      COLOR 0 0 0
+      POSITION UR
+   END
+   STYLE
+      SYMBOL 'cross'
+      SIZE 10
+      WIDTH 2
+      COLOR 0 0 0
+   END
+  END
+ PROCESSING "CLOSE_CONNECTION=DEFER"
+ END
+
+ LAYER
+  EXTENT  -180 -90 180 90
+  PROJECTION
+    "init=epsg:4326"
+  END
+  CONNECTIONTYPE postgis
+  NAME "warnings"
+  CONNECTION "user=postgres password='' dbname=iris host=10.1.5.117"
+  DATA "geom FROM active_products USING UNIQUE pl_id USING SRID=4269"
+  FILTER "pvtec_significance_id = 1 AND (pvtec_phenomena_id = 58 or pvtec_phenomena_id = 12 or pvtec_phenomena_id = 49 or pvtec_phenomena_id =
+ 19)"
+  STATUS OFF
+  TYPE POLYGON
+  CLASSITEM "pvtec_phenomena_id"
+  CLASS
+   # Severe Thunderstorm Warning
+   EXPRESSION "58"
+   STYLE
+      WIDTH 3
+      OUTLINECOLOR 255 165 0
+   END
+  END
+  CLASS
+   # Tornado Warning
+   EXPRESSION "12"
+   STYLE
+     WIDTH 3
+     OUTLINECOLOR 255 0 0
+   END
+  END
+  CLASS
+   # Flash Flood Warning
+   EXPRESSION "49"
+   STYLE
+     WIDTH 3
+     OUTLINECOLOR 139 0 0
+   END
+  END
+  CLASS
+   # Special Marine Warning
+   EXPRESSION "19"
+   STYLE
+     WIDTH 3
+     OUTLINECOLOR 255 165 0
+   END
+  END
+ PROCESSING "CLOSE_CONNECTION=DEFER"
+
+ END
+
+END

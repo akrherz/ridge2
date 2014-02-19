@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : 169.xml
+    Created on : December 12, 2010
+    Author     : jason.burks
+    Description:
+        Product Description for One Hour Accumulation (OHA) Product 169
+-->
+
+<root>
+    <colorcurve>N1_3PColorCurveManager</colorcurve>
+    <rangeofproduct units="Km">230.</rangeofproduct>
+    <resolution units="Km">2.0</resolution>
+    <decodertype>FourBitRadialDecoder</decodertype>
+    <renderertype>RadialRenderer</renderertype>
+    <numDataLevels>16</numDataLevels>
+</root>

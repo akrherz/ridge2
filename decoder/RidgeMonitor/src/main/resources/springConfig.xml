@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+    <bean id="mBeanServerClient" class="org.springframework.jmx.support.MBeanServerConnectionFactoryBean">
+           <property name="serviceUrl" value="service:jmx:rmi://localhost/jndi/rmi://localhost:1099/ridgestats" />
+       </bean>
+       <bean id="remoteProxy" class="org.springframework.jmx.access.MBeanProxyFactoryBean">
+           <property name="objectName" value="bean:name=statsHolder" />
+             <property name="server" ref="mBeanServerClient" />
+             <property name="proxyInterface" value="gov.noaa.nws.ridgemonitor.statistics.RidgeStatus" />
+       </bean>
+</beans>

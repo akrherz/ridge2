@@ -1,0 +1,66 @@
+<assembly> 
+  <id>bin</id> 
+  <formats>  
+    <format>tar.gz</format> 
+  </formats> 
+  <includeBaseDirectory>true</includeBaseDirectory> 
+  <fileSets> 
+    <fileSet> 
+      <directory>src/main/resources</directory> 
+      <outputDirectory>/</outputDirectory> 
+      <includes> 
+        <include>*</include> 
+      </includes> 
+      <excludes>
+      <exclude>ridgeimagesavershort.properties</exclude>
+      <exclude>ridgeImageSaverShortSpring.xml</exclude>
+       <exclude>activemq-spring.xml</exclude>
+      <exclude>amqp-spring.xml</exclude>
+      <exclude>log4j.xml</exclude>
+      </excludes>
+    </fileSet> 
+    
+    <fileSet> 
+      <directory>src/main/production</directory> 
+      <outputDirectory>/</outputDirectory> 
+      <includes> 
+        <include>runImageSaverShort.sh</include> 
+      </includes> 
+      <fileMode>0744</fileMode>
+    </fileSet> 
+     <fileSet> 
+      <directory>target/classes/</directory> 
+      <outputDirectory>/etc</outputDirectory> 
+      <includes> 
+        <include>ridgeimagesavershort.properties</include> 
+      </includes> 
+      
+    </fileSet> 
+     <fileSet> 
+      <directory>src/main/production</directory> 
+      <outputDirectory>/etc</outputDirectory> 
+      <includes> 
+        <include>log4j.xml</include> 
+      </includes> 
+      
+    </fileSet> 
+    
+    <fileSet> 
+      <directory>target</directory> 
+      <outputDirectory></outputDirectory> 
+      <includes> 
+        <include>${artifactId}-${version}.jar</include> 
+      </includes>
+    </fileSet> 
+  </fileSets> 
+  
+  <dependencySets> 
+    <dependencySet> 
+      <outputDirectory>lib</outputDirectory> 
+      <unpack>false</unpack>
+       <excludes>
+				<exclude>${artifactId}-${version}.jar</exclude>
+	 </excludes> 
+    </dependencySet> 
+  </dependencySets> 
+</assembly> 

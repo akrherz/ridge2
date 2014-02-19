@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="RadarDecoderLibrary/src/main/java"/>
+	<classpathentry kind="src" path="RadarDecoderLibrary/src/test/java"/>
+	<classpathentry kind="src" path="RidgeDBWriter/src/main/java"/>
+	<classpathentry kind="src" path="RidgeDBWriter/src/test/java"/>
+	<classpathentry kind="src" path="RidgeHibernate/src/main/java"/>
+	<classpathentry kind="src" path="RidgeHibernate/src/test/java"/>
+	<classpathentry kind="src" path="RidgeImageSaver/src/main/java"/>
+	<classpathentry kind="src" path="RidgeImageSaver/src/test/java"/>
+	<classpathentry kind="src" path="RidgeImageSaverShort/src/main/java"/>
+	<classpathentry kind="src" path="RidgeLiteImageCreator/src/main/java"/>
+	<classpathentry kind="src" path="RidgeMonitor/src/main/java"/>
+	<classpathentry kind="src" path="RidgePurger/src/main/java"/>
+	<classpathentry kind="src" path="RidgeServer/src/main/java"/>
+	<classpathentry kind="src" path="TestChart/src/main/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-2.5.xsd">
+           
+   <import resource="classpath:/hibernateConfig.xml" />
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="locations">
+			<list>
+				<value>classpath:ridgedbwriter.properties</value>
+				<value>classpath:ridgehibernate.properties</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="writerExecutor"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="${corePoolSize}" />
+		<property name="maxPoolSize" value="${maxPoolSize}" />
+		<property name="queueCapacity" value="${queueCapacity}" />
+	</bean>
+	<import resource="${connectorName}-spring.xml" /> 
+</beans>

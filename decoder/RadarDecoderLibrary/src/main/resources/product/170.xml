@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : 170.xml
+    Created on : December 12, 2010
+    Author     : jason.burks
+    Description:
+        Product Description for One Hour Unbiased Accum (DAA) Product 170
+-->
+
+<root>
+    <colorcurve>NTPColorCurveManager</colorcurve>
+    <rangeofproduct units="Km">230.</rangeofproduct>
+    <resolution units="Km">0.25</resolution>
+    <decodertype>EightBitRadialDecoder</decodertype>
+    <renderertype>RadialRenderer</renderertype>
+    <numDataLevels>256</numDataLevels>
+</root>

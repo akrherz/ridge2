@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : 163.xml
+    Created on : December 12, 2010
+    Author     : jason.burks
+    Description:
+        Product Description for Specific Differential Phase (KDP) Product 163
+-->
+
+<root>
+    <colorcurve>KDPColorCurveManager</colorcurve>
+    <rangeofproduct units="Km">300.</rangeofproduct>
+    <resolution units="Km">.25</resolution>
+    <decodertype>EightBitRadialDecoder</decodertype>
+    <renderertype>RadialRenderer</renderertype>
+    <numDataLevels>256</numDataLevels>
+</root>

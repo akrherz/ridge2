@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 4, 2009 2:06:06 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="gov.noaa.nws.ridge.RadarTimeIndex" schema="ridge" table="radar_time_index">
+    <comment>Supports WMS-T</comment>
+    <id name="id" type="int">
+      <column name="id"/>
+      <generator class="sequence">
+        <param name="sequence">ridge.radar_time_index_id_seq</param>
+      </generator>
+    </id>
+    <property name="radar" type="string">
+      <column length="3" name="radar"/>
+    </property>
+    <property name="layer" type="string">
+      <column length="3" name="layer"/>
+    </property>
+    <property name="radarPath" type="string">
+      <column name="radar_path"/>
+    </property>
+    <property name="datetime" type="timestamp">
+      <column length="29" name="datetime"/>
+    </property>
+    <property name="theGeom" type="org.hibernatespatial.GeometryUserType">
+      <column name="the_geom"/>
+    </property>
+    <property name="vcp" type="integer">
+      <column  name="vcp"/>
+    </property>
+    <property name="srmDirection" type="float">
+      <column  name="srm_direction"/>
+    </property>
+    <property name="srmSpeedKts" type="float">
+      <column  name="srm_speed_kts"/>
+    </property>
+    <property name="stpStartDateTime" type="timestamp">
+      <column length="29" name="stp_start_datetime"/>
+    </property>
+    <property name="stpEndDateTime" type="timestamp">
+      <column length="29" name="stp_end_datetime"/>
+    </property>
+  </class>
+</hibernate-mapping>

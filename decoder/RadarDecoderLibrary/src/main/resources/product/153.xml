@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : 153.xml
+    Created on : October 9, 2005, 2:52 PM
+    Author     : jason.burks
+    Description:
+        Product Description for TDWR Product 183
+-->
+
+<root>
+    <colorcurve>ReflectivityColorCurveManager</colorcurve>
+    <rangeofproduct units="Km">460.</rangeofproduct>
+    <resolution units="Km">.25</resolution>
+    <decodertype>EightBitRadialDecoder</decodertype>
+    <renderertype>RadialRenderer</renderertype>
+    <numDataLevels>256</numDataLevels>
+</root>

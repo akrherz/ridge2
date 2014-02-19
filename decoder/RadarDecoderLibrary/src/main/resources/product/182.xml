@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : 182.xml
+    Created on : October 9, 2005, 2:52 PM
+    Author     : jason.burks
+    Description:
+       Product Description for TDWR Product 182
+-->
+
+<root>
+    <colorcurve>VelocityColorCurveManager</colorcurve>
+    <rangeofproduct units="Km">90.0</rangeofproduct>
+    <resolution units="Km">.15</resolution>
+    <decodertype>EightBitRadialDecoder</decodertype>
+    <renderertype>RadialRenderer</renderertype>
+    <numDataLevels>256</numDataLevels>
+</root>

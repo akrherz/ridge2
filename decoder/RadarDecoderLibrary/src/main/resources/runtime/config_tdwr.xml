@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : config.xml
+    Created on : October 9, 2005, 2:52 PM
+    Author     : jason.burks
+    Description:
+        Purpose of the document follows.
+-->
+
+<root>
+        <Outputters>
+        <output>
+            <name>gif 600x550 with world file</name>
+            <Outputter>GIF</Outputter>
+            <worldfile>true</worldfile>
+            <width>600</width>
+            <height>550</height>
+            <range units="Nmi">50</range>
+            <outputdirectory>C:/Jason/Data/Radar/TDWR/HOUVelData/</outputdirectory>
+        </output>
+    </Outputters>
+</root>

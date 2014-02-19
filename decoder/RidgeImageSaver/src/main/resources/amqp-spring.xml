@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-2.5.xsd
+       http://www.springframework.org/schema/rabbit 
+       http://www.springframework.org/schema/rabbit/spring-rabbit-1.0.xsd">
+    
+       
+        
+        <bean id="queue" class="org.springframework.amqp.core.Queue">
+		<constructor-arg value="${amqpQueueName}" />
+	</bean>
+	
+	<bean id="queueBinder" class="gov.noaa.nws.ridge.common.message.QueueBinder">
+		<property name="connectionFactory" ref="rabbitConnectionFactory" />
+		<property name="exchangeName" value="${amqpExchangeName}" />
+		<property name="queue" ref="queue" />
+		<property name="routingKeys" value="${amqpRoutingKeys}" />
+	</bean>
+	
+        <bean id="messageAdapter" class="gov.noaa.nws.ridge.AMQPMessageAdapter">
+			 <property name="writerExecutor" ref="writerExecutor"/>
+			  <property name="startPath" value="${startPath}"/>
+		</bean>
+	
+	<bean class="org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer">
+		<constructor-arg ref="rabbitConnectionFactory" />
+		<property name="queues">
+			<list>
+				<ref local="queue" />
+			</list>
+		</property>
+		<property name="messageListener" ref="messageAdapter" />
+	</bean>
+	
+	<rabbit:connection-factory id="rabbitConnectionFactory" host="${amqpHostName}" username="${amqpUserName}" password="${amqpPassword}" />
+	
+	<rabbit:admin connection-factory="rabbitConnectionFactory" />
+   
+</beans>

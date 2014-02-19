@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-2.5.xsd">
+      
+      
+      <bean id="radarDAO" class="gov.noaa.nws.ridge.RidgeTimeDAO" scope="singleton">
+           <property name="sessionFactory" ref="sessionFactory" />
+       </bean>
+     <bean id="sessionFactory" class = "org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+               <property name="dataSource" ref="dataSource"/>
+               <property name="mappingResources">
+                   <list>
+                       <value>/RadarTimeIndex.hbm.xml</value>
+                       </list>
+               </property>
+               <property name="hibernateProperties">
+                   <props>
+                        <prop key="hibernate.dialect">org.hibernatespatial.postgis.PostgisDialect</prop>
+                       <prop key="hibernate.connection.driver_class">org.postgresql.Driver</prop>
+                      <prop key="hibernate.show_sql">false</prop>
+                       <prop key="hibernate.format_sql">true</prop>
+                   </props>
+               </property>
+           </bean>
+            <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+   
+           <!--  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+               <property name="driverClassName" value="org.postgresql.Driver"/>
+               <property name="url" value="jdbc:postgresql://10.1.5.117:5432/iris"/>
+               <property name="username" value="postgres"/>
+               <property name="password" value=""/>
+               <property name="url" value="jdbc:postgresql://localhost:5432/ridge"/>
+               <property name="username" value="ridge"/>
+               <property name="password" value="ridge"/>
+               <property name="initialSize" value="10"/>
+               <property name="maxActive" value="50"/>
+               <property name="maxIdle" value="10"/>
+           </bean>-->
+         <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="org.postgresql.Driver" />
+		<property name="jdbcUrl"
+			value="jdbc:postgresql://${jdbc.hostname}:${jdbc.port}/${jdbc.database}" />
+		<property name="acquireIncrement">
+                <value>5</value>
+        </property>
+        <property name="idleConnectionTestPeriod">
+                <value>100</value>
+        </property>
+        <property name="maxPoolSize">
+                <value>100</value>
+        </property>
+        <property name="maxStatements">
+                <value>0</value>
+        </property>
+        <property name="minPoolSize">
+                <value>20</value>
+        </property>
+        <property name="user">
+                <value>${jdbc.username}</value>
+        </property>
+        <property name="password">
+                <value>${jdbc.password}</value>
+        </property>
+
+	</bean>
+         
+</beans>

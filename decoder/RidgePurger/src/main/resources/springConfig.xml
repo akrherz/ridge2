@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-2.5.xsd">
+           
+    <import resource="classpath:gov/noaa/nws/ridge/spring/hibernateConfig.xml" />
+    <bean id="purgeJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="gov.noaa.nws.ridge.RidgePurger" />
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="dao" value-ref="radarDAO"/>
+                <entry key="executor" value-ref="workerExecutor"/>
+            </map>
+        </property>
+    </bean>
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="simpleTrigger"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+        <property name="jobDetail" ref="purgeJob" />
+        <property name="startDelay" value="0" />
+       <property name="repeatInterval" value="1800000" />
+       <!--<property name="repeatInterval" value="5000" />-->
+    </bean>
+    <bean id="workerExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <property name="corePoolSize" value="10" />
+        <property name="maxPoolSize" value="50" />
+        <property name="queueCapacity" value="1000" />
+    </bean>
+</beans>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-2.5.xsd
+       http://www.springframework.org/schema/rabbit 
+       http://www.springframework.org/schema/rabbit/spring-rabbit-1.0.xsd">
+    
+         
+    <!-- Start ActiveMQ Section -->
+      <bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+            <property name="brokerURL" value="${jmxhost}" />
+        </bean>
+
+        <bean id="ridgeTopic" class="org.apache.activemq.command.ActiveMQTopic">
+            <constructor-arg index="0" value="${jmsRidgeTopic}"/>
+        </bean>
+
+        <bean class="org.springframework.jms.listener.SimpleMessageListenerContainer">
+            <property name="connectionFactory" ref="connectionFactory"/>
+            <property name="destination" ref="${jmsDestination}"/>
+            <property name="messageListener" ref="myListener"/>
+        </bean>
+       
+        <bean id="myListener" class="gov.noaa.nws.ridge.JMSMessageAdapter" >
+            <property name="writerExecutor" ref="writerExecutor"/>
+            <property name="startPath" value="${startPath}"/>
+             <property name="radarDAO" ref="radarDAO"/>
+        </bean>
+        <!-- End ActiveMQ Section -->
+        
+   
+</beans>

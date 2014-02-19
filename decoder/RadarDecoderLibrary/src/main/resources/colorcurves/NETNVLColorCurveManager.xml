@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : NETNVLColorCurveManager.xml
+    Created on : July 30, 2006, 2:07 PM
+    Author     : jason.burks
+    Description:
+        Purpose of the document follows.
+-->
+
+<root>
+    <Level type="double" lowerValue="67.5">
+            <red>253</red>
+            <green>253</green>
+            <blue>253</blue>
+            <alpha>255</alpha>
+    </Level>
+    <Level type="double" lowerValue="62.5" upperValue="67.5">
+            <red>152</red>
+            <green>84</green>
+            <blue>198</blue>
+            <alpha>255</alpha>
+    </Level>
+    <Level type="double" lowerValue="57.5" upperValue="62.5">
+            <red>248</red>
+            <green>0</green>
+            <blue>253</blue>
+            <alpha>255</alpha>
+    </Level>
+    <Level type="double" lowerValue="52.5" upperValue="57.5">
+            <red>188</red>
+            <green>0</green>
+            <blue>0</blue>
+            <alpha>255</alpha>
+    </Level>
+    <Level type="double" lowerValue="47.5" upperValue="52.5">
+            <red>212</red>
+            <green>0</green>
+            <blue>0</blue>
+            <alpha>255</alpha>
+    </Level>
+    <Level type="double" lowerValue="42.5" upperValue="47.5">
+            <red>253</red>
+            <green>0</green>
+            <blue>0</blue>
+            <alpha>255</alpha>
+    </Level>
+    <Level type="double" lowerValue="37.5" upperValue="42.5">
+            <red>253</red>
+            <green>149</green>
+            <blue>0</blue>
+            <alpha>255</alpha>
+    </Level>
+    <Level type="double" lowerValue="32.5" upperValue="37.5">
+            <red>229</red>
+            <green>188</green>
+            <blue>0</blue>
+            <alpha>255</alpha>
+    </Level>
+    <Level type="double" lowerValue="27.5" upperValue="32.5">
+            <red>253</red>
+            <green>248</green>
+            <blue>2</blue>
+            <alpha>255</alpha>
+    </Level>
+    <Level type="double" lowerValue="22.5" upperValue="27.5">
+            <red>0</red>
+            <green>142</green>
+            <blue>0</blue>
+            <alpha>255</alpha>
+    </Level>
+    <Level type="double" lowerValue="17.5" upperValue="22.5">
+            <red>1</red>
+            <green>197</green>
+            <blue>1</blue>
+            <alpha>255</alpha>
+    </Level>
+    <Level type="double" lowerValue="12.5" upperValue="17.5">
+            <red>2</red>
+            <green>253</green>
+            <blue>2</blue>
+            <alpha>255</alpha>
+    </Level>
+    <Level type="double" lowerValue="7.5" upperValue="12.5">
+            <red>3</red>
+            <green>0</green>
+            <blue>244</blue>
+            <alpha>255</alpha>
+    </Level>
+    <Level type="double" lowerValue="3" upperValue="7.5">
+            <red>1</red>
+            <green>159</green>
+            <blue>244</blue>
+            <alpha>255</alpha>
+    </Level>
+    <Level type="double" lowerValue="0" upperValue="3">
+            <red>4</red>
+            <green>233</green>
+            <blue>231</blue>
+            <alpha>255</alpha>
+    </Level>
+   
+</root>
