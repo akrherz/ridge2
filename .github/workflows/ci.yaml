@@ -1,13 +1,13 @@
 # Version 2
 name: Java CI
-on: [push, pull_request]
+on: ["push"]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        java: [ "1.8", "11" ]
+        java: [ "1.8" ]
 
     steps:
       # Checkout Repo
