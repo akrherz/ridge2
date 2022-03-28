@@ -147,7 +147,7 @@ public class DecodeTask implements Runnable {
 			} catch (Exception e) {
 				Logger.getLogger(DecodeTask.class).info(
 						"Problem decoding " + event.getFilename() + "  "
-								+ e.getMessage());
+								, e);
 			}
 			
 		}
