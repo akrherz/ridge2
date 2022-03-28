@@ -33,6 +33,7 @@ jobs:
           mvn install
           cd ../RadarDecoderLibrary
           mvn install
+          mvn -Dtest=ProductTests test
           cd ../RidgeServer
           mvn package
 

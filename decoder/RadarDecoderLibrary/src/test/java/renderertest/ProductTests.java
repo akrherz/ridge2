@@ -25,6 +25,7 @@ import javax.imageio.ImageIO;
 
 import junit.framework.TestCase;
 
+
 public class ProductTests extends TestCase {
 	int width  = 800;
     int height = 800;
@@ -61,6 +62,16 @@ public class ProductTests extends TestCase {
 	public void testN0Q() {
 		try {
 			output("/products/n0q/KFWD_SDUS54_N0QFWS_201010180348","/tmp/n0q.png");
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("Exception "+e.getMessage());
+			
+		}
+	}
+
+	public void testN0B() {
+		try {
+			output("/products/n0b/DMX_20220328_1008_N0B","/tmp/n0b.png");
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Exception "+e.getMessage());
