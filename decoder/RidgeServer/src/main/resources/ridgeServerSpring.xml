@@ -143,11 +143,15 @@
             <entry key="4R0" value-ref="t4R0"/>
             <entry key="1R0" value-ref="t1R0"/>
             <entry key="N0Q" value-ref="N0Q"/>
+            <entry key="N0B" value-ref="N0B"/>
             <entry key="N0U" value-ref="N0U"/>
             <entry key="PTA" value-ref="PTA"/>
 			<entry key="N0H" value-ref="N0H"/>
 			<entry key="N0X" value-ref="N0X"/>
 			<entry key="N0K" value-ref="N0K"/>
+			<entry key="DAA" value-ref="DAA"/>
+			<entry key="DTA" value-ref="DTA"/>
+			<entry key="DPR" value-ref="DPR"/>
             </map>
         </property>
     </bean>
@@ -257,6 +261,13 @@
         <constructor-arg value="1000"/>
         <constructor-arg value="1000"/>
     </bean>
+    <bean id="N0B" class="gov.noaa.nws.ridgeserver.chains.RadarProductType">
+        <constructor-arg value="153"/>
+        <constructor-arg value="ReflectivityColorCurveManager"/>
+        <constructor-arg value="463000." />
+        <constructor-arg value="1000"/>
+        <constructor-arg value="1000"/>
+    </bean>
     <bean id="N0Q" class="gov.noaa.nws.ridgeserver.chains.RadarProductType">
         <constructor-arg value="94"/>
         <constructor-arg value="ReflectivityColorCurveManager"/>
@@ -296,6 +307,27 @@
         <constructor-arg value="163"/>
         <constructor-arg value="ZDRColorCurveManager"/>
         <constructor-arg value="556000." />
+        <constructor-arg value="1000"/>
+        <constructor-arg value="1000"/>
+    </bean>
+     <bean id="DAA" class="gov.noaa.nws.ridgeserver.chains.RadarProductType">
+        <constructor-arg value="170"/>
+        <constructor-arg value="ZDRColorCurveManager"/>
+        <constructor-arg value="463000." />
+        <constructor-arg value="1000"/>
+        <constructor-arg value="1000"/>
+    </bean>
+     <bean id="DTA" class="gov.noaa.nws.ridgeserver.chains.RadarProductType">
+        <constructor-arg value="172"/>
+        <constructor-arg value="N1_3PColorCurveManagernew"/>
+        <constructor-arg value="463000." />
+        <constructor-arg value="1000"/>
+        <constructor-arg value="1000"/>
+    </bean>
+     <bean id="DPR" class="gov.noaa.nws.ridgeserver.chains.RadarProductType">
+        <constructor-arg value="176"/>
+        <constructor-arg value="ZDRColorCurveManager"/>
+        <constructor-arg value="463000." />
         <constructor-arg value="1000"/>
         <constructor-arg value="1000"/>
     </bean>
