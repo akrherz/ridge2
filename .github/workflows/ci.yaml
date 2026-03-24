@@ -1,40 +1,162 @@
-# Version 2
 name: Java CI
-on: ["push"]
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        java: [ "11" ]
+        java: ["11"]
+
+    env:
+      MAVEN_OPTS: -Djava.awt.headless=true
 
     steps:
-      # Checkout Repo
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Setup JDK ${{ matrix.java }}
-        uses: actions/setup-java@v3
+      - name: Set up JDK ${{ matrix.java }}
+        uses: actions/setup-java@v4
         with:
-          java-version: ${{ matrix.java }}
           distribution: temurin
+          java-version: ${{ matrix.java }}
+          cache: maven
 
-      - name: Cache Maven repository
-        uses: actions/cache@v3
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-java${{ matrix.java }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-java${{ matrix.java }}-maven-
-            ${{ runner.os }}-
-
-      - name: Build with Maven
+      - name: Build modules (strict + optional legacy)
+        shell: bash
         run: |
-          cd decoder/RidgeCommon
-          mvn install
-          cd ../RadarDecoderLibrary
-          mvn install
-          mvn -Dtest=ProductTests test
-          cd ../RidgeServer
-          mvn package
+          set -euo pipefail
+          required_modules=(
+            RadarDecoderLibrary
+            RidgeCommon
+            TestChart
+            RidgeImageSaver
+            RidgeImageSaverShort
+            RidgeLiteImageCreator
+            RidgeServer
+          )
+
+          # These modules rely on very old artifacts/repositories not available on modern public CI runners.
+          # We try them, but do not fail the whole CI job if their dependencies are unavailable.
+          optional_legacy_modules=(
+            RidgeHibernate
+            RidgeDBWriter
+            RidgeMonitor
+            RidgePurger
+          )
+
+          built_modules=()
+          skipped_optional_modules=()
+
+          for module in "${required_modules[@]}"; do
+            echo "::group::Build $module"
+            mvn -B -ntp -f "decoder/$module/pom.xml" clean install -DskipTests
+            built_modules+=("$module")
+            echo "::endgroup::"
+          done
+
+          for module in "${optional_legacy_modules[@]}"; do
+            echo "::group::Build optional legacy module $module"
+            if mvn -B -ntp -f "decoder/$module/pom.xml" clean install -DskipTests; then
+              built_modules+=("$module")
+            else
+              skipped_optional_modules+=("$module")
+              echo "::warning::Skipping $module due to unavailable legacy dependencies on public repos"
+            fi
+            echo "::endgroup::"
+          done
+
+          printf "%s\n" "${built_modules[@]}" > built-modules.txt
+          printf "%s\n" "${skipped_optional_modules[@]}" > skipped-optional-modules.txt
+          echo "BUILT_MODULES_FILE=$PWD/built-modules.txt" >> "$GITHUB_ENV"
+          echo "SKIPPED_OPTIONAL_MODULES_FILE=$PWD/skipped-optional-modules.txt" >> "$GITHUB_ENV"
+
+      - name: Run tests for modules that have tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          tested_modules=()
+          no_test_modules=()
+
+          while IFS= read -r module; do
+            [[ -z "$module" ]] && continue
+            if find "decoder/$module/src/test/java" -type f -name '*.java' 2>/dev/null | grep -q .; then
+              echo "::group::Test $module"
+              mvn -B -ntp -f "decoder/$module/pom.xml" test
+              tested_modules+=("$module")
+              echo "::endgroup::"
+            else
+              no_test_modules+=("$module")
+              echo "Skipping tests for $module (no test sources found)"
+            fi
+          done < "$BUILT_MODULES_FILE"
+
+          printf "%s\n" "${tested_modules[@]}" > tested-modules.txt
+          printf "%s\n" "${no_test_modules[@]}" > no-test-modules.txt
+          echo "TESTED_MODULES_FILE=$PWD/tested-modules.txt" >> "$GITHUB_ENV"
+          echo "NO_TEST_MODULES_FILE=$PWD/no-test-modules.txt" >> "$GITHUB_ENV"
+
+      - name: Upload Surefire Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: surefire-reports-java-${{ matrix.java }}
+          if-no-files-found: ignore
+          path: |
+            decoder/**/target/surefire-reports/*.txt
+            decoder/**/target/surefire-reports/*.xml
+
+      - name: CI Summary
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            echo "## Java CI Summary"
+            echo
+            echo "### Built Modules"
+            if [[ -s "$BUILT_MODULES_FILE" ]]; then
+              while IFS= read -r module; do
+                [[ -n "$module" ]] && echo "- $module"
+              done < "$BUILT_MODULES_FILE"
+            else
+              echo "- None"
+            fi
+            echo
+            echo "### Tested Modules"
+            if [[ -f "$TESTED_MODULES_FILE" && -s "$TESTED_MODULES_FILE" ]]; then
+              while IFS= read -r module; do
+                [[ -n "$module" ]] && echo "- $module"
+              done < "$TESTED_MODULES_FILE"
+            else
+              echo "- None"
+            fi
+            echo
+            echo "### Built Modules Without Tests"
+            if [[ -f "$NO_TEST_MODULES_FILE" && -s "$NO_TEST_MODULES_FILE" ]]; then
+              while IFS= read -r module; do
+                [[ -n "$module" ]] && echo "- $module"
+              done < "$NO_TEST_MODULES_FILE"
+            else
+              echo "- None"
+            fi
+            echo
+            echo "### Skipped Optional Legacy Modules"
+            if [[ -s "$SKIPPED_OPTIONAL_MODULES_FILE" ]]; then
+              while IFS= read -r module; do
+                [[ -n "$module" ]] && echo "- $module"
+              done < "$SKIPPED_OPTIONAL_MODULES_FILE"
+            else
+              echo "- None"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
 
