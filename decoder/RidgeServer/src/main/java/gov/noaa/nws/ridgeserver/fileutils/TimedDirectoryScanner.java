@@ -19,6 +19,7 @@ import org.apache.log4j.Logger;
  * @author jason.burks
  */
 public class TimedDirectoryScanner {
+    private static final Logger LOG = Logger.getLogger(TimedDirectoryScanner.class);
     FileDeliveryListener listener;
     Timer timer;
     int updateInterval;
@@ -26,10 +27,12 @@ public class TimedDirectoryScanner {
     int numListeners=0;
     FilenameFilter filter;
     File[] files;
+    boolean warnedMissingListener = false;
+    boolean warnedDirectoryUnavailable = false;
     
     /** Creates a new instance of DirectoryScanner */
     public TimedDirectoryScanner(String directory, int updateInterval) {
-        Logger.getLogger(TimedDirectoryScanner.class).info("Watching "+directory+"  every "+updateInterval);
+        LOG.info("Watching " + directory + "  every " + updateInterval);
         this.updateInterval = updateInterval;
         dir = new File(directory);
         filter = new FilenameFilter() {
@@ -47,7 +50,13 @@ public class TimedDirectoryScanner {
     }
     
     public synchronized void sendMessage(File file) {
-            listener.deliverFile(file);
+            if (listener != null) {
+                warnedMissingListener = false;
+                listener.deliverFile(file);
+            } else if (!warnedMissingListener) {
+                warnedMissingListener = true;
+                LOG.warn("No listener configured; skipping file: " + file);
+            }
        
     }
     public void startTimer() {
@@ -57,6 +66,17 @@ public class TimedDirectoryScanner {
             //TimerTask is something that's run every time the timer requests it
             public void run() {
                 files = dir.listFiles(filter);
+                if (files == null) {
+                    if (!warnedDirectoryUnavailable) {
+                        warnedDirectoryUnavailable = true;
+                        LOG.warn("Unable to list files in watch directory: " + dir.getAbsolutePath());
+                    }
+                    return;
+                }
+                if (warnedDirectoryUnavailable) {
+                    warnedDirectoryUnavailable = false;
+                    LOG.info("Watch directory is accessible again: " + dir.getAbsolutePath());
+                }
                 for (File file: files) {
                         sendMessage(file);
             
