@@ -17,6 +17,8 @@ import gov.noaa.nws.radardecoderlib.radardecoders.thresholds.Threshold;
 import gov.noaa.nws.radardecoderlib.renderers.RadarSpatialRenderer;
 import gov.noaa.nws.radardecoderlib.renderers.RendererFactory;
 
+import static org.junit.Assert.fail;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
@@ -78,7 +80,18 @@ public class ProductTests extends TestCase {
 			
 		}
 	}
-	
+
+    public void testN0G() {
+		try {
+			output("/products/n0g/DMX_20260324_2012_N0G","/tmp/n0g.png");
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("Exception "+e.getMessage());
+			
+		}
+	}
+
+    
 	public void testN0U() {
 		try {
 			output("/products/n0u/KFWD_SDUS54_N0UFWS_201010180222","/tmp/n0u.png");

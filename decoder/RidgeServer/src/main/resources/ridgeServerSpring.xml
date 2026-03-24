@@ -51,10 +51,10 @@
     </bean>
     
     <bean id="deleteSingleton" class="gov.noaa.nws.ridgeserver.chains.DeleteSingleton" factory-method="getInstance">
-    	<property name="executor" ref ="deleteExecutor"/>
+        <property name="executor" ref ="deleteExecutor"/>
     </bean>
 
- 	<import resource="${connectorName}-spring.xml"/> 
+     <import resource="${connectorName}-spring.xml"/> 
  
     <bean id="geoGraphic" class="gov.noaa.nws.radardecoderlib.gis.GeographicSingleton" factory-method="getInstance"/>
 <!--  
@@ -144,14 +144,15 @@
             <entry key="1R0" value-ref="t1R0"/>
             <entry key="N0Q" value-ref="N0Q"/>
             <entry key="N0B" value-ref="N0B"/>
+            <entry key="N0G" value-ref="N0G"/>
             <entry key="N0U" value-ref="N0U"/>
             <entry key="PTA" value-ref="PTA"/>
-			<entry key="N0H" value-ref="N0H"/>
-			<entry key="N0X" value-ref="N0X"/>
-			<entry key="N0K" value-ref="N0K"/>
-			<entry key="DAA" value-ref="DAA"/>
-			<entry key="DTA" value-ref="DTA"/>
-			<entry key="DPR" value-ref="DPR"/>
+            <entry key="N0H" value-ref="N0H"/>
+            <entry key="N0X" value-ref="N0X"/>
+            <entry key="N0K" value-ref="N0K"/>
+            <entry key="DAA" value-ref="DAA"/>
+            <entry key="DTA" value-ref="DTA"/>
+            <entry key="DPR" value-ref="DPR"/>
             </map>
         </property>
     </bean>
@@ -264,6 +265,13 @@
     <bean id="N0B" class="gov.noaa.nws.ridgeserver.chains.RadarProductType">
         <constructor-arg value="153"/>
         <constructor-arg value="ReflectivityColorCurveManager"/>
+        <constructor-arg value="463000." />
+        <constructor-arg value="1000"/>
+        <constructor-arg value="1000"/>
+    </bean>
+    <bean id="N0G" class="gov.noaa.nws.ridgeserver.chains.RadarProductType">
+        <constructor-arg value="99"/>
+        <constructor-arg value="VelocityColorCurveManager"/>
         <constructor-arg value="463000." />
         <constructor-arg value="1000"/>
         <constructor-arg value="1000"/>
