@@ -12,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.junit.runner.RunWith;
+import org.junit.Test;
 import static org.junit.Assert.fail;
 
 import org.locationtech.jts.geom.Coordinate;
@@ -28,11 +29,13 @@ public class RidgeDbWriterTest extends AbstractTransactionalJUnit4SpringContextT
 	@Qualifier("radarDAO")
     RidgeTimeDAO ridgeTimeDAO;
 
+	@Test
 	public void testSaveRadarTime() {
 		RadarTimeIndex index = getRadarTimeIndex(0);
 		ridgeTimeDAO.saveRadarTime(index);
 	}
 
+	@Test
 	public void testGetRadarTimeOlderThan() {
 		Date date = new Date();
 		RadarTimeIndex index = getRadarTimeIndex(86400*1000*2);
@@ -50,6 +53,7 @@ public class RidgeDbWriterTest extends AbstractTransactionalJUnit4SpringContextT
 		
 	}
 
+	@Test
 	public void testDeleteRadarTime() {
 		RadarTimeIndex index = getRadarTimeIndex(0);
 		ridgeTimeDAO.saveRadarTime(index);

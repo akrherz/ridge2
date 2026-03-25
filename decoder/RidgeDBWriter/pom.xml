@@ -24,44 +24,44 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
-			<version>3.0.5.RELEASE</version>
-			<type>jar</type>
+			<version>5.3.30</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
-			<version>3.0.5.RELEASE</version>
-			<type>jar</type>
+			<version>5.3.30</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jms</artifactId>
-			<version>3.0.5.RELEASE</version>
-			<type>jar</type>
+			<version>5.3.30</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>3.0.5.RELEASE</version>
-			<type>jar</type>
+			<version>5.3.30</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>5.3.30</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.activemq</groupId>
 			<artifactId>activemq-all</artifactId>
-			<version>5.4.1</version>
-			<type>jar</type>
+			<version>5.17.6</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-jms</artifactId>
-			<version>3.0.5.RELEASE</version>
-			<type>jar</type>
-			<scope>compile</scope>
+			<artifactId>spring-jdbc</artifactId>
+			<version>5.3.30</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 		  <groupId>org.apache.logging.log4j</groupId>
@@ -89,6 +89,13 @@
 			<groupId>org.springframework.amqp</groupId>
 			<artifactId>spring-rabbit</artifactId>
 			<version>1.0.0.RELEASE</version>
+		</dependency>
+		<!-- xml-apis provides DocumentLS needed by Xerces bundled in activemq-all -->
+		<dependency>
+			<groupId>xml-apis</groupId>
+			<artifactId>xml-apis</artifactId>
+			<version>2.0.2</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.locationtech.jts</groupId>
