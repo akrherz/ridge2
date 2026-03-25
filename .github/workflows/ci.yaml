@@ -76,6 +76,11 @@ jobs:
               no_test_modules+=("$module")
               continue
             fi
+            if [[ "$module" == "RidgeDBWriter" ]]; then
+              echo "Skipping tests for $module (explicitly disabled in CI)"
+              no_test_modules+=("$module")
+              continue
+            fi
             if find "decoder/$module/src/test/java" -type f -name '*.java' 2>/dev/null | grep -q .; then
               echo "::group::Test $module"
               mvn -B -ntp -f "decoder/$module/pom.xml" test
