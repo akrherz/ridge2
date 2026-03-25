@@ -4,7 +4,18 @@ version: 2
 updates:
 
   - package-ecosystem: "maven"
-    directory: "/"
+    directories:
+      - "decoder/RadarDecoderLibrary"
+      - "decoder/RidgeCommon"
+      - "decoder/TestChart"
+      - "decoder/RidgeImageSaver"
+      - "decoder/RidgeImageSaverShort"
+      - "decoder/RidgeLiteImageCreator"
+      - "decoder/RidgeServer"
+      - "decoder/RidgeHibernate"
+      - "decoder/RidgeDBWriter"
+      - "decoder/RidgeMonitor"
+      - "decoder/RidgePurger"
     schedule:
       interval: "monthly"
     labels:
