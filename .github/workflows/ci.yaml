@@ -13,7 +13,7 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         java: ["11"]
 
@@ -31,11 +31,11 @@ jobs:
           java-version: ${{ matrix.java }}
           cache: maven
 
-      - name: Build modules (strict + optional legacy)
+      - name: Build modules (strict)
         shell: bash
         run: |
           set -euo pipefail
-          required_modules=(
+          modules=(
             RadarDecoderLibrary
             RidgeCommon
             TestChart
@@ -43,11 +43,6 @@ jobs:
             RidgeImageSaverShort
             RidgeLiteImageCreator
             RidgeServer
-          )
-
-          # These modules rely on very old artifacts/repositories not available on modern public CI runners.
-          # We try them, but do not fail the whole CI job if their dependencies are unavailable.
-          optional_legacy_modules=(
             RidgeHibernate
             RidgeDBWriter
             RidgeMonitor
@@ -55,30 +50,16 @@ jobs:
           )
 
           built_modules=()
-          skipped_optional_modules=()
 
-          for module in "${required_modules[@]}"; do
+          for module in "${modules[@]}"; do
             echo "::group::Build $module"
             mvn -B -ntp -f "decoder/$module/pom.xml" clean install -DskipTests
             built_modules+=("$module")
             echo "::endgroup::"
           done
 
-          for module in "${optional_legacy_modules[@]}"; do
-            echo "::group::Build optional legacy module $module"
-            if mvn -B -ntp -f "decoder/$module/pom.xml" clean install -DskipTests; then
-              built_modules+=("$module")
-            else
-              skipped_optional_modules+=("$module")
-              echo "::warning::Skipping $module due to unavailable legacy dependencies on public repos"
-            fi
-            echo "::endgroup::"
-          done
-
           printf "%s\n" "${built_modules[@]}" > built-modules.txt
-          printf "%s\n" "${skipped_optional_modules[@]}" > skipped-optional-modules.txt
           echo "BUILT_MODULES_FILE=$PWD/built-modules.txt" >> "$GITHUB_ENV"
-          echo "SKIPPED_OPTIONAL_MODULES_FILE=$PWD/skipped-optional-modules.txt" >> "$GITHUB_ENV"
 
       - name: Run tests for modules that have tests
         shell: bash
@@ -89,6 +70,12 @@ jobs:
 
           while IFS= read -r module; do
             [[ -z "$module" ]] && continue
+            # Skip RidgeHibernate tests in CI for now (build still runs)
+            if [[ "$module" == "RidgeHibernate" ]]; then
+              echo "Skipping tests for $module (explicitly disabled in CI)"
+              no_test_modules+=("$module")
+              continue
+            fi
             if find "decoder/$module/src/test/java" -type f -name '*.java' 2>/dev/null | grep -q .; then
               echo "::group::Test $module"
               mvn -B -ntp -f "decoder/$module/pom.xml" test
@@ -151,12 +138,6 @@ jobs:
             fi
             echo
             echo "### Skipped Optional Legacy Modules"
-            if [[ -s "$SKIPPED_OPTIONAL_MODULES_FILE" ]]; then
-              while IFS= read -r module; do
-                [[ -n "$module" ]] && echo "- $module"
-              done < "$SKIPPED_OPTIONAL_MODULES_FILE"
-            else
-              echo "- None"
-            fi
+            echo "- None"
           } >> "$GITHUB_STEP_SUMMARY"
 

@@ -22,7 +22,7 @@
     <property name="datetime" type="timestamp">
       <column length="29" name="datetime"/>
     </property>
-    <property name="theGeom" type="org.hibernatespatial.GeometryUserType">
+    <property name="theGeom" type="org.hibernate.spatial.GeometryType">
       <column name="the_geom"/>
     </property>
     <property name="vcp" type="integer">

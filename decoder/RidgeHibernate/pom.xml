@@ -13,27 +13,24 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>5.3.20.Final</version>
+			<version>5.4.33.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
-			<version>3.0.5.RELEASE</version>
-			<type>jar</type>
+			<version>5.3.30</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
-			<version>3.0.5.RELEASE</version>
-			<type>jar</type>
+			<version>5.3.30</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
-			<version>3.0.5.RELEASE</version>
-			<type>jar</type>
+			<version>5.3.30</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
@@ -46,52 +43,47 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>3.0.5.RELEASE</version>
-			<type>jar</type>
+			<version>5.3.30</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
 			<version>1.5.8</version>
 			<scope>runtime</scope>
 		</dependency>
-		<!-- Try newer public spatial/postgis artifacts -->
+		<!-- Use modern hibernate-spatial (Hibernate 5.x) -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-spatial</artifactId>
 			<version>5.4.33.Final</version>
 			<scope>compile</scope>
 		</dependency>
-		<!-- PostGIS JDBC not declared here; provide runtime driver in deploy environment if needed -->
 		<dependency>
 			<groupId>postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>8.3-603.jdbc3</version>
 			<scope>runtime</scope>
 		</dependency>
-
 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-c3p0</artifactId>
-			<version>3.3.2.GA</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>3.0.5.RELEASE</version>
-			<type>jar</type>
+			<groupId>net.postgis</groupId>
+			<artifactId>postgis-jdbc</artifactId>
+			<version>2025.1.1</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
-			<groupId>com.vividsolutions</groupId>
-			<artifactId>jts</artifactId>
-			<version>1.8</version>
-			<type>jar</type>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-c3p0</artifactId>
+			<version>5.4.33.Final</version>
+			<scope>compile</scope>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.locationtech.jts</groupId>
+			<artifactId>jts-core</artifactId>
+			<version>1.18.2</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
@@ -110,10 +102,9 @@
 		  <version>2.20.0</version>
 		</dependency>
 		<dependency>
-			<groupId>javassist</groupId>
+			<groupId>org.javassist</groupId>
 			<artifactId>javassist</artifactId>
-			<version>3.8.0.GA</version>
-			<type>jar</type>
+			<version>3.27.0-GA</version>
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
