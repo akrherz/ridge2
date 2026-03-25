@@ -7,7 +7,6 @@ package gov.noaa.nws.ridge;
 
 import java.util.Date;
 import java.util.List;
-import org.apache.log4j.Logger;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;

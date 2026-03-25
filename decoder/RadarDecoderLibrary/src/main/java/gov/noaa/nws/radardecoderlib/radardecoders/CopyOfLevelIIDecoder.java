@@ -1,18 +1,10 @@
 package gov.noaa.nws.radardecoderlib.radardecoders;
 
 import gov.noaa.nws.radardecoderlib.binaryutils.BinaryReader;
-import gov.noaa.nws.radardecoderlib.binaryutils.BinaryUtilities;
-import  gov.noaa.nws.radardecoderlib.radardecoders.thresholds.Threshold;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.nio.ByteBuffer;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
 
 /**
  *

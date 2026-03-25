@@ -10,20 +10,12 @@
 package gov.noaa.nws.radardecoderlib.binaryutils;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.MappedByteBuffer;
 import java.util.BitSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.zip.DataFormatException;
-import java.util.zip.Inflater;
-import java.util.zip.ZipInputStream;
 
-import ucar.nc2.dt.radial.Nids2Dataset;
 import ucar.unidata.io.bzip2.CBZip2InputStream;
 
 /**

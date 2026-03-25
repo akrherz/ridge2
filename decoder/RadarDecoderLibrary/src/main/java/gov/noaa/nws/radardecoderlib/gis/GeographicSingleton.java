@@ -5,12 +5,7 @@
 
 package gov.noaa.nws.radardecoderlib.gis;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.geotools.referencing.CRS;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
-import org.opengis.referencing.FactoryException;
-import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 /**
