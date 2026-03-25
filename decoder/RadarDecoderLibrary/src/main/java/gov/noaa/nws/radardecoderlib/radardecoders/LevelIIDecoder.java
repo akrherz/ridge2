@@ -3,8 +3,6 @@ package gov.noaa.nws.radardecoderlib.radardecoders;
 import gov.noaa.nws.radardata.RadarData;
 import gov.noaa.nws.radardata.RadialData;
 import gov.noaa.nws.radardecoderlib.binaryutils.BinaryReader;
-import gov.noaa.nws.radardecoderlib.binaryutils.BinaryUtilities;
-import gov.noaa.nws.radardecoderlib.binaryutils.MappedByteBufferReader;
 import gov.noaa.nws.radardecoderlib.radardecoders.thresholds.DoubleThreshold;
 import gov.noaa.nws.radardecoderlib.radardecoders.thresholds.StringThreshold;
 import gov.noaa.nws.radardecoderlib.radardecoders.thresholds.Threshold;
@@ -15,13 +13,9 @@ import java.nio.ByteBuffer;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.BitSet;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import ucar.unidata.io.bzip2.CBZip2InputStream;
 

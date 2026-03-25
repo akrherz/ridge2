@@ -8,7 +8,6 @@ package gov.noaa.nws.radardecoderlib.gis;
 import java.awt.Rectangle;
 
 import org.geotools.coverage.grid.GeneralGridEnvelope;
-import org.geotools.coverage.grid.GeneralGridGeometry;
 import org.geotools.geometry.Envelope2D;
 import org.geotools.geometry.GeneralDirectPosition;
 import org.geotools.referencing.CRS;

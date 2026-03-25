@@ -14,8 +14,6 @@ import gov.noaa.nws.ridge.common.event.ProcessedRadarFile;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.jms.BytesMessage;
-import javax.jms.JMSException;
 
 import org.apache.log4j.Logger;
 import org.opengis.geometry.DirectPosition;
