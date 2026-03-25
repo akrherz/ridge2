@@ -9,6 +9,7 @@ import gov.noaa.nws.ridge.RidgeTimeDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.junit.runner.RunWith;
@@ -23,6 +24,7 @@ import org.locationtech.jts.geom.PrecisionModel;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"/ridgeDBWriterSpring.xml"})
+@TestPropertySource(properties = {"connectorName=activemq"})
 public class RidgeDbWriterTest extends AbstractTransactionalJUnit4SpringContextTests {
 
 	@Autowired
