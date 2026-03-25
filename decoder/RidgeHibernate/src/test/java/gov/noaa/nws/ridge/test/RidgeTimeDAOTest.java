@@ -9,17 +9,20 @@ import gov.noaa.nws.ridge.RidgeTimeDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit38.AbstractJUnit38SpringContextTests;
-import org.springframework.test.context.junit38.AbstractTransactionalJUnit38SpringContextTests;
+import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.junit.runner.RunWith;
 
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.GeometryFactory;
-import com.vividsolutions.jts.geom.PrecisionModel;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.PrecisionModel;
+import static org.junit.Assert.fail;
 
 
+@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"/hibernateConfig.xml"})
-public class RidgeTimeDAOTest extends AbstractTransactionalJUnit38SpringContextTests {
+public class RidgeTimeDAOTest extends AbstractTransactionalJUnit4SpringContextTests {
 
 	@Autowired
 	@Qualifier("radarDAO")

@@ -2,7 +2,7 @@ package gov.noaa.nws.ridge;
 // Generated Jun 4, 2009 2:06:06 PM by Hibernate Tools 3.2.1.GA
 
 
-import com.vividsolutions.jts.geom.Geometry;
+import org.locationtech.jts.geom.Geometry;
 import java.util.Date;
 
 /**

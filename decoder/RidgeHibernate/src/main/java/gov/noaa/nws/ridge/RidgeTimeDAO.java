@@ -10,7 +10,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 /**
  *
@@ -28,7 +28,8 @@ public class RidgeTimeDAO extends HibernateDaoSupport {
     }
     
     public  List<RadarTimeIndex> getRadarTimeOlderThan(Date date) throws java.lang.Exception {
-        List<RadarTimeIndex> radar = getHibernateTemplate().findByCriteria(DetachedCriteria.forClass(RadarTimeIndex.class).add(Restrictions.lt("datetime", date)));
+        @SuppressWarnings("unchecked")
+        List<RadarTimeIndex> radar = (List<RadarTimeIndex>) getHibernateTemplate().findByCriteria(DetachedCriteria.forClass(RadarTimeIndex.class).add(Restrictions.lt("datetime", date)));
         if (radar != null) {
             return(radar);
         }

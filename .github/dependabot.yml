@@ -3,6 +3,16 @@
 version: 2
 updates:
 
+  - package-ecosystem: "maven"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    labels:
+      - "Bot"
+    groups:
+      maven:
+        patterns:
+          - '*'
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:

@@ -27,7 +27,7 @@
         <bean id="myListener" class="gov.noaa.nws.ridge.JMSMessageAdapter" >
             <property name="writerExecutor" ref="writerExecutor"/>
             <property name="startPath" value="${startPath}"/>
-             <property name="radarDAO" ref="radarDAO"/>
+               <property name="radarDao" ref="radarDAO"/>
         </bean>
         <!-- End ActiveMQ Section -->
         
