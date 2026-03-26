@@ -7,8 +7,8 @@ package gov.noaa.nws.ridge;
 
 import java.io.PrintStream;
 
-import com.vividsolutions.jts.geom.GeometryFactory;
-import com.vividsolutions.jts.geom.PrecisionModel;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.PrecisionModel;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;

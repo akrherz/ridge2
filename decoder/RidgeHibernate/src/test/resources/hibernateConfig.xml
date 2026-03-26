@@ -16,7 +16,7 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate6.LocalSessionFactoryBean">
+		class="org.springframework.orm.jpa.hibernate.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="mappingResources">
 			<list>
@@ -32,11 +32,8 @@
 			</props>
 		</property>
 	</bean>
-	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate6.HibernateTemplate">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
 	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate6.HibernateTransactionManager">
+		class="org.springframework.orm.jpa.hibernate.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
