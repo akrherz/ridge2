@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        java: ["11"]
+        java: ["17"]
 
     env:
       MAVEN_OPTS: -Djava.awt.headless=true
