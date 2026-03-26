@@ -41,7 +41,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
-import org.geotools.geometry.GeneralDirectPosition;
+import org.geotools.geometry.GeneralPosition;
 import org.junit.Test;
 
 /**
@@ -91,8 +91,8 @@ public class TestLevelII {
 	                renderer.setColor(colmanager.getColors(thresholds));
 	               
 	                renderer.setRadarData(currData);
-	                CoordinateHolder holder = GeographicsCoordinateFactory.getTransformForGeo(3000, 3000, new GeneralDirectPosition(87.0,34.0), 230. * 1852.);
-	                renderer.setTransform(holder.getTransform(), new GeneralDirectPosition(87.0,34.0), decoder.getElevationAngle(elevation));
+	                CoordinateHolder holder = GeographicsCoordinateFactory.getTransformForGeo(3000, 3000, new GeneralPosition(87.0,34.0), 230. * 1852.);
+	                renderer.setTransform(holder.getTransform(), new GeneralPosition(87.0,34.0), decoder.getElevationAngle(elevation));
 	                //CreateWorldFileFromRadar.createWorldFileFromRadar(CreateWorldFileFromRadar.createWorldFilename(outputname), holder.getUpperLeft(), holder.getLowerRight(), width, height);
 	                BufferedImage image = renderer.render();
 	                ImageIO.write(image, "png", new File("/tmp/test_"+elevation+".png"));

@@ -16,7 +16,7 @@ import jakarta.jms.MessageListener;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
-import org.geotools.geometry.GeneralDirectPosition;
+import org.geotools.geometry.GeneralPosition;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 

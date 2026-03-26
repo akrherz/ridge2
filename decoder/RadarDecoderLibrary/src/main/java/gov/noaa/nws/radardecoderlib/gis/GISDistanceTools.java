@@ -10,9 +10,9 @@
 
 package gov.noaa.nws.radardecoderlib.gis;
 
-import org.geotools.geometry.GeneralDirectPosition;
+import org.geotools.geometry.GeneralPosition;
 import org.geotools.referencing.GeodeticCalculator;
-import org.geotools.api.geometry.DirectPosition;
+import org.geotools.api.geometry.Position;
 
 
 
@@ -27,7 +27,7 @@ public class GISDistanceTools {
     }
     
      
-     public static DirectPosition getPointFromRangeAndDistance(DirectPosition startPoint, double head, double distance) {
+     public static Position getPointFromRangeAndDistance(Position startPoint, double head, double distance) {
          
          double azimuth = convertAzimuth(head);
 //         double rangem = ((distance)*1852.)*Math.cos(Math.toRadians(0.5));
@@ -41,10 +41,10 @@ public class GISDistanceTools {
          
          calc.setDirection(azimuth,rangem); 
          
-         return(new GeneralDirectPosition(calc.getDestinationGeographicPoint().getY(),calc.getDestinationGeographicPoint().getX()));
+         return(new GeneralPosition(calc.getDestinationGeographicPoint().getY(),calc.getDestinationGeographicPoint().getX()));
      }
     
-     public static DirectPosition getPointFromRangeXAndY(DirectPosition startPoint, double x, double y) {
+     public static Position getPointFromRangeXAndY(Position startPoint, double x, double y) {
          //need to calculate Azimuth
         double  head = Math.atan2(x,y);
         double distance = Math.sqrt(Math.pow(x,2)+Math.pow(y,2));
@@ -54,7 +54,7 @@ public class GISDistanceTools {
          calc.setStartingGeographicPoint(startPoint.getOrdinate(0),startPoint.getOrdinate(1));
          calc.setDirection(Math.toDegrees(head),rangem); 
          
-         return(new GeneralDirectPosition(calc.getDestinationGeographicPoint().getY(),calc.getDestinationGeographicPoint().getX()));
+         return(new GeneralPosition(calc.getDestinationGeographicPoint().getY(),calc.getDestinationGeographicPoint().getX()));
       //   return(null);
      }
 //     

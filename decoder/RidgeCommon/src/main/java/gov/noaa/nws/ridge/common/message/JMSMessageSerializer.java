@@ -15,7 +15,7 @@ import jakarta.jms.MessageListener;
 import jakarta.jms.Session;
 
 import org.apache.log4j.Logger;
-import org.geotools.geometry.GeneralDirectPosition;
+import org.geotools.geometry.GeneralPosition;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 
@@ -39,8 +39,8 @@ public class JMSMessageSerializer{
 		byte[] barray = new byte[(int)length];
 		message.readBytes(barray);
 		radarFile.setByteImage(barray);
-		radarFile.setUpperLeft(new GeneralDirectPosition(message.getDoubleProperty("upperLeftLon"),message.getDoubleProperty("upperLeftLat")));
-		radarFile.setLowerRight(new GeneralDirectPosition(message.getDoubleProperty("lowerRightLon"),message.getDoubleProperty("lowerRightLat")));
+		radarFile.setUpperLeft(new GeneralPosition(message.getDoubleProperty("upperLeftLon"),message.getDoubleProperty("upperLeftLat")));
+		radarFile.setLowerRight(new GeneralPosition(message.getDoubleProperty("lowerRightLon"),message.getDoubleProperty("lowerRightLat")));
 		radarFile.setImageWidth(message.getIntProperty("width"));
 		radarFile.setImageHeight(message.getIntProperty("height"));
 		radarFile.setElevationAngle(message.getFloatProperty("elevationAngle"));

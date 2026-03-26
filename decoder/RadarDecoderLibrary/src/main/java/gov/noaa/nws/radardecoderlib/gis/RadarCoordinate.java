@@ -8,7 +8,7 @@ package gov.noaa.nws.radardecoderlib.gis;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.geotools.referencing.GeodeticCalculator;
-import org.geotools.api.geometry.DirectPosition;
+import org.geotools.api.geometry.Position;
 import org.geotools.api.referencing.operation.TransformException;
 
 /**
@@ -26,7 +26,7 @@ public class RadarCoordinate {
 
     
 
-    public DirectPosition getPoint(DirectPosition point) {
+    public Position getPoint(Position point) {
         try {
             double range = calculateDistance(point.getOrdinate(0), point.getOrdinate(1));
             double azimuth = calculateAzimuth(point.getOrdinate(0), point.getOrdinate(1));

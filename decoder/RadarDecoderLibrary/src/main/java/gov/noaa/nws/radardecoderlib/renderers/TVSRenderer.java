@@ -11,8 +11,8 @@ import gov.noaa.nws.radardata.TextData;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.geom.GeneralPath;
-import org.geotools.geometry.GeneralDirectPosition;
-import org.geotools.api.geometry.DirectPosition;
+import org.geotools.geometry.GeneralPosition;
+import org.geotools.api.geometry.Position;
 
 /**
  *
@@ -51,7 +51,7 @@ public class TVSRenderer extends SymbologyRenderer {
 
     public void drawTVS(double x, double y) {
         try {
-            DirectPosition pointone = radarCoord.transformXandYToCRS(new GeneralDirectPosition(x, y));
+            Position pointone = radarCoord.transformXandYToCRS(new GeneralPosition(x, y));
             g.setPaint(color);
             g.setStroke(wideStroke);
             g.translate(pointone.getOrdinate(0) - 2.5, pointone.getOrdinate(1) - 10.);

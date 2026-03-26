@@ -10,7 +10,7 @@ import gov.noaa.nws.ridge.common.event.ProcessedRadarFile;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import org.apache.log4j.Logger;
-import org.geotools.api.geometry.DirectPosition;
+import org.geotools.api.geometry.Position;
 
 /**
  *
@@ -33,8 +33,8 @@ public class ShortFileWriterTask implements Runnable {
                 fos = new FileOutputStream(startPath + ZZZ+"/"+XXX + "_" + ZZZ +".png");
                 byte[] barray = radarFile.getByteImage();
                 fos.write(barray);
-                DirectPosition upperLeft = radarFile.getUpperLeft();
-                DirectPosition lowerRight = radarFile.getLowerRight();
+                Position upperLeft = radarFile.getUpperLeft();
+                Position lowerRight = radarFile.getLowerRight();
                 
                  int width = radarFile.getImageWidth();
                  int height = radarFile.getImageHeight();

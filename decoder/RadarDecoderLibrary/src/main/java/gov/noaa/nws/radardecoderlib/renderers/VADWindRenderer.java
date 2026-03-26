@@ -12,7 +12,7 @@ import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
-import org.geotools.api.geometry.DirectPosition;
+import org.geotools.api.geometry.Position;
 import org.geotools.api.referencing.operation.MathTransform;
 
 /**
@@ -74,7 +74,7 @@ public class VADWindRenderer extends RadarSpatialRenderer {
     }
 
     @Override
-    public void setTransform(MathTransform transform, DirectPosition radarLocation, double elevationAngle) {
+    public void setTransform(MathTransform transform, Position radarLocation, double elevationAngle) {
 
     }
 

@@ -10,7 +10,7 @@
 
 package gov.noaa.nws.radardecoderlib.gis;
 import java.io.*;
-import org.geotools.api.geometry.DirectPosition;
+import org.geotools.api.geometry.Position;
 import org.geotools.api.referencing.crs.CoordinateReferenceSystem;
 /**
  *w.yahoo
@@ -21,7 +21,7 @@ public class CreateWorldFileFromRadar {
    public CreateWorldFileFromRadar() {
     }
 
-    public static void createWorldFileFromRadar(String outputFile, DirectPosition upperLeft, DirectPosition lowerRight, int width, int height) {
+    public static void createWorldFileFromRadar(String outputFile, Position upperLeft, Position lowerRight, int width, int height) {
          double xScaling = (lowerRight.getOrdinate(0)-upperLeft.getOrdinate(0))/width;
          ///need to use xscaling in y direction in case not square
          double yScaling = -1*(upperLeft.getOrdinate(1)-lowerRight.getOrdinate(1))/height;
@@ -31,15 +31,15 @@ public class CreateWorldFileFromRadar {
     
     /** Creates a new instance of CreateWorldFileFromRadar */
     
-     public static void createWorldFileFromRadar(String imageoutputfile,DirectPosition centerPoint, double range, int imageWidth, int imageHeight) {
+     public static void createWorldFileFromRadar(String imageoutputfile,Position centerPoint, double range, int imageWidth, int imageHeight) {
        //Convert to km from nautical miles 315 135
-         DirectPosition east = GISDistanceTools.getPointFromRangeAndDistance(centerPoint, 90., range);
-         DirectPosition west = GISDistanceTools.getPointFromRangeAndDistance(centerPoint, 270., range);
+         Position east = GISDistanceTools.getPointFromRangeAndDistance(centerPoint, 90., range);
+         Position west = GISDistanceTools.getPointFromRangeAndDistance(centerPoint, 270., range);
          //Needed to scale using x to y ratio to accomadate for non-square images
          double yrange = range*((double)imageHeight/(double)imageWidth);
          double xScaling = (east.getOrdinate(0)-west.getOrdinate(0))/imageWidth;
-         DirectPosition north = GISDistanceTools.getPointFromRangeAndDistance(centerPoint, 0., yrange);
-         DirectPosition south = GISDistanceTools.getPointFromRangeAndDistance(centerPoint, 180., yrange);
+         Position north = GISDistanceTools.getPointFromRangeAndDistance(centerPoint, 0., yrange);
+         Position south = GISDistanceTools.getPointFromRangeAndDistance(centerPoint, 180., yrange);
          
          
          

@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.apache.log4j.Logger;
-import org.geotools.api.geometry.DirectPosition;
+import org.geotools.api.geometry.Position;
 
 /**
  *
@@ -48,8 +48,8 @@ public class RadarTimeWriterTask implements Runnable {
             index.setLayer(ZZZ);
             index.setDatetime(date);
             index.setRadarPath(startPath + ZZZ+"/"+XXX + "_" + ZZZ +"_"+dateFormat.format(date)+".png");
-            DirectPosition upperLeft = radarFile.getUpperLeft();
-            DirectPosition lowerRight = radarFile.getLowerRight();
+            Position upperLeft = radarFile.getUpperLeft();
+            Position lowerRight = radarFile.getLowerRight();
   
             Coordinate[] coords = new Coordinate[5];
             coords[0] = new Coordinate(upperLeft.getOrdinate(0),upperLeft.getOrdinate(1));

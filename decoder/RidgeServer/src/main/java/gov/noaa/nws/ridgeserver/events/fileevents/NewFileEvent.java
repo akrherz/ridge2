@@ -13,7 +13,7 @@ import gov.noaa.nws.ridge.common.event.ProcessedRadarFile;
 
 import java.awt.image.BufferedImage;
 import java.util.Date;
-import org.geotools.api.geometry.DirectPosition;
+import org.geotools.api.geometry.Position;
 /**
  *
  * @author jburks
@@ -58,19 +58,19 @@ public class NewFileEvent {
         radarFile.setImage(image);
     }
 
-    public DirectPosition getLowerRight() {
+    public Position getLowerRight() {
         return radarFile.getLowerRight();
     }
 
-    public void setLowerRight(DirectPosition lowerRight) {
+    public void setLowerRight(Position lowerRight) {
         radarFile.setLowerRight(lowerRight);
     }
 
-    public DirectPosition getUpperLeft() {
+    public Position getUpperLeft() {
         return radarFile.getUpperLeft();
     }
 
-    public void setUpperLeft(DirectPosition upperLeft) {
+    public void setUpperLeft(Position upperLeft) {
     	radarFile.setUpperLeft(upperLeft);
     }
 

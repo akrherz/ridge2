@@ -8,8 +8,8 @@ package gov.noaa.nws.radardecoderlib.gis;
 import java.util.Hashtable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.geotools.geometry.GeneralDirectPosition;
-import org.geotools.api.geometry.DirectPosition;
+import org.geotools.geometry.GeneralPosition;
+import org.geotools.api.geometry.Position;
 import org.geotools.api.referencing.operation.MathTransform;
 import org.geotools.api.referencing.operation.NoninvertibleTransformException;
 import org.geotools.api.referencing.operation.TransformException;
@@ -58,13 +58,13 @@ public class RadarCoordinateToCRS {
 
     }
 
-    public DirectPosition[] convertGeoGraphicToCRS(DirectPosition[] postIn) throws Exception{
+    public Position[] convertGeoGraphicToCRS(Position[] postIn) throws Exception{
         try {
             int num = postIn.length;
-            DirectPosition[] output = new DirectPosition[num];
+            Position[] output = new Position[num];
             for (int i=0; i< num; ++i) {
             	
-            		output[i] = new GeneralDirectPosition(0,0);
+            		output[i] = new GeneralPosition(0,0);
             		geographicToCRS.transform(postIn[i],output[i]);
             
                 
@@ -77,9 +77,9 @@ public class RadarCoordinateToCRS {
         }
 
     }
-    public DirectPosition convertGeoGraphicToCRS(DirectPosition postIn) throws Exception{
+    public Position convertGeoGraphicToCRS(Position postIn) throws Exception{
         try {
-            DirectPosition output = new GeneralDirectPosition(0,0);
+            Position output = new GeneralPosition(0,0);
                 geographicToCRS.transform(postIn,output);
 
            // System.out.println("Output ===="+output[0]);
@@ -92,7 +92,7 @@ public class RadarCoordinateToCRS {
 
     }
 
-    public DirectPosition transformXandYToCRS(DirectPosition point) throws Exception {
+    public Position transformXandYToCRS(Position point) throws Exception {
         if (hasCRS) {
             try {
                 return this.convertGeoGraphicToCRS(radarCoord.getPoint(point));

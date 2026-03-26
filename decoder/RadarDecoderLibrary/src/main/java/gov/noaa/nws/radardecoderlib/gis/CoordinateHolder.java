@@ -5,7 +5,7 @@
 
 package gov.noaa.nws.radardecoderlib.gis;
 
-import org.geotools.api.geometry.DirectPosition;
+import org.geotools.api.geometry.Position;
 import org.geotools.api.referencing.operation.MathTransform;
 
 /**
@@ -14,10 +14,10 @@ import org.geotools.api.referencing.operation.MathTransform;
  */
 public class CoordinateHolder {
     private MathTransform transform;
-    private DirectPosition upperLeft;
-    private DirectPosition lowerRight;
+    private Position upperLeft;
+    private Position lowerRight;
 
-    public CoordinateHolder(MathTransform transform, DirectPosition upperLeft, DirectPosition lowerRight) {
+    public CoordinateHolder(MathTransform transform, Position upperLeft, Position lowerRight) {
         this.transform = transform;
         this.upperLeft = upperLeft;
         this.lowerRight = lowerRight;
@@ -33,14 +33,14 @@ public class CoordinateHolder {
     /**
      * @return the upperLeft
      */
-    public DirectPosition getUpperLeft() {
+    public Position getUpperLeft() {
         return upperLeft;
     }
 
     /**
      * @return the lowerRight
      */
-    public DirectPosition getLowerRight() {
+    public Position getLowerRight() {
         return lowerRight;
     }
 

@@ -8,7 +8,7 @@ package gov.noaa.nws.radardecoderlib.gis;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.geotools.referencing.GeodeticCalculator;
-import org.geotools.api.geometry.DirectPosition;
+import org.geotools.api.geometry.Position;
 import org.geotools.api.referencing.operation.TransformException;
 
 /**
@@ -25,7 +25,7 @@ public class RadarCompositeCoordinate {
     double startY,startX;
     double rangeOfProduct;
 
-    DirectPosition[] points = new DirectPosition[4];
+    Position[] points = new Position[4];
     
     public void setup(double longitude,double latitude, double binWidth, double rangeOfProduct) {
         calculator.setStartingGeographicPoint(longitude,latitude);
@@ -47,9 +47,9 @@ public class RadarCompositeCoordinate {
         
     }
 
-    public DirectPosition[] getPoints(int pixelInRow) {
+    public Position[] getPoints(int pixelInRow) {
         try {
-        	points = new DirectPosition[4];
+        	points = new Position[4];
 
             double xdistance =  (pixelInRow-.5) * binWidth-rangeOfProduct-startX;
             double xdistancePlus1 = (pixelInRow+.5) * binWidth-rangeOfProduct-startX;
@@ -81,9 +81,9 @@ public class RadarCompositeCoordinate {
 
     }
     
-    public DirectPosition[] getRightEdgePoints(int pixelInRow) {
+    public Position[] getRightEdgePoints(int pixelInRow) {
         try {
-            points = new DirectPosition[2];
+            points = new Position[2];
       
             double xdistancePlus1 = (pixelInRow+.5) * binWidth-rangeOfProduct-startX;
 
