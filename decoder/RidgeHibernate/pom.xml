@@ -11,7 +11,7 @@
 	</properties>
 	<dependencies>
 		<dependency>
-			<groupId>org.hibernate</groupId>
+			<groupId>org.hibernate.orm</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>6.6.8.Final</version>
 		</dependency>
@@ -54,7 +54,7 @@
 		</dependency>
 		<!-- Use modern hibernate-spatial (Hibernate 6.x) -->
 		<dependency>
-			<groupId>org.hibernate</groupId>
+			<groupId>org.hibernate.orm</groupId>
 			<artifactId>hibernate-spatial</artifactId>
 			<version>6.6.8.Final</version>
 			<scope>compile</scope>
@@ -73,7 +73,7 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.hibernate</groupId>
+			<groupId>org.hibernate.orm</groupId>
 			<artifactId>hibernate-c3p0</artifactId>
 			<version>6.6.8.Final</version>
 			<scope>compile</scope>
