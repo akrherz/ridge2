@@ -5,9 +5,9 @@
 
 package gov.noaa.nws.radardecoderlib.gis;
 
-import org.geotools.geometry.GeneralDirectPosition;
-import org.opengis.geometry.DirectPosition;
-import org.opengis.referencing.operation.MathTransform;
+import org.geotools.geometry.GeneralPosition;
+import org.geotools.api.geometry.Position;
+import org.geotools.api.referencing.operation.MathTransform;
 
 /**
  *
@@ -18,9 +18,9 @@ public class CompositeCoordinateToCRS extends RadarCoordinateToCRS {
     private double productRange;
     private RadarCompositeCoordinate radCoord = new RadarCompositeCoordinate();
     private int previousBinNumber=-99;
-    private DirectPosition[] previousPoints = new DirectPosition[4];
-    DirectPosition[] output = new DirectPosition[4];
-    DirectPosition[] temp = new DirectPosition[2];
+    private Position[] previousPoints = new Position[4];
+    Position[] output = new Position[4];
+    Position[] temp = new Position[2];
 
    public CompositeCoordinateToCRS(MathTransform geoGraphicToCRS, double radarLon, double radarLat, double pixelWidth, double productRange) {
         super(geoGraphicToCRS,radarLon,radarLat);
@@ -43,12 +43,12 @@ public class CompositeCoordinateToCRS extends RadarCoordinateToCRS {
    }
 
 
-   public DirectPosition[] getPoints(int binNumber) throws Exception {
+   public Position[] getPoints(int binNumber) throws Exception {
        if (hasCRS) {
-    	   output = new DirectPosition[4];
+    	   output = new Position[4];
     	   if ((binNumber-previousBinNumber) == 1) {
-    		   output[0] = new GeneralDirectPosition(previousPoints[1].getOrdinate(0),previousPoints[1].getOrdinate(1));
-    		   output[3] = new GeneralDirectPosition(previousPoints[2].getOrdinate(0),previousPoints[2].getOrdinate(1));
+    		   output[0] = new GeneralPosition(previousPoints[1].getOrdinate(0),previousPoints[1].getOrdinate(1));
+    		   output[3] = new GeneralPosition(previousPoints[2].getOrdinate(0),previousPoints[2].getOrdinate(1));
     		   temp = this.convertGeoGraphicToCRS(radCoord.getRightEdgePoints(binNumber));
     		   output[1] = temp[0];
     		   output[2] = temp[1];

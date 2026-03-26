@@ -7,10 +7,10 @@
   <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<geotools.version>8.0-M1</geotools.version>
-		<spring.version>5.3.30</spring.version>
-		<activemq.version>5.19.2</activemq.version>
-		<spring.rabbit.version>2.4.17</spring.rabbit.version>
+		<geotools.version>34.3</geotools.version>
+		<spring.version>7.0.6</spring.version>
+		<activemq.version>6.2.2</activemq.version>
+		<spring.rabbit.version>4.0.2</spring.rabbit.version>
 	</properties>
   <dependencies>
   <dependency>
@@ -30,7 +30,7 @@
     <dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.13.1</version>
+			<version>4.13.2</version>
 			<type>jar</type>
 			<scope>test</scope>
 		</dependency>
@@ -44,17 +44,17 @@
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
-			<version>2.20.0</version>
+			<version>2.25.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
-			<version>2.20.0</version>
+			<version>2.25.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-1.2-api</artifactId>
-			<version>2.20.0</version>
+			<version>2.25.3</version>
 		</dependency>
   	<dependency>
 			<groupId>org.springframework.amqp</groupId>
@@ -96,8 +96,8 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<configuration>
-						<source>1.8</source>
-						<target>1.8</target>
+						<source>17</source>
+						<target>17</target>
 					</configuration>
 				</plugin>
 			</plugins>

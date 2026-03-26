@@ -7,9 +7,9 @@ package gov.noaa.nws.radardecoderlib.gis;
 
 import java.util.ArrayList;
 
-import org.geotools.geometry.GeneralDirectPosition;
-import org.opengis.geometry.DirectPosition;
-import org.opengis.referencing.operation.MathTransform;
+import org.geotools.geometry.GeneralPosition;
+import org.geotools.api.geometry.Position;
+import org.geotools.api.referencing.operation.MathTransform;
 
 /**
  *
@@ -21,9 +21,9 @@ public class RadialCoordinateToCRS extends RadarCoordinateToCRS {
     private float elevationAngle;
     private RadialRadarCoordinate radCoord = new RadialRadarCoordinate();
     private int previousBinNumber=-99;
-    private DirectPosition[] previousPoints = new DirectPosition[4];
-    DirectPosition[] output= new DirectPosition[4];
-    DirectPosition[] temp= new DirectPosition[2];
+    private Position[] previousPoints = new Position[4];
+    Position[] output= new Position[4];
+    Position[] temp= new Position[2];
     
 
     public RadialCoordinateToCRS(MathTransform geoGraphicToCRS, double radarLon, double radarLat, float elevationAngle, double binWidth) {
@@ -43,12 +43,12 @@ public class RadialCoordinateToCRS extends RadarCoordinateToCRS {
    }
 
 
-   public DirectPosition[] getPoints(int binNumber) throws Exception {
+   public Position[] getPoints(int binNumber) throws Exception {
        if (hasCRS) {
-    	   output = new DirectPosition[4];
+    	   output = new Position[4];
     	   if ((binNumber-previousBinNumber) == 1) {
-    		   output[0] = new GeneralDirectPosition(previousPoints[3].getOrdinate(0),previousPoints[3].getOrdinate(1));
-    		   output[1] = new GeneralDirectPosition(previousPoints[2].getOrdinate(0),previousPoints[2].getOrdinate(1));
+    		   output[0] = new GeneralPosition(previousPoints[3].getOrdinate(0),previousPoints[3].getOrdinate(1));
+    		   output[1] = new GeneralPosition(previousPoints[2].getOrdinate(0),previousPoints[2].getOrdinate(1));
     		   temp = this.convertGeoGraphicToCRS(radCoord.getOuterEdgePoints(binNumber));
     		   output[2] = temp[0];
     		   output[3] = temp[1];

@@ -13,8 +13,8 @@ import java.awt.Color;
 import java.awt.geom.Arc2D;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.geotools.geometry.GeneralDirectPosition;
-import org.opengis.geometry.DirectPosition;
+import org.geotools.geometry.GeneralPosition;
+import org.geotools.api.geometry.Position;
 
 /**
  *
@@ -32,7 +32,7 @@ public class MesocycloneRenderer extends SymbologyRenderer {
 
      public void drawMesocyclone(double x, double y, double radius) {
         try {
-            DirectPosition pointone = radarCoord.transformXandYToCRS(new GeneralDirectPosition(x, y));
+            Position pointone = radarCoord.transformXandYToCRS(new GeneralPosition(x, y));
             double radiusScaled = 2.0;
             double xul = pointone.getOrdinate(0) - radiusScaled;
             double yul = pointone.getOrdinate(1) - radiusScaled;

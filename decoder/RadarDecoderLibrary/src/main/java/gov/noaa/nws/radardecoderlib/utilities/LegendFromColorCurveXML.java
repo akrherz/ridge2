@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import org.jdom.Element;
+import org.jdom2.Element;
 
 /**
  *

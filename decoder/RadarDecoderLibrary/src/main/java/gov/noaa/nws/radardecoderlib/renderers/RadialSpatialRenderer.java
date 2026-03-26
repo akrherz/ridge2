@@ -9,8 +9,8 @@ import gov.noaa.nws.radardata.RadialData;
 import gov.noaa.nws.radardecoderlib.gis.RadialCoordinateToCRS;
 import java.awt.BasicStroke;
 import java.awt.geom.GeneralPath;
-import org.opengis.geometry.DirectPosition;
-import org.opengis.referencing.operation.MathTransform;
+import org.geotools.api.geometry.Position;
+import org.geotools.api.referencing.operation.MathTransform;
 
 /**
  *
@@ -28,7 +28,7 @@ public class RadialSpatialRenderer extends RadarSpatialRenderer {
 
 
 
-    public void setTransform(MathTransform transform,DirectPosition radarLocation,  double elevationAngle) {
+    public void setTransform(MathTransform transform,Position radarLocation,  double elevationAngle) {
         radarCoord = new RadialCoordinateToCRS(transform,radarLocation.getOrdinate(0),radarLocation.getOrdinate(1),(float)elevationAngle,binWidth);
         radarCoord.intialize();
     }
@@ -36,7 +36,7 @@ public class RadialSpatialRenderer extends RadarSpatialRenderer {
     private void drawBin(int j) {
         try {
           if (j != 0) {
-            DirectPosition[] pos = radarCoord.getPoints(j);
+            Position[] pos = radarCoord.getPoints(j);
             path.reset();
             path.moveTo(pos[0].getOrdinate(0), pos[0].getOrdinate(1));
             path.lineTo(pos[1].getOrdinate(0), pos[1].getOrdinate(1));

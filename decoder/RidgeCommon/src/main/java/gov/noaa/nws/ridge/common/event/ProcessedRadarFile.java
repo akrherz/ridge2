@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import java.util.Arrays;
 import java.util.Date;
 
-import org.opengis.geometry.DirectPosition;
+import org.geotools.api.geometry.Position;
 
 public class ProcessedRadarFile {
 	
@@ -23,7 +23,7 @@ public class ProcessedRadarFile {
     Date stormTotalPrecipBegin;
     Date stormTotalPrecipEnd;
     BufferedImage image;
-    DirectPosition upperLeft, lowerRight;
+    Position upperLeft, lowerRight;
     private Date validTime;
     float stormRelativeSpeed = Float.MIN_VALUE;
     float stormRelativeDirection = Float.MIN_VALUE;
@@ -36,19 +36,19 @@ public class ProcessedRadarFile {
         this.image = image;
     }
 
-    public DirectPosition getLowerRight() {
+    public Position getLowerRight() {
         return lowerRight;
     }
 
-    public void setLowerRight(DirectPosition lowerRight) {
+    public void setLowerRight(Position lowerRight) {
         this.lowerRight = lowerRight;
     }
 
-    public DirectPosition getUpperLeft() {
+    public Position getUpperLeft() {
         return upperLeft;
     }
 
-    public void setUpperLeft(DirectPosition upperLeft) {
+    public void setUpperLeft(Position upperLeft) {
         this.upperLeft = upperLeft;
     }
 

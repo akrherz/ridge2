@@ -8,9 +8,9 @@ package gov.noaa.nws.ridge;
 import gov.noaa.nws.ridge.common.event.ProcessedRadarFile;
 import gov.noaa.nws.ridge.common.message.JMSMessageSerializer;
 
-import javax.jms.BytesMessage;
-import javax.jms.Message;
-import javax.jms.MessageListener;
+import jakarta.jms.BytesMessage;
+import jakarta.jms.Message;
+import jakarta.jms.MessageListener;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;

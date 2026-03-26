@@ -15,8 +15,8 @@ import java.awt.Color;
 import java.awt.geom.Arc2D;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Line2D;
-import org.geotools.geometry.GeneralDirectPosition;
-import org.opengis.geometry.DirectPosition;
+import org.geotools.geometry.GeneralPosition;
+import org.geotools.api.geometry.Position;
 
 /**
  *
@@ -65,7 +65,7 @@ public class StormTrackRenderer extends SymbologyRenderer {
 
      public void drawMesocyclone(double x, double y, double radius) {
         try {
-            DirectPosition pointone = radarCoord.transformXandYToCRS(new GeneralDirectPosition(x, y));
+            Position pointone = radarCoord.transformXandYToCRS(new GeneralPosition(x, y));
             double radiusScaled = 2.0;
             double xul = pointone.getOrdinate(0) - radiusScaled;
             double yul = pointone.getOrdinate(1) - radiusScaled;
@@ -80,7 +80,7 @@ public class StormTrackRenderer extends SymbologyRenderer {
     }
     public void drawStormPosition(double x, double y, boolean future) {
         try {
-            DirectPosition pointone = radarCoord.transformXandYToCRS(new GeneralDirectPosition(x, y));
+            Position pointone = radarCoord.transformXandYToCRS(new GeneralPosition(x, y));
             double xul = pointone.getOrdinate(0) - 5;
             double yul = pointone.getOrdinate(1) - 5;
             g.setPaint(color);
@@ -97,8 +97,8 @@ public class StormTrackRenderer extends SymbologyRenderer {
     }
     public void drawLine(double x1, double y1, double x2, double y2, boolean future) {
         try {
-            DirectPosition pointone = radarCoord.transformXandYToCRS(new GeneralDirectPosition(x1, y1));
-            DirectPosition pointtwo = radarCoord.transformXandYToCRS(new GeneralDirectPosition(x2, y2));
+            Position pointone = radarCoord.transformXandYToCRS(new GeneralPosition(x1, y1));
+            Position pointtwo = radarCoord.transformXandYToCRS(new GeneralPosition(x2, y2));
             if (future) {
                 g.setPaint(Color.YELLOW);
             } else {

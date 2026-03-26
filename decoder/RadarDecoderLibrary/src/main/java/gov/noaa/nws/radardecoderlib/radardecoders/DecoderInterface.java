@@ -14,7 +14,7 @@ import gov.noaa.nws.radardecoderlib.radardecoders.thresholds.Threshold;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import org.opengis.geometry.DirectPosition;
+import org.geotools.api.geometry.Position;
 
 /**
  *
@@ -23,7 +23,7 @@ import org.opengis.geometry.DirectPosition;
 public interface DecoderInterface {
     public ArrayList decode() throws IOException;
     public Threshold[] getThresholds() throws IOException;
-    public DirectPosition getRadarLocation();
+    public Position getRadarLocation();
     public  double getRadarHeight();
     public int getRadarID();
     public Date getRadarScanTime();

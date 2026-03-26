@@ -17,7 +17,7 @@ import java.util.TimeZone;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.jdom.Element;
+import org.jdom2.Element;
 
 /**
  *

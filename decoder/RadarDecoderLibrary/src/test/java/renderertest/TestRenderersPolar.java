@@ -30,10 +30,10 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import org.geotools.geometry.GeneralDirectPosition;
+import org.geotools.geometry.GeneralPosition;
 import org.junit.Test;
-import org.opengis.geometry.DirectPosition;
-import org.opengis.referencing.operation.MathTransform;
+import org.geotools.api.geometry.Position;
+import org.geotools.api.referencing.operation.MathTransform;
 
 /**
  *
@@ -73,7 +73,7 @@ public class TestRenderersPolar {
             CoordinateHolder holder = PolarFactory.getTransformForPolar(width,height,decoder.getRadarLocation().getOrdinate(0),decoder.getRadarLocation().getOrdinate(1),130*1852.);
             System.out.println("Holder ==="+holder.getUpperLeft()+"   "+holder.getLowerRight());
 //            MathTransform transform = holder.getTransform();
-//            DirectPosition pos = new GeneralDirectPosition(0,0);
+//            Position pos = new GeneralPosition(0,0);
 //            transform.transform(pos, pos);
 //            System.out.println(pos);
             MathTransform transform = holder.getTransform();

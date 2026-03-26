@@ -17,8 +17,8 @@ import gov.noaa.nws.radardecoderlib.radardecoders.thresholds.StringThreshold;
 import gov.noaa.nws.radardecoderlib.radardecoders.thresholds.Threshold;
 import java.io.IOException;
 import java.util.*;
-import org.geotools.geometry.GeneralDirectPosition;
-import org.opengis.geometry.DirectPosition;
+import org.geotools.geometry.GeneralPosition;
+import org.geotools.api.geometry.Position;
 /**
  *
  * @author jburks
@@ -37,7 +37,7 @@ public abstract class RadarDecoder  implements DecoderInterface{
     int vcp;
     double radarHeight;
     int  numThresholds=16;
-    DirectPosition radarLocation;
+    Position radarLocation;
     double elevationAngle =0;
     Date scanTime;
     Date generationTime;
@@ -57,7 +57,7 @@ public abstract class RadarDecoder  implements DecoderInterface{
         bindecode.seek(20);
         double latitude = (double)(bindecode.getInt())*.001;
         double longitude = (double)(bindecode.getInt())*.001;
-        radarLocation = new GeneralDirectPosition(longitude,latitude);
+        radarLocation = new GeneralPosition(longitude,latitude);
         //Get Height of Radar
         bindecode.seek(28);
         radarHeight = bindecode.getShort();
@@ -113,7 +113,7 @@ public abstract class RadarDecoder  implements DecoderInterface{
       public double getElevationAngle() {
          return(elevationAngle);
       }
-     public DirectPosition getRadarLocation() {
+     public Position getRadarLocation() {
         return(radarLocation);
      }
      public  double getRadarHeight() {

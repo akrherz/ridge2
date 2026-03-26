@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.apache.log4j.Logger;
-import org.opengis.geometry.DirectPosition;
+import org.geotools.api.geometry.Position;
 
 /**
  *
@@ -39,8 +39,8 @@ public class FileWriterTask implements Runnable {
                 fos2 = new FileOutputStream(startPath + ZZZ+"/"+XXX + "_" + ZZZ +"_"+dateFormat.format(date)+".png");
                 byte[] barray = radarFile.getByteImage();
                 fos2.write(barray);
-                DirectPosition upperLeft = radarFile.getUpperLeft();
-                DirectPosition lowerRight = radarFile.getLowerRight();
+                Position upperLeft = radarFile.getUpperLeft();
+                Position lowerRight = radarFile.getLowerRight();
                 
                  int width = radarFile.getImageWidth();
                  int height = radarFile.getImageHeight();

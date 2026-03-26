@@ -10,13 +10,13 @@ import gov.noaa.nws.ridge.common.message.JMSMessageSerializer;
 
 import java.util.Date;
 
-import javax.jms.BytesMessage;
-import javax.jms.Message;
-import javax.jms.MessageListener;
+import jakarta.jms.BytesMessage;
+import jakarta.jms.Message;
+import jakarta.jms.MessageListener;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
-import org.geotools.geometry.GeneralDirectPosition;
+import org.geotools.geometry.GeneralPosition;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 

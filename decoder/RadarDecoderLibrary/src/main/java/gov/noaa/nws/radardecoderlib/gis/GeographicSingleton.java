@@ -6,7 +6,7 @@
 package gov.noaa.nws.radardecoderlib.gis;
 
 import org.geotools.referencing.crs.DefaultGeographicCRS;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.geotools.api.referencing.crs.CoordinateReferenceSystem;
 
 /**
  *

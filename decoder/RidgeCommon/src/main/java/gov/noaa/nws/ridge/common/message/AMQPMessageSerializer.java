@@ -13,7 +13,7 @@ import java.util.Map;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
-import org.geotools.geometry.GeneralDirectPosition;
+import org.geotools.geometry.GeneralPosition;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
 
@@ -34,8 +34,8 @@ public class AMQPMessageSerializer {
           radarFile.setZZZ((String)map.get("productID"));
           radarFile.setValidTime(new Date((Long)map.get("validTime")));
           radarFile.setByteImage(message.getBody());
-          radarFile.setUpperLeft(new GeneralDirectPosition(Double.valueOf((String)map.get("upperLeftLon")),Double.valueOf((String)map.get("upperLeftLat"))));
-          radarFile.setLowerRight(new GeneralDirectPosition(Double.valueOf((String)map.get("lowerRightLon")),Double.valueOf((String)map.get("lowerRightLat"))));
+          radarFile.setUpperLeft(new GeneralPosition(Double.valueOf((String)map.get("upperLeftLon")),Double.valueOf((String)map.get("upperLeftLat"))));
+          radarFile.setLowerRight(new GeneralPosition(Double.valueOf((String)map.get("lowerRightLon")),Double.valueOf((String)map.get("lowerRightLat"))));
            radarFile.setImageWidth((Integer)map.get("width"));
            radarFile.setImageHeight((Integer)map.get("height"));
     	  radarFile.setElevationAngle(Float.valueOf((String)map.get("elevationAngle")));

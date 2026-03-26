@@ -7,10 +7,10 @@ package gov.noaa.nws.radardecoderlib.gis;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.geotools.geometry.GeneralDirectPosition;
+import org.geotools.geometry.GeneralPosition;
 import org.geotools.referencing.GeodeticCalculator;
-import org.opengis.geometry.DirectPosition;
-import org.opengis.referencing.operation.TransformException;
+import org.geotools.api.geometry.Position;
+import org.geotools.api.referencing.operation.TransformException;
 
 /**
  *
@@ -21,7 +21,7 @@ public class RadialRadarCoordinate {
     DistanceCalculator distCalc;
     double binWidth;
     double startAngle, endAngle;
-    DirectPosition[] output = new DirectPosition[4];
+    Position[] output = new Position[4];
 
 
     public void setup( double longitude,double latitude, float elevationAngle, double binWidth) {
@@ -35,9 +35,9 @@ public class RadialRadarCoordinate {
         this.endAngle = convertToAzimuth(startAngle+deltaAngle);
     }
 
-    public DirectPosition[] getPoints(int binNumber) {
+    public Position[] getPoints(int binNumber) {
         try {
-            output = new DirectPosition[4];
+            output = new Position[4];
             double distanceInside = distCalc.findGreatCircleDistance((binNumber)* binWidth);
             double distanceOutside = distCalc.findGreatCircleDistance((binNumber + 1) * binWidth);
             calculator.setDirection(startAngle, distanceInside);
@@ -59,9 +59,9 @@ public class RadialRadarCoordinate {
 
     }
     
-    public DirectPosition[] getOuterEdgePoints(int binNumber) {
+    public Position[] getOuterEdgePoints(int binNumber) {
         try {
-            output = new DirectPosition[2];
+            output = new Position[2];
            
             double distanceOutside = distCalc.findGreatCircleDistance((binNumber + 1) * binWidth);
            
@@ -80,9 +80,9 @@ public class RadialRadarCoordinate {
 
     }
     
-    public DirectPosition[] getUpperPoint(int binNumber) {
+    public Position[] getUpperPoint(int binNumber) {
         try {
-            output = new DirectPosition[1];
+            output = new Position[1];
            
             double distanceOutside = distCalc.findGreatCircleDistance((binNumber + 1) * binWidth);
            
@@ -97,14 +97,14 @@ public class RadialRadarCoordinate {
 
     }
 
-    public DirectPosition[] getDistancePoints(int binNumber) {
-            DirectPosition[] output = new DirectPosition[4];
+    public Position[] getDistancePoints(int binNumber) {
+            Position[] output = new Position[4];
             double distanceInside = distCalc.findGreatCircleDistance((binNumber)* binWidth);
             double distanceOutside = distCalc.findGreatCircleDistance((binNumber + 1) * binWidth);
-            output[0] = new GeneralDirectPosition(distanceInside*Math.sin(Math.toRadians(startAngle)),distanceInside*Math.cos(Math.toRadians(startAngle)));
-            output[1] = new GeneralDirectPosition(distanceOutside*Math.sin(Math.toRadians(startAngle)),distanceOutside*Math.cos(Math.toRadians(startAngle)));
-            output[2] = new GeneralDirectPosition(distanceOutside*Math.sin(Math.toRadians(endAngle)),distanceOutside*Math.cos(Math.toRadians(endAngle)));
-            output[3] = new GeneralDirectPosition(distanceInside*Math.sin(Math.toRadians(endAngle)),distanceInside*Math.cos(Math.toRadians(endAngle)));
+            output[0] = new GeneralPosition(distanceInside*Math.sin(Math.toRadians(startAngle)),distanceInside*Math.cos(Math.toRadians(startAngle)));
+            output[1] = new GeneralPosition(distanceOutside*Math.sin(Math.toRadians(startAngle)),distanceOutside*Math.cos(Math.toRadians(startAngle)));
+            output[2] = new GeneralPosition(distanceOutside*Math.sin(Math.toRadians(endAngle)),distanceOutside*Math.cos(Math.toRadians(endAngle)));
+            output[3] = new GeneralPosition(distanceInside*Math.sin(Math.toRadians(endAngle)),distanceInside*Math.cos(Math.toRadians(endAngle)));
             return output;
     }
 

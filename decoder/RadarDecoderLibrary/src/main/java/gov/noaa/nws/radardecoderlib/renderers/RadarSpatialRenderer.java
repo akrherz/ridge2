@@ -5,8 +5,8 @@
 
 package gov.noaa.nws.radardecoderlib.renderers;
 
-import org.opengis.geometry.DirectPosition;
-import org.opengis.referencing.operation.MathTransform;
+import org.geotools.api.geometry.Position;
+import org.geotools.api.referencing.operation.MathTransform;
 
 /**
  *
@@ -21,6 +21,6 @@ public abstract class RadarSpatialRenderer extends BaseRenderer {
         this.productRange = productRange;
     }
 
-    public abstract void setTransform(MathTransform transform, DirectPosition radarLocation,  double elevationAngle);
+    public abstract void setTransform(MathTransform transform, Position radarLocation,  double elevationAngle);
     
 }
