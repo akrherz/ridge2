@@ -12,7 +12,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.geom.GeneralPath;
 import org.geotools.geometry.GeneralDirectPosition;
-import org.opengis.geometry.DirectPosition;
+import org.geotools.api.geometry.DirectPosition;
 
 /**
  *

@@ -8,9 +8,9 @@ package gov.noaa.nws.ridgeserver.postprocessing;
 import gov.noaa.nws.ridge.common.event.ProcessedRadarFile;
 import gov.noaa.nws.ridge.common.message.JMSMessageSerializer;
 
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.Session;
+import jakarta.jms.JMSException;
+import jakarta.jms.Message;
+import jakarta.jms.Session;
 import org.springframework.jms.core.MessageCreator;
 
 /**

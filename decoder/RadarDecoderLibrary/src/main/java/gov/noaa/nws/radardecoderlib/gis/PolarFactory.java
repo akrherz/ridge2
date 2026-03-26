@@ -7,15 +7,15 @@ package gov.noaa.nws.radardecoderlib.gis;
 
 import java.awt.Rectangle;
 
-import org.geotools.coverage.grid.GeneralGridEnvelope;
+import org.geotools.coverage.grid.GridEnvelope2D;
 import org.geotools.geometry.Envelope2D;
 import org.geotools.geometry.GeneralDirectPosition;
 import org.geotools.referencing.CRS;
 import org.geotools.referencing.operation.builder.GridToEnvelopeMapper;
-import org.opengis.geometry.DirectPosition;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.referencing.datum.PixelInCell;
-import org.opengis.referencing.operation.MathTransform;
+import org.geotools.api.geometry.DirectPosition;
+import org.geotools.api.referencing.crs.CoordinateReferenceSystem;
+import org.geotools.api.referencing.datum.PixelInCell;
+import org.geotools.api.referencing.operation.MathTransform;
 
 /**
  *
@@ -24,7 +24,7 @@ import org.opengis.referencing.operation.MathTransform;
 public class PolarFactory {
 
     public static CoordinateHolder getTransformForPolar(int width, int height, double lat, double lon, double distance) throws Exception {
-        GeneralGridEnvelope range = new GeneralGridEnvelope(new Rectangle(width, height));
+        GridEnvelope2D range = new GridEnvelope2D(new Rectangle(width, height));
         CoordinateReferenceSystem crs = getCRSfromLatLon(lat,lon);
         Envelope2D envel = new Envelope2D(crs, -distance,-distance,2.*distance,2.*distance);
         GridToEnvelopeMapper mapper = new GridToEnvelopeMapper();

@@ -8,8 +8,8 @@ package gov.noaa.nws.radardecoderlib.renderers;
 import gov.noaa.nws.radardata.CompositeRowData;
 import gov.noaa.nws.radardecoderlib.gis.CompositeCoordinateToCRS;
 import java.awt.geom.GeneralPath;
-import org.opengis.geometry.DirectPosition;
-import org.opengis.referencing.operation.MathTransform;
+import org.geotools.api.geometry.DirectPosition;
+import org.geotools.api.referencing.operation.MathTransform;
 
 /**
  *

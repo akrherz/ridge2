@@ -18,7 +18,7 @@ import gov.noaa.nws.radardecoderlib.radardecoders.thresholds.Threshold;
 import java.io.IOException;
 import java.util.*;
 import org.geotools.geometry.GeneralDirectPosition;
-import org.opengis.geometry.DirectPosition;
+import org.geotools.api.geometry.DirectPosition;
 /**
  *
  * @author jburks

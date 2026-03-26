@@ -13,7 +13,7 @@ import gov.noaa.nws.ridge.common.event.ProcessedRadarFile;
 
 import java.awt.image.BufferedImage;
 import java.util.Date;
-import org.opengis.geometry.DirectPosition;
+import org.geotools.api.geometry.DirectPosition;
 /**
  *
  * @author jburks

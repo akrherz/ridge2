@@ -5,9 +5,9 @@
  */
 package gov.noaa.nws.radardecoderlib.utilities;
 
-import org.jdom.*;
-import org.jdom.input.*;
-import org.jdom.output.*;
+import org.jdom2.*;
+import org.jdom2.input.*;
+import org.jdom2.output.*;
 import java.lang.reflect.*;
 import java.io.*;
 import javax.swing.*;
@@ -54,7 +54,7 @@ public class ProcessXML {
 //    }
     
     public static Document openXMLDocument(String filename) throws IOException {
-        SAXBuilder builder = new SAXBuilder(false);
+        SAXBuilder builder = new SAXBuilder();
         Document xmlDoc;
         try {
          //   System.out.println("Filename "+filename);
@@ -69,7 +69,7 @@ public class ProcessXML {
         return(xmlDoc);
     }
     public static Document openXMLDocument(URL filename) throws IOException {
-        SAXBuilder builder = new SAXBuilder(false);
+        SAXBuilder builder = new SAXBuilder();
         Document xmlDoc;
         try {
          //   System.out.println("Filename "+filename);
@@ -84,7 +84,7 @@ public class ProcessXML {
         return(xmlDoc);
     }
     public static Document openXMLDocument(InputStream ins) throws IOException {
-        SAXBuilder builder = new SAXBuilder(false);
+        SAXBuilder builder = new SAXBuilder();
         Document xmlDoc;
         try {
             xmlDoc = builder.build(ins);

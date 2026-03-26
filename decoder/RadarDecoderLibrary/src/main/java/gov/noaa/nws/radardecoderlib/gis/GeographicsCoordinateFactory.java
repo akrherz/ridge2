@@ -10,17 +10,16 @@ import java.awt.geom.Point2D;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.geotools.coverage.grid.GeneralGridEnvelope;
-import org.geotools.coverage.grid.GeneralGridGeometry;
+import org.geotools.coverage.grid.GridEnvelope2D;
 import org.geotools.geometry.Envelope2D;
 import org.geotools.geometry.GeneralDirectPosition;
 import org.geotools.referencing.GeodeticCalculator;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
 import org.geotools.referencing.operation.builder.GridToEnvelopeMapper;
-import org.opengis.geometry.DirectPosition;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.referencing.datum.PixelInCell;
-import org.opengis.referencing.operation.MathTransform;
+import org.geotools.api.geometry.DirectPosition;
+import org.geotools.api.referencing.crs.CoordinateReferenceSystem;
+import org.geotools.api.referencing.datum.PixelInCell;
+import org.geotools.api.referencing.operation.MathTransform;
 
 /**
  *
@@ -32,9 +31,8 @@ public class GeographicsCoordinateFactory {
 
     public static CoordinateHolder getTransformForGeo(int width, int height, DirectPosition upperLeft, DirectPosition lowerRight) throws Exception {
         CoordinateReferenceSystem crs = getUTMCRSfromLatLon();
-        GeneralGridEnvelope range = new GeneralGridEnvelope(new Rectangle(width, height));
+        GridEnvelope2D range = new GridEnvelope2D(new Rectangle(width, height));
         Envelope2D envel = new Envelope2D(wgs84, upperLeft.getOrdinate(0), lowerRight.getOrdinate(1), lowerRight.getOrdinate(0) - upperLeft.getOrdinate(0), upperLeft.getOrdinate(1) - lowerRight.getOrdinate(1));
-        GeneralGridGeometry gridGeom = new GeneralGridGeometry(range, envel);
         GridToEnvelopeMapper mapper = new GridToEnvelopeMapper();
         mapper.setReverseAxis(new boolean[]{false, true});
         mapper.setSwapXY(false);

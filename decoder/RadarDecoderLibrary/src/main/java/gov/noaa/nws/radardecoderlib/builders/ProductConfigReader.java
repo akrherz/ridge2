@@ -7,7 +7,7 @@ package gov.noaa.nws.radardecoderlib.builders;
 
 import gov.noaa.nws.radardata.RadarProductData;
 import gov.noaa.nws.radardecoderlib.utilities.ProcessXML;
-import org.jdom.Element;
+import org.jdom2.Element;
 
 /**
  *

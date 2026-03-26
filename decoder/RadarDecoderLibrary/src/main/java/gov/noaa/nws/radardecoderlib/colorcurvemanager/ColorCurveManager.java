@@ -19,8 +19,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.ListIterator;
-import org.jdom.DataConversionException;
-import org.jdom.Element;
+import org.jdom2.DataConversionException;
+import org.jdom2.Element;
 
 /**
  *

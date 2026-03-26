@@ -8,8 +8,8 @@ package gov.noaa.nws.radardecoderlib.gis;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.geotools.referencing.GeodeticCalculator;
-import org.opengis.geometry.DirectPosition;
-import org.opengis.referencing.operation.TransformException;
+import org.geotools.api.geometry.DirectPosition;
+import org.geotools.api.referencing.operation.TransformException;
 
 /**
  *

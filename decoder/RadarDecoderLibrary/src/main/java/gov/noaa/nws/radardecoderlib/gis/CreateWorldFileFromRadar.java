@@ -10,8 +10,8 @@
 
 package gov.noaa.nws.radardecoderlib.gis;
 import java.io.*;
-import org.opengis.geometry.DirectPosition;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.geotools.api.geometry.DirectPosition;
+import org.geotools.api.referencing.crs.CoordinateReferenceSystem;
 /**
  *w.yahoo
  * @author jburks

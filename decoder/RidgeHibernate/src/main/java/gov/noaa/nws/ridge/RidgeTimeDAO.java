@@ -7,9 +7,7 @@ package gov.noaa.nws.ridge;
 
 import java.util.Date;
 import java.util.List;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Restrictions;
-import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
+import org.springframework.orm.hibernate6.support.HibernateDaoSupport;
 
 /**
  *
@@ -19,7 +17,7 @@ public class RidgeTimeDAO extends HibernateDaoSupport {
 
     public void saveRadarTime(RadarTimeIndex radar) {
         try {
-        getHibernateTemplate().saveOrUpdate(radar);
+        getHibernateTemplate().merge(radar);
         } catch (Exception e) {
             e.printStackTrace();
             
@@ -28,7 +26,7 @@ public class RidgeTimeDAO extends HibernateDaoSupport {
     
     public  List<RadarTimeIndex> getRadarTimeOlderThan(Date date) throws java.lang.Exception {
         @SuppressWarnings("unchecked")
-        List<RadarTimeIndex> radar = (List<RadarTimeIndex>) getHibernateTemplate().findByCriteria(DetachedCriteria.forClass(RadarTimeIndex.class).add(Restrictions.lt("datetime", date)));
+        List<RadarTimeIndex> radar = (List<RadarTimeIndex>) getHibernateTemplate().find("FROM RadarTimeIndex WHERE datetime < ?1", date);
         if (radar != null) {
             return(radar);
         }

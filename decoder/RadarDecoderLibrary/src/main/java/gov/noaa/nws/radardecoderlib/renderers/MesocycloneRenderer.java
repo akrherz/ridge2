@@ -14,7 +14,7 @@ import java.awt.geom.Arc2D;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.geotools.geometry.GeneralDirectPosition;
-import org.opengis.geometry.DirectPosition;
+import org.geotools.api.geometry.DirectPosition;
 
 /**
  *

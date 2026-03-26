@@ -9,10 +9,10 @@ import gov.noaa.nws.ridge.common.event.ProcessedRadarFile;
 
 import java.util.Date;
 
-import javax.jms.BytesMessage;
-import javax.jms.Message;
-import javax.jms.MessageListener;
-import javax.jms.Session;
+import jakarta.jms.BytesMessage;
+import jakarta.jms.Message;
+import jakarta.jms.MessageListener;
+import jakarta.jms.Session;
 
 import org.apache.log4j.Logger;
 import org.geotools.geometry.GeneralDirectPosition;

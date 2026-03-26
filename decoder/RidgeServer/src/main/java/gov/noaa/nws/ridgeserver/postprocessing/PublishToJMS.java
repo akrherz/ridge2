@@ -6,7 +6,7 @@
 package gov.noaa.nws.ridgeserver.postprocessing;
 
 import gov.noaa.nws.ridge.common.event.ProcessedRadarFile;
-import javax.jms.Destination;
+import jakarta.jms.Destination;
 import org.springframework.jms.core.JmsTemplate;
 
 /**

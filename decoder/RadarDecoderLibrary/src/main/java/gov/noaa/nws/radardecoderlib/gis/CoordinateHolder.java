@@ -5,8 +5,8 @@
 
 package gov.noaa.nws.radardecoderlib.gis;
 
-import org.opengis.geometry.DirectPosition;
-import org.opengis.referencing.operation.MathTransform;
+import org.geotools.api.geometry.DirectPosition;
+import org.geotools.api.referencing.operation.MathTransform;
 
 /**
  *

@@ -32,8 +32,8 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import org.geotools.geometry.GeneralDirectPosition;
 import org.junit.Test;
-import org.opengis.geometry.DirectPosition;
-import org.opengis.referencing.operation.MathTransform;
+import org.geotools.api.geometry.DirectPosition;
+import org.geotools.api.referencing.operation.MathTransform;
 
 /**
  *

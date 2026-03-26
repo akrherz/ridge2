@@ -8,8 +8,8 @@ package gov.noaa.nws.radardecoderlib.renderers;
 import gov.noaa.nws.radardecoderlib.gis.RadarCoordinateToCRS;
 import java.awt.Color;
 import org.geotools.geometry.GeneralDirectPosition;
-import org.opengis.geometry.DirectPosition;
-import org.opengis.referencing.operation.MathTransform;
+import org.geotools.api.geometry.DirectPosition;
+import org.geotools.api.referencing.operation.MathTransform;
 
 /**
  *

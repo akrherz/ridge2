@@ -10,7 +10,7 @@ import gov.noaa.nws.ridge.common.event.ProcessedRadarFile;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import org.apache.log4j.Logger;
-import org.opengis.geometry.DirectPosition;
+import org.geotools.api.geometry.DirectPosition;
 
 /**
  *

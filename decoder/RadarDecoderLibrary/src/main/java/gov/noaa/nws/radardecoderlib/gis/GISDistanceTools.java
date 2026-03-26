@@ -10,13 +10,9 @@
 
 package gov.noaa.nws.radardecoderlib.gis;
 
-import javax.measure.quantity.Length;
-import javax.measure.unit.Unit;
-
 import org.geotools.geometry.GeneralDirectPosition;
 import org.geotools.referencing.GeodeticCalculator;
-import org.geotools.referencing.datum.DefaultEllipsoid;
-import org.opengis.geometry.DirectPosition;
+import org.geotools.api.geometry.DirectPosition;
 
 
 
@@ -36,7 +32,7 @@ public class GISDistanceTools {
          double azimuth = convertAzimuth(head);
 //         double rangem = ((distance)*1852.)*Math.cos(Math.toRadians(0.5));
          double rangem = (distance)*1852.;
-        GeodeticCalculator calc = new GeodeticCalculator(DefaultEllipsoid.createEllipsoid("Test",6371000.,6371000.,Unit.valueOf("m").asType(Length.class)));
+        GeodeticCalculator calc = new GeodeticCalculator();
          //GeodeticCalculator calc = new GeodeticCalculator();
        
          //System.out.println("Calc ="+calc.getEllipsoid());
