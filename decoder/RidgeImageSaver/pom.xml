@@ -8,7 +8,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<spring.version>7.0.6</spring.version>
-		<activemq.version>6.2.3</activemq.version>
+		<activemq.version>6.2.4</activemq.version>
 		<spring.rabbit.version>4.0.2</spring.rabbit.version>
 	</properties>
   <dependencies>
