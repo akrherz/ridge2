@@ -40,13 +40,13 @@ public class ColorCurveManager {
     
     
     public void setupColors(Element xml) {
-        List list = xml.getChildren("Level");
+        List<Element> list = xml.getChildren("Level");
         int numColors = list.size();
-        ListIterator listIter = list.listIterator();
+        ListIterator<Element> listIter = list.listIterator();
         colors = new BoundedColor[numColors];
         int count=0;
          while (listIter.hasNext()) {
-            Element element = (Element)listIter.next();
+            Element element = listIter.next();
             try {
                 Color color= ProcessXML.getColor(element);
                 double lowerValue = -1*Double.MAX_VALUE;

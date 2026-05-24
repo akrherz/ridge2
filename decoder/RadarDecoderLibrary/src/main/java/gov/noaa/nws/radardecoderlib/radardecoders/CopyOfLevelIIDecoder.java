@@ -41,10 +41,6 @@ public class CopyOfLevelIIDecoder {
              id =  new String(bytes);
              System.out.println("ID ="+id);
              
-            //need to get the radar id or the call sign.
-//            System.out.println("Size = "+numRecords);
-//            System.out.println("Decoding");
-//            System.out.println("Getting filename ");
             for (int i=0; i<numRecords; ++i) {
               System.out.println("Seeking to "+(i*blocksize+headerlength+cmtheader));
                bindecode.seek(i*blocksize+headerlength+cmtheader);
