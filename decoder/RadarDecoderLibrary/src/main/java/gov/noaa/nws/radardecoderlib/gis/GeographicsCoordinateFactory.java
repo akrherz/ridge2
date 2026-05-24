@@ -30,7 +30,6 @@ public class GeographicsCoordinateFactory {
     public static final CoordinateReferenceSystem wgs84 = DefaultGeographicCRS.WGS84;
 
     public static CoordinateHolder getTransformForGeo(int width, int height, Position upperLeft, Position lowerRight) throws Exception {
-        CoordinateReferenceSystem crs = getUTMCRSfromLatLon();
         GridEnvelope2D range = new GridEnvelope2D(new Rectangle(width, height));
         ReferencedEnvelope envel = new ReferencedEnvelope(upperLeft.getOrdinate(0), lowerRight.getOrdinate(0), lowerRight.getOrdinate(1), upperLeft.getOrdinate(1), wgs84);
         GridToEnvelopeMapper mapper = new GridToEnvelopeMapper();
@@ -43,7 +42,6 @@ public class GeographicsCoordinateFactory {
     }
 
     public static CoordinateHolder getTransformForGeo(int width, int height, Position center, double distance) throws Exception {
-        CoordinateReferenceSystem crs = getUTMCRSfromLatLon();
         GeodeticCalculator calc = new GeodeticCalculator();
         calc.setStartingGeographicPoint(center.getOrdinate(0), center.getOrdinate(1));
         calc.setDirection(-90.0, distance);

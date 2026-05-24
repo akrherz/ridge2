@@ -21,7 +21,6 @@ public class ColorCurveLoader {
     }
     
      public static Color[] getColorCurve(int messageCode) {
-         Color[] colors;
          switch (messageCode) {
              case 16:  return(FourBitReflectivityColors());
              case 17:  return(FourBitReflectivityColors());
