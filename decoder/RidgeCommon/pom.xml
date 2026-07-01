@@ -7,10 +7,10 @@
   <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<geotools.version>34.4</geotools.version>
-		<spring.version>7.0.7</spring.version>
-		<activemq.version>6.2.6</activemq.version>
-		<spring.rabbit.version>4.0.3</spring.rabbit.version>
+		<geotools.version>35.0</geotools.version>
+		<spring.version>7.0.8</spring.version>
+		<activemq.version>6.2.7</activemq.version>
+		<spring.rabbit.version>4.1.0</spring.rabbit.version>
 	</properties>
   <dependencies>
   <dependency>
