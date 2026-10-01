@@ -9,7 +9,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<geotools.version>35.1</geotools.version>
 		<spring.version>7.0.9</spring.version>
-		<activemq.version>6.3.1</activemq.version>
+		<activemq.version>6.3.2</activemq.version>
 		<spring.rabbit.version>4.1.1</spring.rabbit.version>
 	</properties>
   <dependencies>
