@@ -23,7 +23,7 @@ public class ImageMessageCreator implements MessageCreator {
     public ImageMessageCreator(ProcessedRadarFile radarFile) {
         this.radarFile = radarFile;
     }
-    
+
     public Message createMessage(Session session) throws JMSException {
         Message message;
 		try {
@@ -34,8 +34,6 @@ public class ImageMessageCreator implements MessageCreator {
 			e.printStackTrace();
 			throw new JMSException("Problem creating message "+e.getMessage());
 		}
-       
+
     }
 }
-
-

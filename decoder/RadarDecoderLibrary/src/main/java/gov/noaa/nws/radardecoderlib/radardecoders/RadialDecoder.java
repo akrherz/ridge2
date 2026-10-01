@@ -24,7 +24,7 @@ public abstract class RadialDecoder extends RadarDecoder{
     double radialstartAngle;
     double radialangledelta;
     double cosOfElevationAngle,sinOfElevationAngle;
-   
+
     /** Creates a new instance of RadialDecoder */
     public RadialDecoder(BinaryReader bindecode, int numLevels) throws IOException{
         super(bindecode,numLevels);
@@ -49,12 +49,12 @@ public abstract class RadialDecoder extends RadarDecoder{
             numberRadials = bindecode.getShort();
             bindecode.seek(offsetbyte+18);
             int startBin = bindecode.getShort();
-            
+
             bindecode.seek(offsetbyte+20);
             numberRangeBins = bindecode.getShort();
     }
-   
-  
+
+
      public int getNumberRadials() {
         return(numberRadials);
     }
@@ -66,7 +66,7 @@ public abstract class RadialDecoder extends RadarDecoder{
         //returns height in feet above ground. Takes into account the height of the radar.
         double height = (((Math.pow(radius*cosOfElevationAngle,2))/9168.66)+radius*sinOfElevationAngle)*6076.115;
         return((height+radarHeight)*.3048);
-        
+
     }
 
 

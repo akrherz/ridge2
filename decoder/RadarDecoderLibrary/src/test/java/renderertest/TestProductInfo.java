@@ -49,21 +49,21 @@ public class TestProductInfo {
     int width = 800;
     int height = 800;
     String fileToProcess;
-    
-    
+
+
     public TestProductInfo() {
-    	
+
     }
-    
+
     @Test
     public void testProduct() {
- 
-    	
+
+
     }
-    
+
     public void render(String fileToProcess) {
     	this.fileToProcess = fileToProcess;
-            
+
             try {
             	BinaryReader reader = new MappedByteBufferReader(fileToProcess);
             	if (BinaryUtilities.isZlibCompressed(reader)) {
@@ -114,13 +114,13 @@ public class TestProductInfo {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-    	TestProductInfo renderer = new TestProductInfo();
-    	
-    	renderer.render("/Users/jason.burks/Downloads/sn(2).last");
-       
 
-       
+    	TestProductInfo renderer = new TestProductInfo();
+
+    	renderer.render("/Users/jason.burks/Downloads/sn(2).last");
+
+
+
     }
 
 }

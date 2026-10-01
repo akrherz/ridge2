@@ -17,19 +17,19 @@ import java.awt.Color;
  */
 public class BoundedColor {
     Color color;
-    
-  
+
+
     /** Creates a new instance of BoundedColor */
     public BoundedColor(Color color) {
         this.color = color;
     }
-    
+
     public Color getColor(){
         return(color);
     }
-    
+
     public String toString() {
         return(color.toString());
     }
-    
+
 }

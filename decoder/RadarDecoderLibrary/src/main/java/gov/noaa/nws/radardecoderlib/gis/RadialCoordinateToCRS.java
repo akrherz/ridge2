@@ -24,7 +24,7 @@ public class RadialCoordinateToCRS extends RadarCoordinateToCRS {
     private Position[] previousPoints = new Position[4];
     Position[] output= new Position[4];
     Position[] temp= new Position[2];
-    
+
 
     public RadialCoordinateToCRS(MathTransform geoGraphicToCRS, double radarLon, double radarLat, float elevationAngle, double binWidth) {
         super(geoGraphicToCRS,radarLon,radarLat);

@@ -37,8 +37,8 @@ public class ColorCurveManager {
         Element root = ProcessXML.openXMLDocument(new FileInputStream(file)).getRootElement();
             setupColors(root);
     }
-    
-    
+
+
     public void setupColors(Element xml) {
         List<Element> list = xml.getChildren("Level");
         int numColors = list.size();
@@ -67,9 +67,9 @@ public class ColorCurveManager {
                 ex.printStackTrace();
             }
          }
-        
+
     }
-    
+
     public Color[] getColors(Threshold[] thresholds) {
         int num = thresholds.length;
         int numLevels = colors.length;
@@ -88,8 +88,8 @@ public class ColorCurveManager {
                         }
                     }
                 }
-                
-                
+
+
             } else if (thresholds[i] instanceof StringThreshold) {
                 StringThreshold threshold = (StringThreshold)thresholds[i];
                 for (int j=0; j< numLevels; ++j) {
@@ -107,8 +107,8 @@ public class ColorCurveManager {
                 outputColors[i] = null;
             }
         }
-            
-           
+
+
         //if setup then return old thresholds
         return(outputColors);
     }

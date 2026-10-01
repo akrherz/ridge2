@@ -31,7 +31,7 @@ public class NetCDFColorCurveReader extends ColorCurve {
             char[][] names = (char[][])tableNamesArray.copyToNDJavaArray();
             Array tableKeysArray = tableKeys.read();
             int[] colorIDs = (int[])tableKeysArray.copyTo1DJavaArray();
-            
+
             for (int i=0; i<colorIDs.length; ++i) {
                 //System.out.println("Checking "+i+"  "+new String(names[i]));
                 if (colorIDs[i] == num) {
@@ -51,15 +51,15 @@ public class NetCDFColorCurveReader extends ColorCurve {
                // System.out.println("Colors =="+colorsOut[j-1]);
             }
         } catch (Exception e) {
-         
+
         }
-        
+
     }
-    
+
     public Color[] getColors() {
         return(colorsOut);
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -67,5 +67,5 @@ public class NetCDFColorCurveReader extends ColorCurve {
         // TODO code application logic here
         new NetCDFColorCurveReader("C:/Jason/Java/Projects/Ridge/RadarDecoderLibrary/src/gov/noaa/nws/RadarDecoderLib/ColorCurves/colorMaps.nc", 3);
     }
-    
+
 }

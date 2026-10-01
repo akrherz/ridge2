@@ -26,26 +26,26 @@ public class NewFileEvent {
     int messageCode;
     String outputFilename;
     long inputFileSize=0;
-    
+
     long generationTime;
-   
+
     long totalBinsDrawen=0;
     long totalBinsPossible=0;
     boolean deleteWhenDone = false;
-    
+
 	private double longitudeOfRadar, latitudeOfRadar;
-    
+
     int timeToRender;
     int decodeTime;
     long timeProcessingStart;
     ProcessedRadarFile radarFile = new ProcessedRadarFile();
-   
-    
+
+
     /** Creates a new instance of NewFileEvent */
     public NewFileEvent(String filename) {
         this.filename = filename;
         timeReceived = System.currentTimeMillis();
-        
+
     }
 
     public BufferedImage getImage() {
@@ -98,7 +98,7 @@ public class NewFileEvent {
     public void setValidTime(Date validTime) {
         radarFile.setValidTime(validTime);
     }
-  
+
 
     public long getTotalBinsPossible() {
         return totalBinsPossible;
@@ -119,11 +119,11 @@ public class NewFileEvent {
     public String getFilename() {
         return(filename);
     }
-    
+
     public long getTimeReceived(){
         return(timeReceived);
     }
-    
+
     public void setSiteID(int siteID){
        radarFile.setSiteID(siteID);
     }
@@ -149,7 +149,7 @@ public class NewFileEvent {
     public void setOutputFilename(String name) {
         this.outputFilename = name;
     }
-    
+
     public String getOutputFilename() {
         return(outputFilename);
     }
@@ -162,40 +162,40 @@ public class NewFileEvent {
     public void setBinaryReader(BinaryReader binaryReader) {
         this.binaryReader = binaryReader;
     }
-    
+
     public BinaryReader getBinaryReader(){
         return(binaryReader);
     }
     public void setTimeFinished(){
         this.timeFinished = System.currentTimeMillis();
     }
-    
+
     public long getTimeFinished() {
         return(timeFinished);
     }
      public void setTimeProcessingStart(){
         this.timeProcessingStart = System.currentTimeMillis();
     }
-    
+
     public long getTimeProcessingStart() {
         return(timeProcessingStart);
     }
-    
+
     public void setMessageCode(int messageCode) {
         this.messageCode = messageCode;
     }
-    
+
     public int getMessageCode(){
         return(messageCode);
     }
-    
+
     public long getProcessTotalTime(){
         return(timeFinished - timeReceived);
     }
     public long getProcessTime(){
         return(timeFinished - timeProcessingStart);
     }
-    
+
     public void setFileInputSize(long inputFileSize) {
         this.inputFileSize = inputFileSize;
     }
@@ -211,7 +211,7 @@ public class NewFileEvent {
         radarFile.setZZZ(ZZZ);
     }
 
-    
+
     public int getDecodeTime() {
         return decodeTime;
     }
@@ -228,7 +228,7 @@ public class NewFileEvent {
         this.inputFileSize = inputFileSize;
     }
 
-  
+
 
     public int getTimeToRender() {
         return timeToRender;
@@ -252,7 +252,7 @@ public class NewFileEvent {
     public void setByteImage(byte[] byteImage) {
         radarFile.setByteImage(byteImage);
     }
-    
+
     public float getElevationAngle() {
 		return radarFile.getElevationAngle();
 	}
@@ -276,7 +276,7 @@ public class NewFileEvent {
 	public void setStormTotalPrecipEnd(Date stormTotalPrecipEnd) {
 		radarFile.setStormTotalPrecipEnd(stormTotalPrecipEnd);
 	}
-	
+
 	public float getStormRelativeSpeed() {
 		return radarFile.getStormRelativeSpeed();
 	}
@@ -292,14 +292,14 @@ public class NewFileEvent {
 	public void setStormRelativeDirection(float stormrelativedirection) {
 		radarFile.setStormRelativeDirection(stormrelativedirection);
 	}
-	
+
 	public void setImageWidth(int imageWidth) {
 		radarFile.setImageWidth(imageWidth);
 	}
 	public int getImageWidth() {
 		return radarFile.getImageWidth();
 	}
-	
+
 	public void setImageHeight(int imageHeight) {
 		radarFile.setImageHeight(imageHeight);
 	}

@@ -19,7 +19,7 @@ public class StatisticAdvice implements AfterReturningAdvice {
     public void setStatsHolder(StatisticHolder statsHolder) {
         this.statsHolder = statsHolder;
     }
-    
+
     public void afterReturning(Object arg0, Method arg1, Object[] arg2, Object arg3) throws Throwable {
         statsHolder.update((NewFileEvent)arg2[0]);
     }

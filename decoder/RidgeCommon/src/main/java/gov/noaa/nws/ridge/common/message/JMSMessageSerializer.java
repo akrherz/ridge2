@@ -24,9 +24,9 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
  * @author Jason.Burks
  */
 public class JMSMessageSerializer{
-   
 
-    
+
+
 
 	public static ProcessedRadarFile unmarshall(Message messageIn) throws Exception{
 		BytesMessage message = (BytesMessage)messageIn;
@@ -52,9 +52,9 @@ public class JMSMessageSerializer{
 
 		if (message.propertyExists("stormRelativeDirection")) radarFile.setStormRelativeDirection(message.getFloatProperty("stormRelativeDirection"));
 
-		return radarFile;	  
+		return radarFile;
 	}
-	
+
 	public static Message marshall(ProcessedRadarFile radarFile,Session session) throws Exception {
 		BytesMessage message = session.createBytesMessage();
         message.writeBytes(radarFile.getByteImage());
@@ -74,10 +74,10 @@ public class JMSMessageSerializer{
         if (radarFile.getStormTotalPrecipEnd() != null) {
           message.setLongProperty("stormTotalPrecipEnd", radarFile.getStormTotalPrecipEnd().getTime());
         }
-        
+
         //Add vcp
         message.setIntProperty("vcp", radarFile.getVcp());
-        
+
         //Add Storm relative speed and direction
         if (radarFile.getStormRelativeSpeed() != Float.MIN_VALUE) {
         	message.setFloatProperty("stormRelativeSpeedKts", radarFile.getStormRelativeSpeed());
@@ -86,6 +86,6 @@ public class JMSMessageSerializer{
 		return message;
 	}
 
-   
+
 
 }

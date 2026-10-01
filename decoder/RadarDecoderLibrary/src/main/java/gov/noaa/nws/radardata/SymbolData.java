@@ -10,7 +10,7 @@ package gov.noaa.nws.radardata;
  * @author Jason.Burks
  */
 public class SymbolData extends RadarData {
-    
+
      double i, j;
 
      public SymbolData(double i, double j){

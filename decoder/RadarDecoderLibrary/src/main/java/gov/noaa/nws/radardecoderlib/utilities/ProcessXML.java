@@ -18,11 +18,11 @@ import java.net.*;
  * @author  Owner
  */
 public class ProcessXML {
-    
+
     /** Creates a new instance of ProcessXML */
     public ProcessXML() {
     }
-    
+
 //    public static void processXML(Object obj) {
 //       Class myClass =  obj.getClass();
 //       Method[] methods = myClass.getMethods();
@@ -35,10 +35,10 @@ public class ProcessXML {
 //               } catch (InvocationTargetException e) {
 //               }
 //           }
-//       }  
+//       }
 //    }
 //    public static void recordXML(Object obj) {
-//       
+//
 //       Class myClass =  obj.getClass();
 //       Method[] methods = myClass.getMethods();
 //       for (int i =0; i<= methods.length-1; ++i) {
@@ -52,7 +52,7 @@ public class ProcessXML {
 //           }
 //       }
 //    }
-    
+
     public static Document openXMLDocument(String filename) throws IOException {
         SAXBuilder builder = new SAXBuilder();
         Document xmlDoc;
@@ -97,11 +97,11 @@ public class ProcessXML {
         }
         return(xmlDoc);
     }
-    
+
     public static void saveXMLDocument(String fileLocation, Document doc) throws IOException {
         XMLOutputter fmt = new XMLOutputter();
 //        fmt.setIndent("  "); // use two space indent
-//        fmt.setNewlines(true); 
+//        fmt.setNewlines(true);
         try {
             FileOutputStream out = new FileOutputStream(new File(fileLocation));
             fmt.output(doc,out);
@@ -111,11 +111,11 @@ public class ProcessXML {
             throw(new IOException("IO Problem"));
         }
     }
-    
+
     private static String findFilename(Object obj) {
         return(null);
     }
-    
+
     public String grabXMLTemplate() {
         URL urltemplate = getClass().getResource("XMLTemplates/"+this.getClass().getName()+".xml");
         return(urltemplate.getPath()+urltemplate.getFile());
@@ -131,7 +131,7 @@ public class ProcessXML {
         } catch(IOException e) {
             return(null);
         }
-    }   
+    }
     public static Color getColor(Element e) {
         int red=255;
         int blue=0;
@@ -150,13 +150,13 @@ public class ProcessXML {
             alpha = Integer.parseInt(e.getChild("alpha").getText());
         }
         return(new Color(red,green,blue));
-        
+
     }
     public static Font getFont(Element e) {
         String font="dialog";
         int style=0;
         int size=8;
-        
+
         if (e.getChild("font") != null ) {
             font = e.getChild("font").getText();
         }
@@ -167,11 +167,9 @@ public class ProcessXML {
             size = Integer.parseInt(e.getChild("size").getText());
         }
         return(new Font(font,style,size));
-        
+
     }
-    
-    
-    
+
+
+
 }
-
-

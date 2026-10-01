@@ -25,39 +25,39 @@ public class GISDistanceTools {
     /** Creates a new instance of GISDistanceTools */
     public GISDistanceTools() {
     }
-    
-     
+
+
      public static Position getPointFromRangeAndDistance(Position startPoint, double head, double distance) {
-         
+
          double azimuth = convertAzimuth(head);
 //         double rangem = ((distance)*1852.)*Math.cos(Math.toRadians(0.5));
          double rangem = (distance)*1852.;
         GeodeticCalculator calc = new GeodeticCalculator();
          //GeodeticCalculator calc = new GeodeticCalculator();
-       
+
          //System.out.println("Calc ="+calc.getEllipsoid());
-      
+
          calc.setStartingGeographicPoint(startPoint.getOrdinate(0),startPoint.getOrdinate(1));
-         
-         calc.setDirection(azimuth,rangem); 
-         
+
+         calc.setDirection(azimuth,rangem);
+
          return(new GeneralPosition(calc.getDestinationGeographicPoint().getY(),calc.getDestinationGeographicPoint().getX()));
      }
-    
+
      public static Position getPointFromRangeXAndY(Position startPoint, double x, double y) {
          //need to calculate Azimuth
         double  head = Math.atan2(x,y);
         double distance = Math.sqrt(Math.pow(x,2)+Math.pow(y,2));
          double rangem = (distance)*1852.00;
          GeodeticCalculator calc = new GeodeticCalculator();
-         
+
          calc.setStartingGeographicPoint(startPoint.getOrdinate(0),startPoint.getOrdinate(1));
-         calc.setDirection(Math.toDegrees(head),rangem); 
-         
+         calc.setDirection(Math.toDegrees(head),rangem);
+
          return(new GeneralPosition(calc.getDestinationGeographicPoint().getY(),calc.getDestinationGeographicPoint().getX()));
       //   return(null);
      }
-//     
+//
      public static double convertAzimuth(double value) {
          if ((value >180.) && (value <=360.)) {
              value = value-360.;
@@ -74,6 +74,6 @@ public class GISDistanceTools {
 //         System.out.println(calc.getDestinationPoint());
      }
 //     public GeoPoint
-             
-             
+
+
 }

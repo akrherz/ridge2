@@ -12,11 +12,11 @@
             </list>
         </property>
     </bean>
-   
+
         <bean id="writerExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
         	<property name="corePoolSize" value="${corePoolSize}" />
         	<property name="maxPoolSize" value="${maxPoolSize}" />
         	<property name="queueCapacity" value="${queueCapacity}" />
     	</bean>
-    <import resource="${connectorName}-spring.xml"/> 
+    <import resource="${connectorName}-spring.xml"/>
 </beans>

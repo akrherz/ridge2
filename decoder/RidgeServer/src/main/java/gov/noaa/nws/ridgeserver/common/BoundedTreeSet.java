@@ -24,8 +24,8 @@ package gov.noaa.nws.ridgeserver.common;
 import java.util.*;
 
 /**
- * A TreeSet that ensures it never grows beyond a max size.  
- * <code>last()</code> is removed if the <code>size()</code> 
+ * A TreeSet that ensures it never grows beyond a max size.
+ * <code>last()</code> is removed if the <code>size()</code>
  * get's bigger then <code>getMaxSize()</code>
  */
 public class BoundedTreeSet<E> extends TreeSet<E> {

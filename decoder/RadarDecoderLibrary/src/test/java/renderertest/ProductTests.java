@@ -37,37 +37,37 @@ public class ProductTests extends TestCase {
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Exception "+e.getMessage());
-			
+
 		}
 	}
-	
+
 	public void testNET() {
 		try {
 			output("/products/net/HTX_20060808_1350_NET","/tmp/net.png");
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Exception "+e.getMessage());
-			
+
 		}
 	}
-	
+
 	public void testNET2() {
 		try {
 			output("/products/net/AEC_20120118_1821_NET","/tmp/net2.png");
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Exception "+e.getMessage());
-			
+
 		}
 	}
-	
+
 	public void testN0Q() {
 		try {
 			output("/products/n0q/KFWD_SDUS54_N0QFWS_201010180348","/tmp/n0q.png");
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Exception "+e.getMessage());
-			
+
 		}
 	}
 
@@ -77,7 +77,7 @@ public class ProductTests extends TestCase {
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Exception "+e.getMessage());
-			
+
 		}
 	}
 
@@ -87,68 +87,68 @@ public class ProductTests extends TestCase {
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Exception "+e.getMessage());
-			
+
 		}
 	}
 
-    
+
 	public void testN0U() {
 		try {
 			output("/products/n0u/KFWD_SDUS54_N0UFWS_201010180222","/tmp/n0u.png");
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Exception "+e.getMessage());
-			
+
 		}
 	}
-	
+
 	public void testNCR() {
 		try {
 			output("/products/ncr/KFWD_SDUS54_NCRFWS_201010180604","/tmp/ncr.png");
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Exception "+e.getMessage());
-			
+
 		}
 	}
-	
+
 	public void test4bitReflect() {
 		try {
 			output("/products/4bitreflec/FWS_20030406_0156_N0R","/tmp/4bitreflec.png");
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Exception "+e.getMessage());
-			
+
 		}
 	}
-	
+
 	public void testComp8bitReflect() {
 		try {
 			output("/products/n0q/N0Q_20110106_1819","/tmp/n0q.png");
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Exception "+e.getMessage());
-			
+
 		}
 	}
-	
+
 	public void testTZL() {
 		try {
 			output("/products/tzl/TZL_20110106_1850","/tmp/tzl.png");
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Exception "+e.getMessage());
-			
+
 		}
 	}
-	
+
 	public void testoldNOAAPortN0S() {
 		try {
 			output("/products/oldnoaaport/n0s/N0S_20110106_1839","/tmp/oldnoaaport_n0s.png");
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Exception "+e.getMessage());
-			
+
 		}
 	}
 	public void testPTA() {
@@ -157,47 +157,47 @@ public class ProductTests extends TestCase {
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Exception "+e.getMessage());
-			
+
 		}
 	}
-	
+
 	public void testPTA2() {
 		try {
 			output("/products/pta/PBZ_20120119_1312_PTA","/tmp/pta2.png");
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Exception "+e.getMessage());
-			
+
 		}
 	}
-	
+
 	public void testNTP() {
 		try {
 			output("/products/ntp/ABC_20080723_1800_NTP","/tmp/ntp.png");
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Exception "+e.getMessage());
-			
+
 		}
 	}
-	
+
 	public void testNTP2() {
 		try {
 			output("/products/ntp/HTX_20060808_1235_NTP","/tmp/ntp2.png");
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Exception "+e.getMessage());
-			
+
 		}
 	}
-	
+
 	private void output(String input, String output) throws Exception{
             BinaryReader reader = new MappedByteBufferReader(ProductTests.class.getResource(input).getFile());
             if (BinaryUtilities.isZlibCompressed(reader) ){
 				BinaryUtilities.zlibUncompress(reader);
 			}
                 BinaryUtilities.setupHeaderOffset(reader);
-       
+
                 if (BinaryUtilities.isBZip2Compressed(reader)) {
                     reader = BinaryUtilities.unCompress(reader);
                 }
@@ -225,8 +225,8 @@ public class ProductTests extends TestCase {
                 CreateWorldFileFromRadar.createWorldFileFromRadar(CreateWorldFileFromRadar.createWorldFilename(output), holder.getUpperLeft(), holder.getLowerRight(), width, height);
                 BufferedImage image = renderer.render();
                 ImageIO.write(image, "png", new File(output));
-            
-        
+
+
 	}
 
 }

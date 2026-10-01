@@ -7,42 +7,42 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 public class LoggingOutputStream extends OutputStream {
-	 
+
     /**
      * Default number of bytes in the buffer.
      */
     private static final int DEFAULT_BUFFER_LENGTH = 2048;
- 
+
     /**
      * Indicates stream state.
      */
     private boolean hasBeenClosed = false;
- 
+
     /**
      * Internal buffer where data is stored.
      */
     private byte[] buf;
- 
+
     /**
      * Number of valid bytes in the buffer.
      */
     private int count;
- 
+
     /**
      * Remembers the size of the buffer.
      */
     private int curBufLength;
- 
+
     /**
      * The logger to write to.
      */
     private Logger log;
- 
+
     /**
      * The log level.
      */
     private Level level;
- 
+
     /**
      * Creates the Logging instance to flush to the given logger.
      *
@@ -64,7 +64,7 @@ public class LoggingOutputStream extends OutputStream {
         buf = new byte[curBufLength];
         count = 0;
     }
- 
+
     /**
      * Writes the specified byte to this output stream.
      *
@@ -89,11 +89,11 @@ public class LoggingOutputStream extends OutputStream {
             buf = newBuf;
             curBufLength = newBufLength;
         }
- 
+
         buf[count] = (byte) b;
         count++;
     }
- 
+
     /**
      * Flushes this output stream and forces any buffered output
      * bytes to be written out.
@@ -108,7 +108,7 @@ public class LoggingOutputStream extends OutputStream {
         log.log(level, str);
         count = 0;
     }
- 
+
     /**
      * Closes this output stream and releases any system resources
      * associated with this stream.

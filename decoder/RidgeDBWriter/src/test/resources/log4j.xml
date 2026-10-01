@@ -9,7 +9,7 @@
 			<param name="ConversionPattern" value="%-5p %c{1} - %m%n" />
 		</layout>
 	</appender>
-	
+
 	<appender name="file" class="org.apache.log4j.RollingFileAppender">
 		<param name="file" value="ridgeDBWriter.log" />
 		<param name="MaxFileSize" value="30MB" />
@@ -18,7 +18,7 @@
 			<param name="ConversionPattern" value="%p %t %c - %m%n" />
 		</layout>
 	</appender>
-	
+
 	<logger name="org.hibernate">
 		<level value="fatal" />
 		<appender-ref ref="console" />

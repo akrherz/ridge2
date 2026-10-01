@@ -53,7 +53,7 @@ public class RidgeNamer {
          monthFormat.setTimeZone(gmt);
          dayFormat.setTimeZone(gmt);
          hourFormat.setTimeZone(gmt);
-         minuteFormat.setTimeZone(gmt); 
+         minuteFormat.setTimeZone(gmt);
 
        ListIterator listIter =  xml.getChildren("definition").listIterator();
        while(listIter.hasNext()) {
@@ -64,7 +64,7 @@ public class RidgeNamer {
      public RidgeNamer(String inputFile) throws DecodeFilenameException {
          setupInputFileName(inputFile);
     }
-    
+
     public void setupInputFileName(String inputFileName) throws DecodeFilenameException{
         //do some basic processing to extract pieces
         //XXX_YYYYmmDD_HHMM_ZZZ
@@ -95,11 +95,11 @@ public class RidgeNamer {
     public void addToTable(String name,String string) {
         table.put(name,string);
     }
-    
+
     public String getFromTable(String name) {
         return(replace(table.get(name)));
     }
-    
+
      private String replace(String string){
         string = string.replaceAll("XXX",XXX);
         string = string.replaceAll("ZZZ",ZZZ);
@@ -111,15 +111,15 @@ public class RidgeNamer {
         string = string.replaceAll("UUID",uuid);
         return(string);
     }
-     
+
      public String getXXX() {
          return(XXX);
      }
-     
+
      public String getZZZ() {
          return(ZZZ);
      }
-    
+
 //    public String getOutputFileName() {
 //       return(outputImageDir+ZZZ+"/"+XXX+"_"+ZZZ+"_0.gif");
 //    }
@@ -129,25 +129,25 @@ public class RidgeNamer {
 //    public String getThumbnailName() {
 //       return(thumbnailsDir+"/"+XXX+"_Thumb.gif");
 //    }
-//    
+//
 //    public String getLegendFileName() {
 //       return(legendDir+ZZZ+"/"+XXX+"_"+ZZZ+"_Legend_0.gif");
 //    }
 //    public String getRadarSiteLegendFileName() {
 //       return(legendDir+ZZZ+"/"+XXX+"/"+XXX+"_"+year+month+day+"_"+hour+minute+"_"+ZZZ+"_Legend.gif");
 //    }
-//    
+//
 //     public String getProjectedOutputFileName() {
 //       return(outputProjectedImageDir+ZZZ+"/"+XXX+"_"+ZZZ+"_0.gif");
 //    }
 //    public String getProjectedRadarSiteOutputFileName() {
 //       return(outputProjectedImageDir+ZZZ+"/"+XXX+"/"+XXX+"_"+year+month+day+"_"+hour+minute+"_"+ZZZ+".gif");
 //    }
-//    
+//
 //    public String getRadarTimeFilename() {
 //        return(radarTimeDir+XXX.toLowerCase()+"_"+ZZZ.toLowerCase()+"_time.txt");
 //    }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -174,5 +174,5 @@ public class RidgeNamer {
 //        }
 //
 //    }
-    
+
 }

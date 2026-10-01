@@ -32,7 +32,7 @@ public class JMSMessageAdapter implements MessageListener{
     	}catch(Exception e) {
 	    	  e.printStackTrace();
 	          Logger.getLogger(JMSMessageAdapter.class.getName()).log(Level.INFO, null, e);
-	      }    
+	      }
 
     }
 
@@ -40,7 +40,7 @@ public class JMSMessageAdapter implements MessageListener{
         this.writerExecutor = writerExecutor;
     }
 
-    
+
     public void setStartPath(String startPath) {
     	Logger.getLogger(JMSMessageAdapter.class).info("Starting Path is "+startPath);
 		this.startPath = startPath;

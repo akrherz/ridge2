@@ -46,7 +46,7 @@ public class RadialSpatialRenderer extends RadarSpatialRenderer {
             g.fill(path);
             }
         } catch (Exception ex) {
-            
+
         }
 
 

@@ -32,12 +32,12 @@ public class RidgePurger extends QuartzJobBean{
     public void setDao(RidgeTimeDAO dao) {
         this.dao = dao;
     }
-    
+
 
     @Override
     protected void executeInternal(JobExecutionContext arg0) throws JobExecutionException {
          Logger.getLogger(RidgePurger.class).info("Running Purger");
-         
+
         try {
             date = new Date(System.currentTimeMillis() - 7200000);
              Logger.getLogger(RidgePurger.class).info("Getting list of files to process");

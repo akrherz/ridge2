@@ -22,7 +22,7 @@ public class Pie3DPanel extends LocalChartPanel {
    String[] categories;
 
   /** The meter panel. */
- 
+
     public Pie3DPanel( String title, String[] categories,String label) {
         super(title);
         this.categories = categories;
@@ -39,12 +39,12 @@ public class Pie3DPanel extends LocalChartPanel {
         plot.setForegroundAlpha(0.5f);
         plot.setNoDataMessage("No data to display");
         plot.setBackgroundPaint(Color.WHITE);
-        
+
             panel = new ChartPanel(new JFreeChart(title, plot));
 
     }
 
-    
+
     public void addData(int seriesId, double value) {
         dataset.setValue(categories[seriesId],value);
     }

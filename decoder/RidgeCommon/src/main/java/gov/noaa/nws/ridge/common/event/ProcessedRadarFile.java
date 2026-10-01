@@ -8,14 +8,14 @@ import java.util.Date;
 import org.geotools.api.geometry.Position;
 
 public class ProcessedRadarFile {
-	
-   
-    
+
+
+
     int siteID = -1;
     int vcp;
     int imageWidth;
     int imageHeight;
-    
+
 	private String ZZZ;
     private String XXX;
     byte[] byteImage;
@@ -27,7 +27,7 @@ public class ProcessedRadarFile {
     private Date validTime;
     float stormRelativeSpeed = Float.MIN_VALUE;
     float stormRelativeDirection = Float.MIN_VALUE;
-   
+
     public BufferedImage getImage() {
         return image;
     }
@@ -59,15 +59,15 @@ public class ProcessedRadarFile {
     public void setValidTime(Date validTime) {
         this.validTime = validTime;
     }
-    
+
     public void setSiteID(int siteID){
         this.siteID = siteID;
     }
     public int getSiteID() {
         return(siteID);
     }
-   
-   
+
+
     public String getZZZ() {
         return ZZZ;
     }
@@ -76,8 +76,8 @@ public class ProcessedRadarFile {
         this.ZZZ = ZZZ;
     }
 
-    
-   
+
+
 
     public String getXXX() {
         return XXX;
@@ -93,7 +93,7 @@ public class ProcessedRadarFile {
     public void setByteImage(byte[] byteImage) {
         this.byteImage = byteImage;
     }
-    
+
     public float getElevationAngle() {
 		return elevationAngle;
 	}
@@ -117,7 +117,7 @@ public class ProcessedRadarFile {
 	public void setStormTotalPrecipEnd(Date stormTotalPrecipEnd) {
 		this.stormTotalPrecipEnd = stormTotalPrecipEnd;
 	}
-	
+
 	public float getStormRelativeSpeed() {
 		return stormRelativeSpeed;
 	}

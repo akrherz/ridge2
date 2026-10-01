@@ -27,5 +27,5 @@ public abstract class BinaryReaderImpl implements BinaryReader {
     public int getOffsetStartPoint() {
         return(offsetStartPoint);
     }
-    
+
 }

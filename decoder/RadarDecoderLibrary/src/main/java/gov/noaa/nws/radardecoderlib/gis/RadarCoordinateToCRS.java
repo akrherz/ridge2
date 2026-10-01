@@ -42,7 +42,7 @@ public class RadarCoordinateToCRS {
         radarCoord.setup(radarLon, radarLat);
     }
 
-    
+
 
     public double[] convertGeoGraphicToCRS(double[] postIn) throws Exception{
         try {
@@ -62,11 +62,11 @@ public class RadarCoordinateToCRS {
             int num = postIn.length;
             Position[] output = new Position[num];
             for (int i=0; i< num; ++i) {
-            	
+
             		output[i] = new GeneralPosition(0,0);
             		geographicToCRS.transform(postIn[i],output[i]);
-            
-                
+
+
             }
             return(output);
         } catch (TransformException ex) {

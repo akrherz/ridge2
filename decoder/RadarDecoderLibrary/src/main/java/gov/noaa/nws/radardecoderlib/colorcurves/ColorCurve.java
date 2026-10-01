@@ -14,11 +14,11 @@ package gov.noaa.nws.radardecoderlib.colorcurves;
  * @author jburks
  */
 public abstract class ColorCurve implements ColorCurvesInterface {
-    
+
     /** Creates a new instance of ColorCurves */
     public ColorCurve() {
     }
-    
-   
-      
+
+
+
 }

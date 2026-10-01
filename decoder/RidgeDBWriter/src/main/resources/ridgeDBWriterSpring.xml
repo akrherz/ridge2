@@ -4,7 +4,7 @@
        xmlns:jms="http://www.springframework.org/schema/jms"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
        http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-2.5.xsd">
-           
+
    <import resource="classpath:/hibernateConfig.xml" />
 	<bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -24,5 +24,5 @@
 		<property name="maxPoolSize" value="${maxPoolSize}" />
 		<property name="queueCapacity" value="${queueCapacity}" />
 	</bean>
-	<import resource="${connectorName}-spring.xml" /> 
+	<import resource="${connectorName}-spring.xml" />
 </beans>

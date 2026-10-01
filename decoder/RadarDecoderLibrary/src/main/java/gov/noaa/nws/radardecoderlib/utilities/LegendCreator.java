@@ -48,7 +48,7 @@ public class LegendCreator {
         this.colors = colors;
         this.labels = labels;
         numColors = this.colors.length;
-        
+
         width = (int)dim.getWidth();
         height = (int)dim.getHeight();
         image = new BufferedImage((int)dim.getWidth(),(int)dim.getHeight(),BufferedImage.TYPE_INT_ARGB);
@@ -161,7 +161,7 @@ public class LegendCreator {
                         tl.draw(graphics, leftInset + barWidth + barTextSpacing, (float) (currentLocation + tl.getBounds().getHeight() / 2.0 - amount / 2.0));
                     }
 
-                
+
                 }
             }
         }

@@ -24,7 +24,7 @@ public class BarPanel extends LocalChartPanel {
    String[] series;
 
   /** The meter panel. */
- 
+
     public BarPanel( String title,String[] series, String label) {
         super(title);
         this.series = series;
@@ -53,12 +53,12 @@ public class BarPanel extends LocalChartPanel {
         plot.setBackgroundPaint(Color.lightGray);
         plot.setDomainGridlinePaint(Color.white);
         plot.setRangeGridlinePaint(Color.white);
-        
+
             panel = new ChartPanel(new JFreeChart(title, plot));
 
     }
 
-    
+
     public void addData(int seriesId, double value) {
         dataset.setValue(value, series[seriesId], "");
     }

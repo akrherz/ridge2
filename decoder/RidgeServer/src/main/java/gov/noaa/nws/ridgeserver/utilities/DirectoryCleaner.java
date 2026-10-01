@@ -16,7 +16,7 @@ import java.io.File;
  * @author jason.burks
  */
 public class DirectoryCleaner {
-    
+
     /** Creates a new instance of DirectoryCleaner */
     public DirectoryCleaner(String directoryToClean, boolean deleteYes) {
         if (directoryToClean.equals("") != true) {
@@ -33,9 +33,9 @@ public class DirectoryCleaner {
                     }
                 }
         }
-       
+
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -43,5 +43,5 @@ public class DirectoryCleaner {
         // TODO code application logic here
         new DirectoryCleaner("C:/temp/ridge", true);
     }
-    
+
 }

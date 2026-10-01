@@ -16,7 +16,7 @@ import org.geotools.api.referencing.operation.MathTransform;
  * @author Jason.Burks
  */
 public class CompositeSpatialRenderer extends RadarSpatialRenderer {
-    CompositeCoordinateToCRS radarCoord; 
+    CompositeCoordinateToCRS radarCoord;
     GeneralPath path = new GeneralPath();
 
     public CompositeSpatialRenderer(int width, int height, double binWidth, double productRange) {
@@ -59,8 +59,8 @@ public class CompositeSpatialRenderer extends RadarSpatialRenderer {
              }
             // System.out.println("Time to render="+(System.currentTimeMillis()-timeStart));
 
-    } 
-    
+    }
+
     @Override
     public void setTransform(MathTransform transform, Position radarLocation, double elevationAngle) {
         radarCoord = new CompositeCoordinateToCRS(transform,radarLocation.getOrdinate(0),radarLocation.getOrdinate(1), binWidth, productRange);

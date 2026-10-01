@@ -40,7 +40,7 @@ public class RadarTimeWriterTask implements Runnable {
 
     public void run() {
         try {
-            RadarTimeIndex index = new RadarTimeIndex(); 
+            RadarTimeIndex index = new RadarTimeIndex();
             String XXX = radarFile.getXXX();
             String ZZZ = radarFile.getZZZ();
             Date date = radarFile.getValidTime();
@@ -50,7 +50,7 @@ public class RadarTimeWriterTask implements Runnable {
             index.setRadarPath(startPath + ZZZ+"/"+XXX + "_" + ZZZ +"_"+dateFormat.format(date)+".png");
             Position upperLeft = radarFile.getUpperLeft();
             Position lowerRight = radarFile.getLowerRight();
-  
+
             Coordinate[] coords = new Coordinate[5];
             coords[0] = new Coordinate(upperLeft.getOrdinate(0),upperLeft.getOrdinate(1));
             coords[1] = new Coordinate(lowerRight.getOrdinate(0),upperLeft.getOrdinate(1));
@@ -58,48 +58,48 @@ public class RadarTimeWriterTask implements Runnable {
             coords[3] = new Coordinate(upperLeft.getOrdinate(0),lowerRight.getOrdinate(1));
             coords[4] = new Coordinate(upperLeft.getOrdinate(0),upperLeft.getOrdinate(1));
             index.setTheGeom(factory.createPolygon(factory.createLinearRing(coords),null));
-            
+
             //Get optional paramters.
-            
+
             //vcp int
             try {
             	index.setVcp(radarFile.getVcp());
             } catch (Exception e) {
-            	
+
             }
-            
+
             //storm relative direction float
            //stormRelativeDirection
             try {
             	index.setSrmDirection(radarFile.getStormRelativeDirection());
             } catch (Exception e) {
-            	
+
             }
-            
+
             //storm relative speed float
             //stormRelativeSpeedKts
             try {
             	index.setSrmSpeedKts(radarFile.getStormRelativeSpeed());
             } catch (Exception e) {
-            	
+
             }
-            
+
             //Storm total precip begin time date
             //stormTotalPrecipBegin
             try {
             	index.setStpStartDateTime(radarFile.getStormTotalPrecipBegin());
             } catch (Exception e) {
-            	
+
             }
-            
+
             //Storm total precip end time date
             //stormTotalPrecipEnd
             try {
             	index.setStpEndDateTime(radarFile.getStormTotalPrecipEnd());
             } catch (Exception e) {
-            	
+
             }
-            
+
             dao.saveRadarTime(index);
             Logger.getLogger(RadarTimeWriterTask.class).info("Wrote hibernate entry for xxx="+XXX + " zzz=" + ZZZ +" data date="+dateFormat.format(date));
         } catch (Exception ex) {

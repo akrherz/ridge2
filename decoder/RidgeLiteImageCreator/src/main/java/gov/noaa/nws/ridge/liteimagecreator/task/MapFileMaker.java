@@ -14,7 +14,7 @@ import java.io.*;
  * @author brian.walawender
  */
 public class MapFileMaker {
-  
+
 
     public static String createMapFile(RadarInput input) throws Exception {
         // Create the local radar section of the mapfile

@@ -23,7 +23,7 @@ public class FileWriterTask implements Runnable {
     ProcessedRadarFile radarFile;
     String startPath = "/www/html/ridge2/RadarImg2/";
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmm");
-    
+
     public FileWriterTask(ProcessedRadarFile radarFile,String startPath) {
         this.radarFile = radarFile;
         this.startPath = startPath;
@@ -41,7 +41,7 @@ public class FileWriterTask implements Runnable {
                 fos2.write(barray);
                 Position upperLeft = radarFile.getUpperLeft();
                 Position lowerRight = radarFile.getLowerRight();
-                
+
                  int width = radarFile.getImageWidth();
                  int height = radarFile.getImageHeight();
                  WorldFileWriter.writeWorldFile(startPath + ZZZ+"/"+XXX + "_" + ZZZ +"_"+dateFormat.format(date)+".pgw", upperLeft.getOrdinate(0),upperLeft.getOrdinate(1),lowerRight.getOrdinate(0),lowerRight.getOrdinate(1), width,height);

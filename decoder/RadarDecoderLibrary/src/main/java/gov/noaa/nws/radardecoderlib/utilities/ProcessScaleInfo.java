@@ -33,10 +33,10 @@ public class ProcessScaleInfo {
                     relations.add(sRelation);
                 } else {
                     String[] partValue = strings[i + 1].split(":");
-                    
+
                         LinearRelation relation = new LinearRelation(Double.parseDouble(parts[0]), Double.parseDouble(parts[1]), Double.parseDouble(partValue[0]), Double.parseDouble(partValue[1]));
                         relations.add(relation);
-                   
+
                 }
             }
             BufferedWriter out = new BufferedWriter(new FileWriter(outputfile));
@@ -98,7 +98,7 @@ public class ProcessScaleInfo {
         }
         return(null);
     }
-    
+
     /**
      * @param args the command line arguments
      */

@@ -17,11 +17,11 @@ import gov.noaa.nws.radardata.RadarProductData;
  * @author jburks
  */
 public class RendererFactory {
-    
+
     /** Creates a new instance of RendererDriver */
     public RendererFactory() {
     }
-    
+
     public static RadarSpatialRenderer getRadarRenderer(RadarProductData data, int width, int height) {
         String name = data.getRendererType();
          if (name.equals("MesocycloneRenderer")) {
@@ -39,6 +39,6 @@ public class RendererFactory {
         }
         return(null);
     }
-    
+
 
 }

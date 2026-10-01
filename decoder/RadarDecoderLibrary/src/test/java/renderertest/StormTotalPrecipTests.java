@@ -54,18 +54,18 @@ public class StormTotalPrecipTests {
     int height = 1000;
     String fileToProcess;
     String outputname;
-    
-    
+
+
     public StormTotalPrecipTests() {
-    	
+
     }
-    
+
     @Test
     public void testProduct() {
- 
-    	
+
+
     }
-    
+
     public void render(String fileToProcess, String outputname) {
     	this.fileToProcess = fileToProcess;
     	this.outputname = outputname;
@@ -87,7 +87,7 @@ public class StormTotalPrecipTests {
                 System.out.println("Message Code " + decoder.getMessageCode());
                 System.out.println("Scan Time ==" + decoder.getRadarScanTime());
                 System.out.println("Generation Time ==" + decoder.getRadarGenerationTime());
-               
+
                 StormTotalPrecipDecoder stoDecode = (StormTotalPrecipDecoder)decoder;
                 System.out.println("Precip StartTime =="+stoDecode.getStormTotalPrecipBegin());
                 System.out.println("Precip EndTime =="+stoDecode.getStormTotalPrecipEnd());
@@ -108,7 +108,7 @@ public class StormTotalPrecipTests {
 //                	}
 //                }
                 renderer.setColor(colmanager.getColors(thresholds));
-                
+
                 renderer.setRadarData(data);
                 CoordinateHolder holder = GeographicsCoordinateFactory.getTransformForGeo(width, height, decoder.getRadarLocation(), 124 * 1852.);
                 renderer.setTransform(holder.getTransform(), decoder.getRadarLocation(), decoder.getElevationAngle());
@@ -130,11 +130,11 @@ public class StormTotalPrecipTests {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+
     	StormTotalPrecipTests renderer = new StormTotalPrecipTests();
     	renderer.render("/Users/jason.burks/Downloads/PBZ_20120118_1044_PTA","/tmp/pbz_pta.png");
     	renderer.render("/Users/jason.burks/Downloads/PBZ_20120118_1044_STP","/tmp/pbz_pta.png");
-    	
+
     }
 
 }

@@ -15,11 +15,11 @@ import java.awt.Color;
  * @author jburks
  */
 public class ColorCurveLoader {
-    
+
     /** Creates a new instance of ColorCurveLoader */
     public ColorCurveLoader() {
     }
-    
+
      public static Color[] getColorCurve(int messageCode) {
          switch (messageCode) {
              case 16:  return(FourBitReflectivityColors());
@@ -33,13 +33,13 @@ public class ColorCurveLoader {
              case 25:  return(FourBitVelocityColors());
              case 26:  return(FourBitVelocityColors());
              case 27:  return(FourBitVelocityColors());
-             
+
              case 94: return(EightBitColorArray());
              case 99: return(EightBitColorArray());
-             
+
              default: return(null);
          }
-     } 
+     }
      private static Color[] FourBitReflectivityColors() {
         Color[] colors = new Color[16];
         colors[0] = new Color(0,0,0,0);
@@ -80,7 +80,7 @@ public class ColorCurveLoader {
         colors[15] = new Color(144,0,160);
         return(colors);
     }
-    
+
      private static Color[]  EightBitColorArray() {
          Color[] colors = new Color[256];
          int blue = 0;
@@ -100,6 +100,6 @@ public class ColorCurveLoader {
          }
           return(colors);
      }
-    
-     
+
+
 }

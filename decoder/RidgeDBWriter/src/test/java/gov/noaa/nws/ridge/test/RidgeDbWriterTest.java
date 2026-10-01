@@ -52,7 +52,7 @@ public class RidgeDbWriterTest extends AbstractTransactionalJUnit4SpringContextT
 			e.printStackTrace();
 			fail("Did not find older items");
 		}
-		
+
 	}
 
 	@Test
@@ -60,16 +60,16 @@ public class RidgeDbWriterTest extends AbstractTransactionalJUnit4SpringContextT
 		RadarTimeIndex index = getRadarTimeIndex(0);
 		ridgeTimeDAO.saveRadarTime(index);
 		ridgeTimeDAO.deleteRadarTime(index);
-		
+
 	}
-	
-	
+
+
 	public Date getOlderDate(long diffdate) {
 		Date date = new Date();
 		date.setTime(date.getTime()-diffdate);
 		return date;
 	}
-	
+
 	public Geometry createGeom() {
 		 GeometryFactory factory = new GeometryFactory(new PrecisionModel(),4326);
 		 Coordinate[] coords = new Coordinate[5];
@@ -80,7 +80,7 @@ public class RidgeDbWriterTest extends AbstractTransactionalJUnit4SpringContextT
          coords[4] = new Coordinate(-90.0,40.0);
          return(factory.createPolygon(factory.createLinearRing(coords),null));
 	}
-	
+
 	public RadarTimeIndex getRadarTimeIndex(long datediff) {
 		RadarTimeIndex index = new RadarTimeIndex();
 		index.setDatetime(getOlderDate(datediff));

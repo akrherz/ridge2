@@ -12,7 +12,7 @@ package gov.noaa.nws.radardata;
 public class MesocycloneData extends SymbolData {
     double radius;
     String name;
-   
+
 
 	public MesocycloneData(double i, double j, double radius) {
         super(i, j);
@@ -22,7 +22,7 @@ public class MesocycloneData extends SymbolData {
     public double getRadius() {
         return(radius);
     }
-    
+
     public String getName() {
 		return name;
 	}
@@ -30,6 +30,6 @@ public class MesocycloneData extends SymbolData {
 	public void setName(String name) {
 		this.name = name;
 	}
-    
+
 
 }

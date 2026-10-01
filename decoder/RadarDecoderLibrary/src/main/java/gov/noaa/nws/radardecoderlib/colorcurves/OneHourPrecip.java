@@ -14,7 +14,7 @@ import java.awt.Color;
  *
  * @author jburks
  */
-public class OneHourPrecip extends ColorCurve { 
+public class OneHourPrecip extends ColorCurve {
     Color[] colors = new Color[16];
      /** Creates a new instance of FourBitReflectivity */
     public OneHourPrecip() {
@@ -39,5 +39,5 @@ public class OneHourPrecip extends ColorCurve {
     public Color[] getColors() {
         return(colors);
     }
-    
+
 }

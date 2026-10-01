@@ -35,7 +35,7 @@ public class ShortFileWriterTask implements Runnable {
                 fos.write(barray);
                 Position upperLeft = radarFile.getUpperLeft();
                 Position lowerRight = radarFile.getLowerRight();
-                
+
                  int width = radarFile.getImageWidth();
                  int height = radarFile.getImageHeight();
                  WorldFileWriter.writeWorldFile(startPath + ZZZ+"/"+XXX + "_" + ZZZ +".pgw", upperLeft.getOrdinate(0),upperLeft.getOrdinate(1),lowerRight.getOrdinate(0),lowerRight.getOrdinate(1), width,height);

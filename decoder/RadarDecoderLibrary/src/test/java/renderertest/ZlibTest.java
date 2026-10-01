@@ -29,15 +29,15 @@ import java.util.zip.ZipInputStream;
 import org.junit.Test;
 
 public class ZlibTest {
-	
+
 	public ZlibTest() {
-	
+
 	}
-	
+
 	@Test
     public void testProduct() {
- 
-    	
+
+
     }
 
 	public void runFile(String file) {
@@ -71,7 +71,7 @@ public class ZlibTest {
 
 	}
 
-	
+
 
 	public static void main(String[] args) {
 		new ZlibTest().runFile("/Users/jason.burks/Data/Ridge/NewNoaaPort/HTX/NCR/NCR_20110106_1829");

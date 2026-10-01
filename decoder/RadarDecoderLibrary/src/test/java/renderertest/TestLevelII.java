@@ -50,18 +50,18 @@ import org.junit.Test;
  */
 public class TestLevelII {
     String fileToProcess;
-    
-    
+
+
     public TestLevelII() {
-    	
+
     }
-    
+
     @Test
     public void testProduct() {
- 
-    	
+
+
     }
-    
+
     public void process(String fileToProcess) {
     	System.out.println("Going to be processing "+fileToProcess);
     	this.fileToProcess = fileToProcess;
@@ -79,7 +79,7 @@ public class TestLevelII {
 				 System.out.println("CurrData "+currData);
 				 RadarSpatialRenderer renderer = new RadialSpatialRenderer(3000,3000,decoder.getReflecGateSize()*1000.,decoder.getReflecMaxRange()*1000.);
 				 ColorCurveManager colmanager = new ColorCurveManager("/colorcurves/LevelIIReflectivityColorCurveManager.xml");
-	                
+
 	                Color[] colors = colmanager.getColors(thresholds);
 	                for (Color color:colors) {
 	                	if (color != null) {
@@ -89,7 +89,7 @@ public class TestLevelII {
 	                	}
 	                }
 	                renderer.setColor(colmanager.getColors(thresholds));
-	               
+
 	                renderer.setRadarData(currData);
 	                CoordinateHolder holder = GeographicsCoordinateFactory.getTransformForGeo(3000, 3000, new GeneralPosition(87.0,34.0), 230. * 1852.);
 	                renderer.setTransform(holder.getTransform(), new GeneralPosition(87.0,34.0), decoder.getElevationAngle(elevation));
@@ -108,20 +108,20 @@ public class TestLevelII {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-          
-        
+
+
 
     }
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+
     	TestLevelII decoder = new TestLevelII();
     	decoder.process("/Users/jason.burks/Data/Radar/LevelII/KHTX_20060601_2359");
-    	
-    	
-        
+
+
+
     }
 
 }

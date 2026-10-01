@@ -14,7 +14,7 @@ import java.awt.Color;
  *
  * @author jburks
  */
-public class FourBitVelocity extends ColorCurve { 
+public class FourBitVelocity extends ColorCurve {
     Color[] colors = new Color[16];
      /** Creates a new instance of FourBitReflectivity */
     public FourBitVelocity() {
@@ -39,5 +39,5 @@ public class FourBitVelocity extends ColorCurve {
     public Color[] getColors() {
         return(colors);
     }
-    
+
 }

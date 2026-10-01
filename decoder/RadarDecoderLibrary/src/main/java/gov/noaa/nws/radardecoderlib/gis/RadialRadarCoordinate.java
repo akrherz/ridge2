@@ -58,13 +58,13 @@ public class RadialRadarCoordinate {
         return null;
 
     }
-    
+
     public Position[] getOuterEdgePoints(int binNumber) {
         try {
             output = new Position[2];
-           
+
             double distanceOutside = distCalc.findGreatCircleDistance((binNumber + 1) * binWidth);
-           
+
 
             calculator.setDirection(startAngle, distanceOutside);
             output[0] = calculator.getDestinationPosition();
@@ -79,13 +79,13 @@ public class RadialRadarCoordinate {
         return null;
 
     }
-    
+
     public Position[] getUpperPoint(int binNumber) {
         try {
             output = new Position[1];
-           
+
             double distanceOutside = distCalc.findGreatCircleDistance((binNumber + 1) * binWidth);
-           
+
             calculator.setDirection(endAngle, distanceOutside);
             output[0] = calculator.getDestinationPosition();
 

@@ -16,7 +16,7 @@ public class LinearRelation implements Relation {
     double byteBottom;
 
     public LinearRelation(double byteBottom, double valueBottom, double byteTop, double valueTop) {
-       
+
         this.byteTop = byteTop;
         this.byteBottom = byteBottom;
         m = (valueTop-valueBottom)/(byteTop-byteBottom);

@@ -9,7 +9,7 @@
 			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %c{1} [%p] - %m%n" />
 		</layout>
 	</appender>
-	
+
 	<appender name="file" class="org.apache.log4j.RollingFileAppender">
 		<param name="file" value="logs/ridge_server.log" />
 		<param name="MaxFileSize" value="30MB" />
@@ -18,8 +18,8 @@
 			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %c{1} [%p] - %m%n" />
 		</layout>
 	</appender>
-	
-	
+
+
 	<logger name="org.springframework">
 		<level value="fatal" />
 	</logger>

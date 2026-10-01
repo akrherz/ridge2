@@ -28,7 +28,7 @@ public class BoundedDoubleColor extends BoundedColor{
         this.upperValue = upperValue;
         this.color = color;
     }
-    
+
     public BoundedDoubleColor(double value, Color color, int bound ) {
         super(color);
         if (bound == LOWER) {
@@ -44,7 +44,7 @@ public class BoundedDoubleColor extends BoundedColor{
         }
         return(false);
     }
-    
+
     public String toString() {
         return(lowerValue+" "+upperValue+"  "+color.toString());
     }
@@ -52,5 +52,5 @@ public class BoundedDoubleColor extends BoundedColor{
     public double getLowerValue() {
         return(lowerValue);
     }
-    
+
 }

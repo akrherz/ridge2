@@ -24,7 +24,7 @@ public class ProductTimeHolder implements TimeCheck{
        // if (time < times[0]) return true;
     	//long start = System.nanoTime();
         for (Long timeToWork : times) {
-        
+
             if (time == timeToWork) {
             	//System.out.println("+Time Elapsed "+(System.nanoTime()-start));
             	return true;

@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 import ucar.unidata.io.bzip2.CBZip2InputStream;
 
 /**
- * 
+ *
  * @author jason.burks
  */
 public class BinaryUtilities {
@@ -30,7 +30,7 @@ public class BinaryUtilities {
 	/** Creates a new instance of BinaryUtilities */
 	public BinaryUtilities() {
 	}
-	
+
 	public static boolean[] bitsFromBytes(byte[] bytes) {
 		int length = bytes.length*8;
 		 int bitIndex = 0;
@@ -47,12 +47,12 @@ public class BinaryUtilities {
 	        }
 
 		}
-		
+
 		return output;
 	}
 
 	public static BitSet fromByteToBitSet(byte[] bytes) {
-		
+
 		BitSet bits = new BitSet(bytes.length*8);
 
 		for (int i = 0; i < bytes.length * 8; i++) {
@@ -167,7 +167,7 @@ public class BinaryUtilities {
 		}
 		return false;
 	}
-	
+
 	public static boolean isReady(BinaryReader reader) {
 		try {
 			if (reader.getSize() >0 ) {
@@ -238,10 +238,10 @@ public class BinaryUtilities {
 		reader.getBytes(compressedBytes);
 		Nidsheader nidsHeader = new Nidsheader();
 		byte [] realoutput = nidsHeader.GetZlibedNexr(compressedBytes,size,endOfHeader);
-		
+
 		 reader.setByteBuffer(ByteBuffer.wrap(realoutput));
 		return reader;
-		
+
 //		int size;
 //		try {
 //			System.out.println("zlib uncompress ");

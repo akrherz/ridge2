@@ -16,12 +16,12 @@ package gov.noaa.nws.radardecoderlib.colorcurves;
  * @author jburks
  */
 public class ColorCurveFactory {
-    
+
     /** Creates a new instance of ColorCurveDriver */
     public ColorCurveFactory() {
-        
+
     }
-    
+
     /**
      * Returns the color curve from the given name
      * @param name Name of the Color Curve
@@ -47,5 +47,5 @@ public class ColorCurveFactory {
         }
         return(null);
     }
-    
+
 }

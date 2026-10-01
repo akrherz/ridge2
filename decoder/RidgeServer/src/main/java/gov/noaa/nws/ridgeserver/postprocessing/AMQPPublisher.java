@@ -32,6 +32,6 @@ public class AMQPPublisher implements ProcessRadarFile {
 		this.rabbitTemplate = rabbitTemplate;
 	}
 
-	
+
 
 }

@@ -42,21 +42,21 @@ import org.geotools.api.referencing.operation.MathTransform;
 public class TestRenderersPolar {
     int width =800;
     int height = 800;
-    
+
     String fileToProcess;
     String outputname;
-    
+
     @Test
     public void testProduct() {
-    	
+
     }
-    
+
     public void setFilesToProcess(String fileToProcess, String outputname) {
     	this.fileToProcess = fileToProcess;
     	this.outputname = outputname;
     }
     public void render() {
-         
+
         try {
         	MappedByteBufferReader reader = new MappedByteBufferReader(fileToProcess);
             BinaryUtilities.setupHeaderOffset(reader);
@@ -95,7 +95,7 @@ public class TestRenderersPolar {
 //        new TestRenderers("C:/Jason/Data/Radar/Ridge/ComparisonTestData/Orig/FWS_20030406_0156_NCR","C:/temp/outputncr.png");
 //        new TestRenderers("C:/Jason/Data/Radar/tempDatatar/tempData/tempData/tvs/20080508_1855","C:/temp/outputTVS.png");
 //        new TestRenderers("C:/Jason/Data/Radar/Ridge/NVW/HTX_20060808_1402_NVW","C:/temp/outputNVW.png");
-       
+
     }
 
 }

@@ -17,12 +17,12 @@ import java.io.IOException;
  * @author jburks
  */
 public class DecoderFactory {
-    
+
     /** Creates a new instance of DecoderDriver */
     public DecoderFactory() {
-       
+
     }
-    
+
     public static RadarDecoder getDecoder(RadarProductData data, BinaryReader bindecode) throws IOException {
         String decoderName = data.getDecoderType();
         if (decoderName.equals("FourBitRadialDecoder")) {

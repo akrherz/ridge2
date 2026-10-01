@@ -24,7 +24,7 @@ public class ProductConfigReader {
     public static ProductConfigReader getInstance() {
         if (reader == null) {
             reader = new ProductConfigReader();
-        } 
+        }
         return(reader);
     }
 

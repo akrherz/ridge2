@@ -19,16 +19,16 @@ import java.io.IOException;
  * @author jburks
  */
 public class DSPRadialDecoder extends RadialDecoder {
-    
+
     int blockid;
     public DSPRadialDecoder(BinaryReader bindecode, int numLevels) throws IOException {
         super(bindecode,numLevels);
-    } 
-    
-   
-    
+    }
+
+
+
     protected void process() throws IOException {
-        //Move to begin of data 
+        //Move to begin of data
         //read all rows and put into the data array
         lengthOfBlock = lengthOfBlock - 16 - 14;
         int numRadialsMul = numberRadials;
@@ -62,7 +62,7 @@ public class DSPRadialDecoder extends RadialDecoder {
     }
 
     public Threshold[] getThresholds() throws IOException {
-        
+
        Threshold[] thresholds = new Threshold[256];
             bindecode.seek(92);
             double maxPrecip = bindecode.getShort()*.01;
@@ -77,7 +77,7 @@ public class DSPRadialDecoder extends RadialDecoder {
                     ++count;
                 }
             }
-            
+
             bindecode.seek(60);
             thresholds[0]= new DoubleThreshold(0);
             double min = bindecode.getShort()/10.;
@@ -87,6 +87,6 @@ public class DSPRadialDecoder extends RadialDecoder {
                 thresholds[i] = new DoubleThreshold(i*scalingMul);
             }
         return(thresholds);
-        
+
     }
 }

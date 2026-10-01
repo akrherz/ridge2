@@ -42,22 +42,22 @@ public class TestRenderers {
     int height = 1000;
     String fileToProcess;
     String outputname;
-    
-    
+
+
     public TestRenderers() {
-    	
+
     }
-    
+
     @Test
     public void testProduct() {
- 
-    	
+
+
     }
-    
+
     public void render(String fileToProcess, String outputname) {
     	this.fileToProcess = fileToProcess;
     	this.outputname = outputname;
-            
+
             try {
             	BinaryReader reader = new MappedByteBufferReader(fileToProcess);
             	if (BinaryUtilities.isZlibCompressed(reader)) {
@@ -92,7 +92,7 @@ public class TestRenderers {
                 	}
                 }
                 renderer.setColor(colmanager.getColors(thresholds));
-                
+
                 renderer.setRadarData(data);
                 CoordinateHolder holder = GeographicsCoordinateFactory.getTransformForGeo(width, height, decoder.getRadarLocation(), 124 * 1852.);
                 renderer.setTransform(holder.getTransform(), decoder.getRadarLocation(), decoder.getElevationAngle());
@@ -113,7 +113,7 @@ public class TestRenderers {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+
     	TestRenderers renderer = new TestRenderers();
     	//renderer.render("/Users/jason.burks/Data/Radar/DualPolSamples/MHX_20111115_1832_PTA","/tmp/mhx_pta.png");
     //	renderer.render("/Users/jason.burks/Data/Radar/DualPolSamples/OTX_20111115_1831_N0H","/tmp/otx_n0h.png");
@@ -121,7 +121,7 @@ public class TestRenderers {
     	//renderer.render("/Users/jason.burks/Data/Radar/forJason/IWX_20100922_1835_NET","/tmp/test.png");
     	//renderer.render("/Users/jason.burks/Desktop/RadarTexas/MAF_20120202_0424_NCR","/Users/jason.burks/Desktop/RadarTexas/images/MAF_20120202_0424_NCR.png");
     	renderer.render("/Users/jason.burks/Data/Radar/Ridge/N0K/KEAX_SDUS83_N0KEAX_201204152354","/Users/jason.burks/Desktop/k0x.png");
-    	
+
     	//renderer.render("/Users/jason.burks/Downloads/stp_inx","/tmp/output32.png");
     	//renderer.render("/Users/jason.burks/Data/Radar/Ridge/N0R/ESX_20071130_2119_N0R","/tmp/ESX_20071130_2119_N0R_INDEXED.gif");
     	//renderer.render("/Users/jason.burks/Data/Ridge/RIDGESampleFiles/KHUN_SDUS54_N0UHTX_201101051554","/tmp/KHUN_SDUS54_N0UHTX_201101051554_AGBR.png");
@@ -136,7 +136,7 @@ public class TestRenderers {
 //				if (name.startsWith("KHUN")) return true;
 //				return false;
 //			}
-//    		
+//
 //    	});
 //    	for (String fileTo : files) {
 //    		System.out.println("Got "+fileTo);

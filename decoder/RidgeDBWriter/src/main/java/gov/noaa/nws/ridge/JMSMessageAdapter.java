@@ -32,19 +32,19 @@ public class JMSMessageAdapter implements MessageListener{
 	      }catch(Exception e) {
 	    	  e.printStackTrace();
 	          Logger.getLogger(JMSMessageAdapter.class.getName()).log(Level.INFO, null, e);
-	      }  
+	      }
     }
 
     public void setWriterExecutor(ThreadPoolTaskExecutor writerExecutor) {
         this.writerExecutor = writerExecutor;
     }
-    
+
     public void setStartPath(String startPath) {
     	Logger.getLogger(JMSMessageAdapter.class).info("Starting Path is "+startPath);
 		this.startPath = startPath;
 	}
-    
-   
+
+
 
 	public void setRadarDao(RidgeTimeDAO radarDao) {
         this.radarDao = radarDao;

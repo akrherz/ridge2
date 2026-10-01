@@ -30,8 +30,8 @@ public class MesocycloneDecoder extends RadarDecoder {
         super(bindecode,numLevels);
     }
 
-    
-    
+
+
     protected void process() throws IOException {
         //    System.out.println("***************************Processing Symbology Block****************************************");
             if (offsetToSymbology > 0 ){
@@ -40,9 +40,9 @@ public class MesocycloneDecoder extends RadarDecoder {
                 throw new IOException("Bad offset to symbology");
             }
     }
-    
 
-    
+
+
     private void processGraphicBlock(long numberToGraphic) throws IOException{
             bindecode.seek((int)(numberToGraphic*2));
 //        System.out.println("block divider "+bindecode.read(2,true));
@@ -54,32 +54,32 @@ public class MesocycloneDecoder extends RadarDecoder {
             int lengthOfPages = bindecode.getShort();
 //        System.out.println("Length of Pages  "+lengthOfPages);
 //        System.out.println("Need to start decoding stuff");
-            
+
           //  processPacketCode8(lengthOfBlock);
-       
+
     }
-    
+
     private void processTabularBlock(long numberToTabular) throws IOException {
             bindecode.seek((int)(offsetToTabular*2));
 //        System.out.println("block divider "+bindecode.read(2,true));
 //        System.out.println("block ID  "+bindecode.read(2));
 //        System.out.println("Length of Block  "+bindecode.read(4));
-       
+
     }
-    
+
     private void processSymbologyBlock(long numberToSymbology) throws IOException{
             bindecode.seek((int)(offsetToSymbology*2)+4);
             int lengthOfBlock = bindecode.getInt();
             bindecode.skip(4);
            // System.out.println("Length data layer "+bindecode.getInt());
             lengthOfLayer =bindecode.getInt();
-           
+
             processMesocycloneSymbology();
-        
+
     }
-    
+
     private void processMesocycloneSymbology() throws IOException{
-            
+
             while (lengthOfLayer > 0) {
                 int packetCode = bindecode.getShort();
                 int lenData = bindecode.getShort();
@@ -87,22 +87,22 @@ public class MesocycloneDecoder extends RadarDecoder {
                 	lengthOfLayer -= (4+lenData);
                 }
             }
-            
-        
-    
+
+
+
 //    private void processPacketCode3() throws IOException{
 //            double iposition = bindecode.getShort()*1000./(4.0);
 //            double jposition = bindecode.getShort()*1000./(4.0);
 //            double radius = bindecode.getShort()*1000./(4.0);
 //            data.add(new MesocycloneData(iposition,jposition,radius));
-//        
+//
 //    }
 //    private void processPacketCode11() throws IOException{
 //            double iposition = bindecode.getShort()*1000./(4.0);
 //            double jposition = bindecode.getShort()*1000./(4.0);
 //            double radius = bindecode.getShort()*1000./(4.0);
 //           data.add(new MesocycloneData(iposition,jposition,radius));
-//       
+//
 //    }
 //    public void processPacketCode15() throws IOException {
 //            double iposition = bindecode.getShort()*1000./(4.0);
@@ -111,7 +111,7 @@ public class MesocycloneDecoder extends RadarDecoder {
 //            chars[0]=(char)bindecode.getByteAsInt();
 //            chars[1]=(char)bindecode.getByteAsInt();
 //            data.add(new TextData(iposition,jposition,new String(chars)));
-//       
+//
 //    }
 //    public void processPacketCode20() throws IOException {
 //        double iposition = bindecode.getShort()*1000./(4.0);
@@ -119,11 +119,11 @@ public class MesocycloneDecoder extends RadarDecoder {
 //        int featureType = bindecode.getShort();
 //        int featureatt = bindecode.getShort();
 //        System.out.println(iposition+", "+jposition+" "+"Feature Type ="+featureType+" Feature Attribute ="+featureatt);
-//        
+//
 //        data.add(new TextData(iposition,jposition,new String("Meso")));
-//   
+//
 //}
-//    
+//
 //    public void processPacketCode23() throws IOException {
 //        double iposition = bindecode.getShort()*1000./(4.0);
 //        double jposition = bindecode.getShort()*1000./(4.0);
@@ -131,7 +131,7 @@ public class MesocycloneDecoder extends RadarDecoder {
 //        int featureatt = bindecode.getShort();
 //        System.out.println(iposition+", "+jposition+" "+"Feature Type ="+featureType+" Feature Attribute ="+featureatt);
 //        data.add(new TextData(iposition,jposition,new String("Meso")));
-//   
+//
 //}
 //    public void processPacketCode24() throws IOException {
 //        double iposition = bindecode.getShort()*1000./(4.0);
@@ -139,9 +139,9 @@ public class MesocycloneDecoder extends RadarDecoder {
 //        int featureType = bindecode.getShort();
 //        int featureatt = bindecode.getShort();
 //        System.out.println(iposition+", "+jposition+" "+"Feature Type ="+featureType+" Feature Attribute ="+featureatt);
-//        
+//
 //        data.add(new TextData(iposition,jposition,new String("Meso")));
-//   
+//
 //}
     private void processPacketCode8(int lengthOfData) throws IOException{
     		int valueOfText = bindecode.getShort();
@@ -155,11 +155,11 @@ public class MesocycloneDecoder extends RadarDecoder {
     			lengthOfData -= 1;
     		}
     		currMeso.setName(text);
-       
-    } 
-    
+
+    }
+
     private void processPacketCode2(int lengthOfData) throws IOException {
-        
+
             long positionstart = bindecode.getCurrentPosition();
             double iposition = bindecode.getShort()*1000/(4.0);
             double jposition = bindecode.getShort()*1000/(4.0);
@@ -170,9 +170,9 @@ public class MesocycloneDecoder extends RadarDecoder {
                 lengthOfData -= 1;
             }
            // data.add(new MesocycloneData(iposition, jposition, .5));
-        
+
     }
-    
+
     private void processPacketCode6(int lengthOfData) throws IOException {
             double ipositionold = bindecode.getShort()*1000/(4.0);
             double jpositionold = bindecode.getShort()*1000/(4.0);
@@ -187,30 +187,30 @@ public class MesocycloneDecoder extends RadarDecoder {
                 lengthOfData -= 4;
             }
     }
-    
+
     private void processPacketCode23(int lengthOfLayerTemp) throws IOException {
         future=false;
-        
+
             while (lengthOfLayerTemp > 0) {
                 int packetCode = bindecode.getShort();
                 int lenData = bindecode.getShort();
                 processPacket(packetCode, lenData);
                 lengthOfLayerTemp -= (lenData+4);
             }
-        
+
     }
     private void processPacketCode24(int lengthOfLayer) throws IOException {
         future=true;
-        
+
             while (lengthOfLayer > 0) {
                 int packetCode = bindecode.getShort();
                 int lenData = bindecode.getShort();
                 processPacket(packetCode, lenData);
                 lengthOfLayer -= (lenData+4);
             }
-        
+
     }
-    
+
     public void processPacketCode20() throws IOException {
       double iposition = bindecode.getShort()*1000./(4.0);
       double jposition = bindecode.getShort()*1000./(4.0);
@@ -223,9 +223,9 @@ public class MesocycloneDecoder extends RadarDecoder {
     	  data.add(cyclone);
       }
       //data.add(new TextData(iposition,jposition,new String("Meso")));
- 
+
 }
-   
+
     private void processPacket(int packetCode, int lengthOfLayer) throws IOException {
     	//System.out.println("Packet code ="+packetCode);
             if (packetCode == 23){
@@ -243,7 +243,7 @@ public class MesocycloneDecoder extends RadarDecoder {
             } else {
             	bindecode.skip(lengthOfLayer);
             }
-       
+
     }
-    
+
 }

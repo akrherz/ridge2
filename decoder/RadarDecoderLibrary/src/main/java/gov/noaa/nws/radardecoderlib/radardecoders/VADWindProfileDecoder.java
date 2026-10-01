@@ -23,13 +23,13 @@ public class VADWindProfileDecoder extends RadarDecoder {
     boolean future;
     String currentStorm="";
     String watchStorm = "C6";
-    
+
     public VADWindProfileDecoder(BinaryReader bindecode, int numLevels) throws IOException {
         super(bindecode, numLevels);
     }
 
-    
-    
+
+
     protected void process() throws IOException {
         // System.out.println("Beginning decoding VAD Wind data");
 //        System.out.println("Message Code ="+messageCode);
@@ -56,7 +56,7 @@ public class VADWindProfileDecoder extends RadarDecoder {
 //        dataLayerBytes = bindecode.read(4, (numberToSymbology*2)+12);
 //        System.out.println("Length of data layer "+dataLayerBytes);
     }
-    
+
 //    private void readRows(int numRangeBins, int numRadials, int startByte) {
 //        lengthOfBlock = lengthOfBlock - 16 -14;
 //        startByte  = (int)(offsetToSymbology*2)+22;
@@ -71,7 +71,7 @@ public class VADWindProfileDecoder extends RadarDecoder {
 //                lengthOfBlock = lengthOfBlock - 2;
 //        }
 //    }
-    
+
     private void processGraphicBlock(long numberToGraphic) throws IOException{
         try {
             bindecode.seek((int)(numberToGraphic*2));
@@ -84,13 +84,13 @@ public class VADWindProfileDecoder extends RadarDecoder {
             int lengthOfPages = bindecode.getShort();
 //        System.out.println("Length of Pages  "+lengthOfPages);
 //        System.out.println("Need to start decoding stuff");
-            
+
             //    processPacketCodeEight(lengthOfBlock);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
-    
+
     private void processTabularBlock(long numberToTabular) throws IOException{
         try {
             bindecode.seek(numberToTabular*2);
@@ -101,20 +101,20 @@ public class VADWindProfileDecoder extends RadarDecoder {
             ex.printStackTrace();
         }
     }
-    
+
     private void processSymbologyBlock(long numberToSymbology) throws IOException{
        // System.out.println(" starting at "+numberToSymbology);
             bindecode.seek(offsetToSymbology*2+4);
 //        System.out.println("block divider "+bindecode.getShort());
 //        System.out.println("block ID  "+bindecode.getShort());
             lengthOfBlock = bindecode.getInt();
-            
+
       //  System.out.println("Length of Block  "+lengthOfBlock);
         bindecode.getShort();
         bindecode.getShort();
         bindecode.getInt();
-            
-            
+
+
             processVADSymbology();
     }
     private void processVADSymbology() throws IOException {
@@ -125,10 +125,10 @@ public class VADWindProfileDecoder extends RadarDecoder {
                 lengthOfBlock -= 4;
                 int value = processPacket(packetCode, lenData);
                 lengthOfBlock -= (value);
-                
+
             }
     }
-    
+
     private int processPacket(int packetCode, int lengthOfLayer) throws IOException {
         int value = 0;
         if (packetCode == 10) {
@@ -140,7 +140,7 @@ public class VADWindProfileDecoder extends RadarDecoder {
         }
         return(value);
     }
-    
+
     private int processPacketCode8(int lengthOfData) throws IOException{
         int total = lengthOfData;
             while (lengthOfData > 0) {
@@ -158,9 +158,9 @@ public class VADWindProfileDecoder extends RadarDecoder {
                 data.add(new TextData( iposition,jposition,new String(characters)));
             }
         return(total);
-        
+
     }
-    
+
     private int processPacketCode10(int lengthOfLayer) throws IOException{
         int total = lengthOfLayer;
             double value = bindecode.getShort();
@@ -175,7 +175,7 @@ public class VADWindProfileDecoder extends RadarDecoder {
             }
         return(total);
     }
-    
+
     private int processPacketCode4(int lengthOfLayer) throws IOException{
         //decoding linked vector
         int total = lengthOfLayer;
@@ -198,7 +198,7 @@ public class VADWindProfileDecoder extends RadarDecoder {
                 lengthOfLayer -= (lenData+4);
             }
         return(total);
-        
+
     }
     private int processPacketCode24(int lengthOfLayer) throws IOException{
         future=true;
@@ -210,9 +210,9 @@ public class VADWindProfileDecoder extends RadarDecoder {
                 lengthOfLayer -= (lenData+4);
             }
         return(total);
-        
+
     }
-    
+
 //    private void processPacketCodeEight(int lengthOfBlock) {
 //        lengthOfBlock -= 12;
 //        String output = new String();
@@ -244,5 +244,5 @@ public class VADWindProfileDecoder extends RadarDecoder {
 //            }
 //        }
 //    }
-   
+
 }

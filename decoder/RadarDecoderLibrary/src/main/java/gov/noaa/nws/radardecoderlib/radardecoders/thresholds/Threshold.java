@@ -14,11 +14,11 @@ package gov.noaa.nws.radardecoderlib.radardecoders.thresholds;
  * @author Jason.Burks
  */
 public class Threshold {
-    
+
     /** Creates a new instance of Threshold */
     public Threshold() {
     }
-    
+
     public String toString() {
         return("Threshold");
     }

@@ -275,8 +275,8 @@ public class VADWindProfile extends ColorCurve {
         colors[253] = new Color(255,242,242);
         colors[254] = new Color(255,246,246);
         colors[255] = new Color(255,250,250);
-        
-        
+
+
     }
 
     /**
@@ -286,5 +286,5 @@ public class VADWindProfile extends ColorCurve {
     public Color[] getColors() {
         return(colors);
     }
-    
+
 }

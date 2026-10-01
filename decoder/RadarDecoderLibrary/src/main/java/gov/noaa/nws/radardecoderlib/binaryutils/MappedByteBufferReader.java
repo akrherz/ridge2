@@ -31,11 +31,11 @@ public class MappedByteBufferReader extends BinaryReaderImpl{
             //pull in whole file to a memory map;
             mbb = ByteBuffer.allocate((int)fc.size());
             fc.read(mbb);
-            
+
             fc.close();
             fs.close();
             mbb.rewind();
-         
+
     }
      public MappedByteBufferReader(byte[] array) throws FileNotFoundException, IOException {
         super("");
@@ -53,24 +53,24 @@ public class MappedByteBufferReader extends BinaryReaderImpl{
    public void setOffsetStartPoint(int value){
          offsetStartPoint = value;
      }
-    
+
     //need to implement getString(length),get
     public int getShort() throws IOException{
         return(mbb.getShort());
     }
-    
+
     public int getInt() throws IOException{
         return(mbb.getInt());
     }
-    
+
     public float getFloat() throws IOException{
         return(mbb.getFloat());
     }
-    
+
     public char getChar() throws IOException{
         return((char)mbb.get());
     }
-    
+
     public int[] read4bitInt() throws IOException{
         int[] ints = new int[2];
         int value =0;
@@ -79,22 +79,22 @@ public class MappedByteBufferReader extends BinaryReaderImpl{
         ints[1] = (value >> 4) & 0x0f; //upper 4 bits
         return(ints);
     }
-    
+
     public void seek(int pos) throws IOException {
         mbb.position(pos+offsetStartPoint);
     }
      public void seek(long pos) throws IOException{
         mbb.position((int)pos+offsetStartPoint);
     }
-     
+
      public void skip(long pos) throws IOException{
          mbb.position((int)pos+offsetStartPoint+mbb.position());
      }
-    
+
     public long getCurrentPosition() throws IOException {
         return(mbb.position());
     }
-    
+
     public long getSize() throws IOException {
         return(mbb.capacity());
     }
@@ -123,11 +123,11 @@ public class MappedByteBufferReader extends BinaryReaderImpl{
        mbb = buffer;
        mbb.rewind();
     }
-    
+
 	public byte[] getBytes(byte[] bytes) throws IOException {
 		// TODO Auto-generated method stub
 		mbb.get(bytes);
 		return bytes;
 	}
-    
+
 }
