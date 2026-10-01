@@ -29,7 +29,7 @@ public class TimedDirectoryScanner {
     File[] files;
     boolean warnedMissingListener = false;
     boolean warnedDirectoryUnavailable = false;
-    
+
     /** Creates a new instance of DirectoryScanner */
     public TimedDirectoryScanner(String directory, int updateInterval) {
         LOG.info("Watching " + directory + "  every " + updateInterval);
@@ -48,7 +48,7 @@ public class TimedDirectoryScanner {
     public void setListener(FileDeliveryListener listener) {
         this.listener=listener;
     }
-    
+
     public synchronized void sendMessage(File file) {
             if (listener != null) {
                 warnedMissingListener = false;
@@ -57,7 +57,7 @@ public class TimedDirectoryScanner {
                 warnedMissingListener = true;
                 LOG.warn("No listener configured; skipping file: " + file);
             }
-       
+
     }
     public void startTimer() {
         stopTimer();
@@ -79,7 +79,7 @@ public class TimedDirectoryScanner {
                 }
                 for (File file: files) {
                         sendMessage(file);
-            
+
                 }
             }
         }
@@ -94,6 +94,6 @@ public class TimedDirectoryScanner {
             timer.cancel();
         }
     }
-    
-    
+
+
 }

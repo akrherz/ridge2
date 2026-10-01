@@ -26,7 +26,7 @@ public class RadarTimeIndex  implements java.io.Serializable {
     public RadarTimeIndex() {
     }
 
-	
+
     public RadarTimeIndex(int id) {
         this.id = id;
     }
@@ -38,46 +38,46 @@ public class RadarTimeIndex  implements java.io.Serializable {
        this.datetime = datetime;
        this.theGeom = theGeom;
     }
-   
+
     public int getId() {
         return this.id;
     }
-    
+
     public void setId(int id) {
         this.id = id;
     }
     public String getRadar() {
         return this.radar;
     }
-    
+
     public void setRadar(String radar) {
         this.radar = radar;
     }
     public String getLayer() {
         return this.layer;
     }
-    
+
     public void setLayer(String layer) {
         this.layer = layer;
     }
     public String getRadarPath() {
         return this.radarPath;
     }
-    
+
     public void setRadarPath(String radarPath) {
         this.radarPath = radarPath;
     }
     public Date getDatetime() {
         return this.datetime;
     }
-    
+
     public void setDatetime(Date datetime) {
         this.datetime = datetime;
     }
     public Geometry getTheGeom() {
         return this.theGeom;
     }
-    
+
     public void setTheGeom(Geometry theGeom) {
         this.theGeom = theGeom;
     }
@@ -136,5 +136,3 @@ public class RadarTimeIndex  implements java.io.Serializable {
 
 
 }
-
-

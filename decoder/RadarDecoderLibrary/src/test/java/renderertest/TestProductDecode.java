@@ -51,22 +51,22 @@ public class TestProductDecode {
     int height = 1000;
     String fileToProcess;
     String outputname;
-    
-    
+
+
     public TestProductDecode() {
-    	
+
     }
-    
+
     @Test
     public void testProduct() {
- 
-    	
+
+
     }
-    
+
     public void render(String fileToProcess, String outputname) {
     	this.fileToProcess = fileToProcess;
     	this.outputname = outputname;
-            
+
             try {
             	BinaryReader reader = new MappedByteBufferReader(fileToProcess);
             	if (BinaryUtilities.isZlibCompressed(reader)) {
@@ -103,7 +103,7 @@ public class TestProductDecode {
                 	}
                 }
                 renderer.setColor(colmanager.getColors(thresholds));
-                
+
                 renderer.setRadarData(data);
                 CoordinateHolder holder = GeographicsCoordinateFactory.getTransformForGeo(width, height, decoder.getRadarLocation(), 124 * 1852.);
                 renderer.setTransform(holder.getTransform(), decoder.getRadarLocation(), decoder.getElevationAngle());
@@ -124,10 +124,10 @@ public class TestProductDecode {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+
     	TestProductDecode renderer = new TestProductDecode();
     	renderer.render("/Users/jason.burks/Downloads/failed/AEC_20120118_1821_NET","/tmp/test.png");
-    	
+
     }
 
 }

@@ -15,5 +15,5 @@
     <decodertype>FourBitRadialDecoder</decodertype>
     <renderertype>RadialRenderer</renderertype>
     <numDataLevels>8</numDataLevels>
-    
+
 </root>

@@ -24,7 +24,7 @@ public class Config {
 
 
     private Config () {
-           
+
 
         try {
             Properties properties = new Properties();

@@ -19,7 +19,7 @@ public class StatisticHolder implements RidgeStatus {
     long avgLatency =0;
     double processingRate=0;
 
-    
+
     public double getProcessingRate() {
         return processingRate;
     }
@@ -28,21 +28,21 @@ public class StatisticHolder implements RidgeStatus {
         this.processingRate = processingRate;
     }
 
-    
 
-    
+
+
     public void update(NewFileEvent event) {
         lastRadar = event.getXXX();
         lastProduct = event.getZZZ();
         toProcess.add(new FileStatHolder(event));
     }
 
-    
+
     public String getLastRadar() {
         return(lastRadar);
     }
 
-   
+
     public String getLastProduct() {
         return(lastProduct);
     }
@@ -54,7 +54,7 @@ public class StatisticHolder implements RidgeStatus {
         return(holder);
     }
 
-    
+
     public long getAvgLatency() {
          return avgLatency;
     }

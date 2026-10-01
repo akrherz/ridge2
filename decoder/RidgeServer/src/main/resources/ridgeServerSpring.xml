@@ -3,13 +3,13 @@
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:rabbit="http://www.springframework.org/schema/rabbit"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans 
-       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd 
-       http://www.springframework.org/schema/aop 
-       http://www.springframework.org/schema/aop/spring-aop-2.5.xsd 
-       http://www.springframework.org/schema/rabbit 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+       http://www.springframework.org/schema/rabbit
        http://www.springframework.org/schema/rabbit/spring-rabbit-1.0.xsd">
-       
+
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="ignoreResourceNotFound" value="true"/>
         <property name="locations">
@@ -42,22 +42,22 @@
         <property name="queueCapacity" value="${decoder.queueSize}" />
         --><property name="daemon" value="true"/>
     </bean>
-    
+
     <bean id="deleteExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
         <property name="corePoolSize" value="${delete.corePoolSize}" />
         <property name="maxPoolSize" value="${delete.maxPoolSize}" /><!--
         <property name="queueCapacity" value="${delete.queueSize}" />
         --><property name="daemon" value="true"/>
     </bean>
-    
+
     <bean id="deleteSingleton" class="gov.noaa.nws.ridgeserver.chains.DeleteSingleton" factory-method="getInstance">
         <property name="executor" ref ="deleteExecutor"/>
     </bean>
 
-     <import resource="${connectorName}-spring.xml"/> 
- 
+     <import resource="${connectorName}-spring.xml"/>
+
     <bean id="geoGraphic" class="gov.noaa.nws.radardecoderlib.gis.GeographicSingleton" factory-method="getInstance"/>
-<!--  
+<!--
     <bean id="processedAdvice" class="gov.noaa.nws.ridgeserver.statistics.StatisticAdvice" >
         <property name="statsHolder" ref="statsHolder"/>
     </bean>
@@ -65,7 +65,7 @@
         <property name="advice" ref="processedAdvice"/>
         <property name="pattern" value=".*processFileEvent"/>
     </bean>-->
-    <!--                                 JMXBean for monitoring the app                                    
+    <!--                                 JMXBean for monitoring the app
     <bean id="statsHolder" class="gov.noaa.nws.ridgeserver.statistics.StatisticHolder"  />
        <bean id="rmi" class="org.springframework.remoting.rmi.RmiServiceExporter" >
            <property name="serviceName" value="StatsHolder"/>

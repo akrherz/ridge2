@@ -17,7 +17,7 @@ public class TimeManager {
     public TimeManager(int numberTimes) {
         this.numberTimes = numberTimes;
     }
-   
+
 
     public TimeCheck getProductTimeHolder(String name) {
     	//System.out.println("Product holder "+name);

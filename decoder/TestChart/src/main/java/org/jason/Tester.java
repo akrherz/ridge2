@@ -28,9 +28,9 @@ public class Tester extends javax.swing.JFrame {
 
     /** Creates new form Tester */
     public Tester() {
-        
+
             initComponents();
-//       
+//
           //testTimeSeries();
           //testPie3DChart();
            // testAreaChart();

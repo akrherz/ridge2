@@ -7,12 +7,12 @@ import gov.noaa.nws.radardecoderlib.binaryutils.BinaryUtilities;
 
 
 public class BinaryTests extends TestCase {
-	
+
 	public BinaryTests() {
-		
+
 	}
 
-	
+
 	public void testBits() {
 		byte[] bytes = new byte[]{(byte)1,(byte)1};
 		boolean[] values = BinaryUtilities.bitsFromBytes(bytes);

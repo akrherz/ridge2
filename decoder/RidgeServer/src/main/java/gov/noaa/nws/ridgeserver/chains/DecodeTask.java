@@ -28,7 +28,7 @@ import org.apache.log4j.Logger;
  *
  * @author Jason.Burks
  */
-public class DecodeTask implements Runnable { 
+public class DecodeTask implements Runnable {
     NewFileEvent event;
     RidgeNamer namer;
     RadarProductType type;
@@ -41,11 +41,11 @@ public class DecodeTask implements Runnable {
         this.processer = processer;
         this.timeHolder = holder;
     }
-    
+
 	public void run() {
 		if (type != null) {
 			try {
-				
+
 				//Setup Binary Reader for the decoder
 				event.setBinaryReader(new MappedByteBufferReader(event.getFilename()));
 				//Check to see if the data is zlib compressed, this is the way with NOAAPort data.
@@ -85,7 +85,7 @@ public class DecodeTask implements Runnable {
 				CoordinateHolder holder = GeographicsCoordinateFactory.getTransformForGeo(type.getImageWidth(), type.getImageHeight(), decoder.getRadarLocation(), type.getRangeInMeters());
 				renderer.setTransform(holder.getTransform(), decoder
 						.getRadarLocation(), decoder.getElevationAngle());
-				
+
 				//get id for the radar
 				event.setSiteID(decoder.getSiteID());
 				//get generation time for the radar data, and VCP,and elevation angle, etc
@@ -106,7 +106,7 @@ public class DecodeTask implements Runnable {
 				if (decoder instanceof StormRelativeMotionDecoder) {
 					event.setStormRelativeDirection(((StormRelativeMotionDecoder) decoder).getStormRelativeDirection());
 					event.setStormRelativeSpeed(((StormRelativeMotionDecoder) decoder).getStormRelativeSpeed());
-				} 
+				}
 				//get the color curve
 				renderer.setColor(type.getColorManager().getColors(decoder.getThresholds()));
 				//Set start time to monitor how long it takes to process
@@ -133,7 +133,7 @@ public class DecodeTask implements Runnable {
 								+ event.getProcessTotalTime() + " rt="
 								+ event.getTimeToRender());
 				//Send the processed image to jms
-				
+
 				processer.processRadarFile(event.getRadarFile());
 				event.getBinaryReader().close();
 				event.setBinaryReader(null);
@@ -149,7 +149,7 @@ public class DecodeTask implements Runnable {
 						"Problem decoding " + event.getFilename() + "  "
 								, e);
 			}
-			
+
 		}
 		//delete the file
 		DeleteSingleton.getInstance().deleteFile(event.getFilename());

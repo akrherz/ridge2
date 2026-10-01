@@ -18,7 +18,7 @@ import gov.noaa.nws.radardecoderlib.radardecoders.thresholds.Threshold;
 import java.io.IOException;
 
 /**
- * 
+ *
  * @author jburks
  */
 public class EightBitRadialDecoder extends RadialDecoder {
@@ -110,14 +110,14 @@ public class EightBitRadialDecoder extends RadialDecoder {
 						* increment);
 			}
 		} else if (messageCode == 159 || messageCode == 161 || messageCode == 163 ) {
-			
+
 			startNumber = 2;
 			thresholds[0] = new StringThreshold("ND");
 			thresholds[1] = new StringThreshold("RF");
 
 			double scale = bindecode.getFloat();
 			double offset = bindecode.getFloat();
-			
+
 			for (int i = startNumber; i < 255; ++i) {
 				thresholds[i] = new DoubleThreshold((i - offset) / scale);
 			}
@@ -135,15 +135,15 @@ public class EightBitRadialDecoder extends RadialDecoder {
 				thresholds[100] = new StringThreshold("HA");
 				thresholds[140] = new StringThreshold("UK");
 				thresholds[150] = new StringThreshold("RF");
-				
+
 		} else if (messageCode == 170 || messageCode == 172 || messageCode == 173 || messageCode == 174 || messageCode == 175 ) {
-			
+
 			startNumber = 1;
 			thresholds[0] = new StringThreshold("ND");
 
 			double scale = bindecode.getFloat();
 			double offset = bindecode.getFloat();
-			
+
 			for (int i = startNumber; i < 255; ++i) {
 				if (messageCode == 170 || messageCode == 173 || messageCode == 174 || messageCode == 175) {
 					thresholds[i] = new DoubleThreshold(0.01*(i - offset) / scale);
@@ -152,12 +152,12 @@ public class EightBitRadialDecoder extends RadialDecoder {
 				} else {
 					thresholds[i] = new DoubleThreshold((i - offset) / scale);
 				}
-				
+
 			}
-			
+
 		} else if (messageCode == 176) {
 		//TODO need to fix this
-//		
+//
 //			startNumber = 0;
 //
 //			double scale = bindecode.getFloat();
@@ -175,7 +175,7 @@ public class EightBitRadialDecoder extends RadialDecoder {
 			double min = bindecode.getShort() / 10.;
 			double increment = bindecode.getShort() / 10.;
 			double maxNum = bindecode.getShort() + startNumber;
-			
+
 			for (int i = startNumber; i < maxNum; ++i) {
 				thresholds[i] = new DoubleThreshold(min + (i - startNumber)
 						* increment);

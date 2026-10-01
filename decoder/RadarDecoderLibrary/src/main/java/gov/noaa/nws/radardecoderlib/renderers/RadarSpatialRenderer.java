@@ -22,5 +22,5 @@ public abstract class RadarSpatialRenderer extends BaseRenderer {
     }
 
     public abstract void setTransform(MathTransform transform, Position radarLocation,  double elevationAngle);
-    
+
 }

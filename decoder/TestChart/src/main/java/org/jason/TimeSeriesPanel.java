@@ -46,7 +46,7 @@ public class TimeSeriesPanel extends LocalChartPanel {
             series[i].setMaximumItemCount(100);
 
             coll.addSeries(series[i]);
-           
+
         }
          JFreeChart chart = ChartFactory.createTimeSeriesChart(
             title,  // title

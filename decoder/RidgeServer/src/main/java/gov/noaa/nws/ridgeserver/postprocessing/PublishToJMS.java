@@ -16,7 +16,7 @@ import org.springframework.jms.core.JmsTemplate;
 public class PublishToJMS implements ProcessRadarFile {
     JmsTemplate template;
     Destination destination;
-    
+
     public void processRadarFile(ProcessedRadarFile radarFile) {
         template.send(destination,new ImageMessageCreator(radarFile));
     }

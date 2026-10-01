@@ -10,10 +10,10 @@ public class FourBitStormTotalPrecipDecoder extends FourBitRadialDecoder impleme
 	public FourBitStormTotalPrecipDecoder(BinaryReader bindecode, int numLevels) throws IOException {
         super(bindecode, numLevels);
     }
-	
-	
-	
-	
+
+
+
+
 
 	public Date getStormTotalPrecipBegin() throws Exception {
 		bindecode.seek(94);
@@ -21,7 +21,7 @@ public class FourBitStormTotalPrecipDecoder extends FourBitRadialDecoder impleme
         int twoScan = bindecode.getShort();
         return(new Date((long)((twoScan*60.+(oneScan-1)*86400.)*1000.)));
 	}
-	
+
 	public Date getStormTotalPrecipEnd() throws Exception {
 		bindecode.seek(98);
         int oneScan = bindecode.getShort();

@@ -44,5 +44,5 @@ public class EightBitReflectivity extends ColorCurve {
     public Color[] getColors() {
         return(colors);
     }
-    
+
 }

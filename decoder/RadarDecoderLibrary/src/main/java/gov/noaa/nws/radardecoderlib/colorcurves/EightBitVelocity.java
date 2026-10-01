@@ -39,5 +39,5 @@ public class EightBitVelocity extends ColorCurve {
     public Color[] getColors() {
         return(colors);
     }
-    
+
 }

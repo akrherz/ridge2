@@ -25,7 +25,7 @@ public class DecodeManager implements FileDeliveryListener {
 	RadarTypeManager productManager;
     ProcessRadarFile processer;
     TimeManager timeManager;
-    
+
 
 
 
@@ -49,7 +49,7 @@ public class DecodeManager implements FileDeliveryListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-    		
+
     	}
     	Logger.getLogger(DecodeManager.class).info("End of Product Manager Supported Types");
         this.productManager = productManager;
@@ -57,7 +57,7 @@ public class DecodeManager implements FileDeliveryListener {
 
     public void setDecoderExecutor(ThreadPoolTaskExecutor decoderExecutor) {
         this.decoderExecutor = decoderExecutor;
-        
+
     }
 
     public void deliverFile(File file) {
@@ -72,16 +72,16 @@ public class DecodeManager implements FileDeliveryListener {
             namer = new RidgeNamer(event.getFilename());
             type = productManager.getRadarType(namer.getZZZ());
             holder = timeManager.getProductTimeHolder(namer.getXXX()+":"+namer.getZZZ());
-            decoderExecutor.execute(new DecodeTask(event, type, namer,processer,holder)); 
+            decoderExecutor.execute(new DecodeTask(event, type, namer,processer,holder));
         } catch (Exception ex) {
             Logger.getLogger(DecodeManager.class.getName()).info(ex);
             DeleteSingleton.getInstance().deleteFile(event.getFilename());
         }
-       
+
     }
 
     public void deliverFileInBytes(byte[] bytes) {
-       
+
     }
 
 

@@ -28,9 +28,9 @@ public class CreateWorldFileFromRadar {
          String worldfileOutput = new String(xScaling+"\n0.00000\n0.00000\n"+yScaling+"\n"+upperLeft.getOrdinate(0)+"\n"+upperLeft.getOrdinate(1)+"\n");
          outputToFile(outputFile, worldfileOutput);
     }
-    
+
     /** Creates a new instance of CreateWorldFileFromRadar */
-    
+
      public static void createWorldFileFromRadar(String imageoutputfile,Position centerPoint, double range, int imageWidth, int imageHeight) {
        //Convert to km from nautical miles 315 135
          Position east = GISDistanceTools.getPointFromRangeAndDistance(centerPoint, 90., range);
@@ -40,9 +40,9 @@ public class CreateWorldFileFromRadar {
          double xScaling = (east.getOrdinate(0)-west.getOrdinate(0))/imageWidth;
          Position north = GISDistanceTools.getPointFromRangeAndDistance(centerPoint, 0., yrange);
          Position south = GISDistanceTools.getPointFromRangeAndDistance(centerPoint, 180., yrange);
-         
-         
-         
+
+
+
          ///need to use xscaling in y direction in case not square
          double yScaling = -1*(north.getOrdinate(1)-south.getOrdinate(1))/imageHeight;
          String worldfileOutput = new String(xScaling+"\n0.00000\n0.00000\n"+yScaling+"\n"+west.getOrdinate(0)+"\n"+north.getOrdinate(1)+"\n");
@@ -50,16 +50,16 @@ public class CreateWorldFileFromRadar {
          outputToFile(outputfile, worldfileOutput);
 
          }
-     
+
      public static void createWorldFileFromCoordinates(String imageoutputfile, double[] coordinates, int imageWidth, int imageHeight) {
        //Convert to km from nautical miles 315 135
-         
-         
+
+
          double xScaling = (coordinates[2]-coordinates[0])/imageWidth;
-        
-         
-         
-         
+
+
+
+
          ///need to use xscaling in y direction in case not square
          double yScaling = -1*(coordinates[1]-coordinates[3])/imageHeight;
          String worldfileOutput = new String(xScaling+"\n0.00000\n0.00000\n"+yScaling+"\n"+coordinates[0]+"\n"+coordinates[1]+"\n");
@@ -68,8 +68,8 @@ public class CreateWorldFileFromRadar {
 
          }
 
-    
-     
+
+
       public static void createWorldFileFromLocalCoordinates(String imageoutputfile, double width, double height, int imageWidth, int imageHeight) {
        //Convert to km from nautical miles 315 135
          double xScaling = width/(imageWidth*2);
@@ -80,7 +80,7 @@ public class CreateWorldFileFromRadar {
          outputToFile(outputfile, worldfileOutput);
 
          }
-      
+
          public static void outputWKT(String imageoutputfile, CoordinateReferenceSystem crs) {
              int locationofDot = imageoutputfile.indexOf(".");
              String firstPart = imageoutputfile.substring(0, locationofDot);
@@ -93,10 +93,10 @@ public class CreateWorldFileFromRadar {
              } catch (IOException e) {
                  System.out.println("Problem writing world file "+outputfile);
              }
-             
+
          }
-     
-     
+
+
          public static void outputToFile(String outputfile, String worldFileInfo) {
             System.out.println("OUtputting world file "+outputfile);
              try {
@@ -108,15 +108,15 @@ public class CreateWorldFileFromRadar {
                  System.out.println("Problem writing world file "+outputfile);
              }
          }
-         
+
          public static String createWorldFilename(String filename) {
              int locationofDot = filename.lastIndexOf(".");
              String firstPart = filename.substring(0, locationofDot);
              String fileSuffix = filename.substring(locationofDot+1);
              return(firstPart+"."+getWorldFileSuffix(fileSuffix));
-             
+
          }
-         
+
          public static String getWorldFileSuffix(String suffix) {
              if (suffix.equalsIgnoreCase("GIF")) {
                  return("gfw");
@@ -125,11 +125,11 @@ public class CreateWorldFileFromRadar {
              } else if (suffix.equalsIgnoreCase("SVG")) {
                  return("sgw");
              }
-             
+
              return("");
-             
+
          }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -142,5 +142,5 @@ public class CreateWorldFileFromRadar {
         //CreateWorldFileFromRadar.createWorldFileFromRadar("C:/Jason/radardata/compareWithVersion1/verison2/FWS_20030406_0156_N0R.gif",new GeoPoint(32.573,-97.303),200.,600,550);
         CreateWorldFileFromRadar.createWorldFileFromLocalCoordinates("/home/jason/temp/FWS_20030406_0156_N0R.gif",10000,12000,600,550);
     }
-    
+
 }

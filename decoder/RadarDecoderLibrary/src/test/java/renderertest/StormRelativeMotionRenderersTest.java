@@ -52,22 +52,22 @@ public class StormRelativeMotionRenderersTest {
     int height = 1000;
     String fileToProcess;
     String outputname;
-    
-    
+
+
     public StormRelativeMotionRenderersTest() {
-    	
+
     }
-    
+
     @Test
     public void testProduct() {
- 
-    	
+
+
     }
-    
+
     public void render(String fileToProcess, String outputname) {
     	this.fileToProcess = fileToProcess;
     	this.outputname = outputname;
-            
+
             try {
             	BinaryReader reader = new MappedByteBufferReader(fileToProcess);
             	if (BinaryUtilities.isZlibCompressed(reader)) {
@@ -106,7 +106,7 @@ public class StormRelativeMotionRenderersTest {
 //                	}
 //                }
                 renderer.setColor(colmanager.getColors(thresholds));
-                
+
                 renderer.setRadarData(data);
                 CoordinateHolder holder = GeographicsCoordinateFactory.getTransformForGeo(width, height, decoder.getRadarLocation(), 124 * 1852.);
                 renderer.setTransform(holder.getTransform(), decoder.getRadarLocation(), decoder.getElevationAngle());
@@ -127,11 +127,11 @@ public class StormRelativeMotionRenderersTest {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+
     	StormRelativeMotionRenderersTest renderer = new StormRelativeMotionRenderersTest();
     	//renderer.render("/Users/jason.burks/Data/Radar/Ridge/N0S/HTX_20060808_1424_N0S","/tmp/htx_n0s.png");
     	renderer.render("/Users/jason.burks/Data/Radar/Ridge/ComparisonTestData/Orig/FWS_20030406_0156_N0S","/tmp/htx_n0s.png");
-    	
+
     }
 
 }

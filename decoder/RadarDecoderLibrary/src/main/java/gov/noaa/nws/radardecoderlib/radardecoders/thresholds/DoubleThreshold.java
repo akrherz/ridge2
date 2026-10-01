@@ -28,19 +28,19 @@ public class DoubleThreshold extends Threshold{
         this.optionalIndicator = optionalIndicator;
         indicatorSet = true;
     }
-    
+
     public double getValue(){
         return(value);
     }
-    
+
     public int getIndicator() {
         return(optionalIndicator);
     }
-    
+
     public boolean isIndicatorSet(){
         return(indicatorSet);
     }
-    
+
     public String toString() {
         if (indicatorSet) {
             return(value+" "+optionalIndicator);

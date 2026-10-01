@@ -14,7 +14,7 @@ public class FileReader {
     //Only one template
 
     //Static method
- 
+
     public static String readTemplate (String templateFile) throws Exception{
             FileInputStream file = new FileInputStream (templateFile);
             byte[] b = new byte[file.available ()];

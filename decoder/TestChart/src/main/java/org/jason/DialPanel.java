@@ -27,7 +27,7 @@ public class DialPanel extends LocalChartPanel {
 StandardDialScale scale;
 
   /** The meter panel. */
- 
+
     public DialPanel(String title, String label) {
         super(title);
         DialPlot plot = new DialPlot(data);
@@ -68,7 +68,7 @@ StandardDialScale scale;
         scale.setLowerBound(minValue);
     }
 
-   
+
 
     public void addData(int seriesId, double value) {
         data.setValue(value);

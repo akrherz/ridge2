@@ -12,7 +12,7 @@ import org.jdom2.Element;
 public class CreateMapServerPalette {
 
 	public CreateMapServerPalette(String inputFile, String outputFile, boolean append){
-		
+
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter(outputFile,append));
 			Element root = ProcessXML.openXMLDocument(CreateMapServerPalette.class.getResource(inputFile)).getRootElement();
@@ -23,7 +23,7 @@ public class CreateMapServerPalette {
 				out.write(current.getChildText("red")+","+current.getChildText("green")+","+current.getChildText("blue")+","+current.getChildText("alpha")+"\n");
 				System.out.println(current.getChildText("red")+","+current.getChildText("green")+","+current.getChildText("blue")+","+current.getChildText("alpha"));
 			}
-			
+
 			out.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

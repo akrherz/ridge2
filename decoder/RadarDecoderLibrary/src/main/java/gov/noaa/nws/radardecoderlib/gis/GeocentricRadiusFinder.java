@@ -21,9 +21,9 @@ public class GeocentricRadiusFinder {
 //        R_Squared = Math.pow(a, 2);
 //        this.f = f;
 //        n = 1/Math.pow((1-1/f),2)-1;
-        
+
     }
-    
+
     public double findHeight(double latitude) {
         return(a*(1-eSquared)*Math.pow(1-eSquared*Math.pow(Math.sin(Math.toRadians(latitude)), 2),-3/2));
         //return(Math.sqrt((R_Squared)/(1+n*Math.pow(Math.sin(Math.toRadians(latitude)), 2))));

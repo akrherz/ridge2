@@ -20,10 +20,10 @@ import java.util.ArrayList;
  * @author jburks
  */
 public class TVSDecoder extends RadarDecoder {
-    
+
     int lengthOfBlock;
     ArrayList<RadarData> data = new ArrayList();
-   
+
     public TVSDecoder(BinaryReader bindecode, int numLevels) throws IOException {
         super(bindecode,numLevels);
     }
@@ -32,11 +32,11 @@ public class TVSDecoder extends RadarDecoder {
         process();
         return(data);
     }
-    
+
     public void process() throws IOException {
             long offsetbyte = (offsetToSymbology*2);
             bindecode.seek(offsetbyte+4);
-            
+
             lengthOfBlock = bindecode.getInt();
 //        System.out.println("Beginning decoding Storm Track data");
 //        System.out.println("Message Code ="+messageCode);
@@ -55,11 +55,11 @@ public class TVSDecoder extends RadarDecoder {
 //        System.out.println("*******************************************************************************************");
 //            bindecode.seek(offsetbyte+12);
 //            dataLayerBytes = bindecode.getInt();
-       
+
 //        System.out.println("Length of data layer "+dataLayerBytes);
         //readRows(numberRangeBins, numberRadials, (int)(offsetToSymbology*2)+30);
     }
-    
+
     private void readRows(int numRangeBins, int numRadials, int startByte) throws IOException {
             lengthOfBlock = lengthOfBlock - 16 -14;
             startByte  = (int)(offsetToSymbology*2)+22;
@@ -74,7 +74,7 @@ public class TVSDecoder extends RadarDecoder {
                 lengthOfBlock = lengthOfBlock - 2;
             }
     }
-    
+
     private void processGraphicBlock(long numberToGraphic) throws IOException {
             bindecode.seek((int)(numberToGraphic*2));
 //        System.out.println("block divider "+bindecode.read(2,true));
@@ -86,17 +86,17 @@ public class TVSDecoder extends RadarDecoder {
             int lengthOfPages = bindecode.getShort();
 //        System.out.println("Length of Pages  "+lengthOfPages);
 //        System.out.println("Need to start decoding stuff");
-            
+
             //processPacketCodeEight(lengthOfBlock);
     }
-    
+
     private void processTabularBlock(long numberToTabular) throws IOException {
             bindecode.seek((int)(numberToTabular*2));
 //        System.out.println("block divider "+bindecode.read(2,true));
 //        System.out.println("block ID  "+bindecode.read(2));
 //        System.out.println("Length of Block  "+bindecode.read(4));
     }
-    
+
     private void processSymbologyBlock(long numberToSymbology) throws IOException{
             bindecode.seek(numberToSymbology*2+4);
 //        System.out.println("block divider "+bindecode.read(2,true));
@@ -107,12 +107,12 @@ public class TVSDecoder extends RadarDecoder {
 //        System.out.println("Number of Layers "+bindecode.getShort());
 //        System.out.println("Layer Divider "+bindecode.getShort());
 //        System.out.println("Length data layer "+bindecode.getInt());
-//            
-            
+//
+
             processTVSSymbology(lengthOfBlock);
-        
+
     }
-    
+
     private void processTVSSymbology(int lengthOfBlock) throws IOException {
             lengthOfBlock -= 8;
             while (lengthOfBlock > 0) {
@@ -130,10 +130,10 @@ public class TVSDecoder extends RadarDecoder {
                 }
             }
     }
-    
-  
+
+
     public Threshold[] getThresholds() {
         return(null);
     }
-    
+
 }

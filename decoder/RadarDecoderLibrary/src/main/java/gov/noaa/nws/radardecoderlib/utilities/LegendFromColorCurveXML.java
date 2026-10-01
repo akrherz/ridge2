@@ -29,7 +29,7 @@ public class LegendFromColorCurveXML {
         ArrayList<StringLabel> stringLabels = new ArrayList<StringLabel>();
         ArrayList<DoubleLabel> doubleLabels = new ArrayList<DoubleLabel>();
     public LegendFromColorCurveXML(String inputXML, String labels, String outputImage, String title) {
-    
+
         String[] labelTotal = labels.split("\\s+");
         for (int k=0; k< labelTotal.length; ++k) {
             try {

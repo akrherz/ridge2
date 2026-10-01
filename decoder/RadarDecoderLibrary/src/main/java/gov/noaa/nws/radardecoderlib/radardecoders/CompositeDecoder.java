@@ -29,11 +29,11 @@ public class CompositeDecoder extends RadarDecoder {
         bindecode.seek(offsetbyte + 34);
         bindecode.seek(offsetbyte + 4);
         int lengthOfBlock = bindecode.getInt();
-        
+
 //       //Move to begin of data
         //read all rows and put into the data array
         lengthOfBlock = lengthOfBlock - 16 - 22;
-      
+
         bindecode.seek((int) offsetbyte + 34);
         int numberRows = bindecode.getShort();
         bindecode.seek((int) offsetbyte + 38);
@@ -60,7 +60,7 @@ public class CompositeDecoder extends RadarDecoder {
             rowData = null;
             ++i;
         }
-        
+
 
     }
 }

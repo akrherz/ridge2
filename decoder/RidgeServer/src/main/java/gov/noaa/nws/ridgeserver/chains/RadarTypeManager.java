@@ -22,7 +22,7 @@ public class RadarTypeManager {
         }
         throw new Exception("Type not found");
     }
-    
+
     public String[] getListOfTypes() {
     	String[] typesOutput = new String[types.size()];
     	Iterator<String> iter = types.keySet().iterator();

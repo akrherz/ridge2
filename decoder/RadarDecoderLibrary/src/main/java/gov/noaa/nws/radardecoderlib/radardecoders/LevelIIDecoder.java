@@ -26,9 +26,9 @@ import ucar.unidata.io.bzip2.CBZip2InputStream;
 public class LevelIIDecoder {
     BinaryReader bindecode;
     SimpleDateFormat format = new SimpleDateFormat("MM/dd/y hh:mm:ss a z");
-  
+
     DecimalFormat decformat = new DecimalFormat("##.#");
-    
+
     double reflecGateSize;
     double reflecMaxRange;
     public double getReflecMaxRange() {
@@ -36,35 +36,35 @@ public class LevelIIDecoder {
 	}
 
 	double dopplerGateSize;
-    
+
     HashMap<Integer,ArrayList<RadarData>> reflec = new HashMap<Integer,ArrayList<RadarData>>();
     HashMap<Integer,ArrayList<RadarData>> vel = new HashMap<Integer,ArrayList<RadarData>>();
     HashMap<Integer,ArrayList<RadarData>> sw = new HashMap<Integer,ArrayList<RadarData>>();
-    
+
     HashMap<Integer, Float> elevationAngles = new HashMap<Integer,Float>();
-    
+
     Threshold[] reflecThresholds;
     Threshold[] velThresholds;
     Threshold[] swThresholds;
     float previousAngle = 0;
 
-   
-    
+
+
     /** Creates a new instance of LevelIIDecoder */
     public LevelIIDecoder(BinaryReader bindecode){
         this.bindecode = bindecode;
     }
-    
+
     public Integer[] getElevationAngles() {
     	Set<Integer> keys = reflec.keySet();
     	Integer[] array = new Integer[keys.size()];
     	return keys.toArray(array);
     }
-    
+
     public float getElevationAngle(Integer elevNumber) {
     	return elevationAngles.get(elevNumber);
     }
-    
+
     public ArrayList<RadarData> getRadialData(int type, int elevationAngle) {
     	if (type == 0) {
     		return reflec.get(new Integer(elevationAngle));
@@ -75,11 +75,11 @@ public class LevelIIDecoder {
     	}
     	return null;
     }
-    
+
     public void beginDecoding() {
     		try {
 				//System.out.println("Size ="+bindecode.getSize()+"  "+bindecode.getCurrentPosition());
-			
+
     		processVolumeHeaderRecord();
     		//System.out.println("Size ="+bindecode.getSize()+"  "+bindecode.getCurrentPosition());
     		processMetadataRecords();
@@ -95,8 +95,8 @@ public class LevelIIDecoder {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-    } 
-    
+    }
+
     private void processVolumeHeaderRecord() {
 		try {
 			// Get archive version number
@@ -127,10 +127,10 @@ public class LevelIIDecoder {
 			e.printStackTrace();
 		}
     }
-    
+
 	private void processMetadataRecords() {
 		try {
-			
+
 			// Control Word
 			int controlWord = Math.abs(bindecode.getInt());
 		   // System.out.println("Size ="+controlWord);
@@ -138,7 +138,7 @@ public class LevelIIDecoder {
 
 			byte[] array = new byte[controlWord];
 			bindecode.getBytes(array);
-			
+
 			ByteArrayInputStream bais = new ByteArrayInputStream(array);
 			byte[] output = new byte[325888];
 			bais.read();
@@ -153,7 +153,7 @@ public class LevelIIDecoder {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void processVariableCompressedRecords() {
 		try {
 		int controlWord = Math.abs(bindecode.getInt());
@@ -161,7 +161,7 @@ public class LevelIIDecoder {
 
 		byte[] array = new byte[controlWord];
 		bindecode.getBytes(array);
-		
+
 		ByteArrayInputStream bais = new ByteArrayInputStream(array);
 		byte[] output = new byte[325888];
 		bais.read();
@@ -170,14 +170,14 @@ public class LevelIIDecoder {
 		bzStream.read(output);
 		ByteBuffer buffer = ByteBuffer.wrap(output);
 		processOtherMessages(buffer);
-		
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-    
+
     private void processMetadataMessages(ByteBuffer buffer) {
     	//System.out.println("Processing Metadata messages "+buffer.limit());
 
@@ -205,7 +205,7 @@ public class LevelIIDecoder {
     	buffer.position(buffer.position()+12);
     	previousAngle = Float.MAX_VALUE;
 		for (int i=0; i<120; ++i) {
-			
+
 			int size = (int)buffer.getShort();
 			int channelid = (int)buffer.get();
 			int messagetype = (int)buffer.get();
@@ -236,7 +236,7 @@ public class LevelIIDecoder {
 			}
 //			System.out.println("Size ="+size+" channelid ="+channelid+" messagetype = "+messagetype);
 //			if (size >0) {
-//				
+//
 //				if (buffer.position()+(size*2)-16 < buffer.capacity()) {
 //					byte[] array = new byte[size*2-16];
 //					buffer.get(array);
@@ -250,9 +250,9 @@ public class LevelIIDecoder {
 		}
 
     }
-    
-   
-    
+
+
+
     private void processMessageType1(byte[] array) {
     	ByteBuffer buf = ByteBuffer.wrap(array);
     	//System.out.println("^^^^^^^^^^^^^^^^^^^^^Processing Message type 1");
@@ -268,7 +268,7 @@ public class LevelIIDecoder {
     //	System.out.println("AzimuthNumber ="+azimuthNumber);
     	buf.getShort();
     	Float elevationAngle = new Float(Math.floor(((buf.getShort()/8.)*(180./4096.))*10)/10);
-    	
+
     	Integer elevationNumber = new Integer(buf.getShort());
     //	System.out.println("Elevation Angle ="+elevationAngle);
     	if (elevationAngles.get(elevationNumber) == null) {
@@ -286,7 +286,7 @@ public class LevelIIDecoder {
     	int reflecPointer  = buf.getShort();
     	int velPointer  = buf.getShort();
     	int swPointer  = buf.getShort();
-    	
+
     	//System.out.println("Reflect Pointer ="+reflecPointer);
     	//System.out.println("Vel Pointer ="+velPointer);
     	///System.out.println("SW Pointer ="+swPointer);
@@ -312,7 +312,7 @@ public class LevelIIDecoder {
    		 reflec.put(elevationNumber, new ArrayList<RadarData>());
    	 }
    	 reflec.get(elevationNumber).add(reflectData);
-   	 
+
    	reflecThresholds = new Threshold[255];
    	reflecThresholds[0] = new StringThreshold("RF");
 	reflecThresholds[254] = new StringThreshold("ND");
@@ -323,12 +323,12 @@ public class LevelIIDecoder {
     	buf.position(velPointer);
     	for (int i=0; i< numberDopplerBins; ++i) {
     		int value = (int)buf.get();
-    		
+
     	}
     	buf.position(swPointer);
     	for (int i=0; i< numberDopplerBins; ++i) {
     		int value = (int)buf.get();
-    		
+
     	}
     	previousAngle = (float) azimuthAngle;
 	}
@@ -340,21 +340,21 @@ public class LevelIIDecoder {
     	buf.get(stringArray);
     	String radarId = new String(stringArray);
     	System.out.println("Site ="+radarId);
-    	
+
     	long timePastMidnight = (long)buf.getInt();
     	long julian = (long)buf.getShort()*86400*1000;
     	Date validTime = new Date(timePastMidnight+julian);
     //	System.out.println("Time ="+validTime);
-    	
+
     	int azimuthNumber = buf.getShort()/2;
     	float azimuthAngle = buf.getFloat();
-    	
+
     	///System.out.println("Float =="+azimuthAngle);
-    	
+
     	int compressionIndicator = buf.get();
     ///	System.out.println("Compression indicator "+compressionIndicator);
     	 buf.get(); //spare
-    	 
+
     	 int radialLength = buf.getShort();
     	 int azimuthResSpacing = buf.get();
     	// System.out.println("Azimuth Res Spacing "+azimuthResSpacing);
@@ -362,30 +362,30 @@ public class LevelIIDecoder {
     	Integer elevationNumber = new Integer(buf.get());
     	 //System.out.println("Elevation Number"+elevationNumber);
     	 int cutSectorNumber = buf.get();
-    	 
+
     	 float elevationAngle = Math.round(buf.getFloat());
-    	 
+
     	 if (elevationAngles.get(elevationNumber) == null) {
     		 elevationAngles.put(elevationNumber, elevationAngle);
     	 }
     	// System.out.println("Elevation Angle "+elevationAngle);
-    	 
+
     	 int radialSpotBlanking = buf.get();
-    	 
+
     	 float azimuthIndexMode = buf.get()*.01f;
     	 //System.out.println("AzimuthINdexMode ="+azimuthIndexMode);
     	 int dataBlockCount = buf.getShort();
-    	 
+
     	 //System.out.println("Data block Count "+dataBlockCount);
-    	 
+
     	 int dbPointercdct = buf.getInt();
     	 int dbedct = buf.getInt();
     	 int dbrdct = buf.getInt();
     	 int dbMR = buf.getInt();
     	 int dbMV = buf.getInt();
     	 int dbMSW = buf.getInt();
-    	 
-    	 
+
+
     	 double deltaAngle;
     	 if (azimuthResSpacing == 0 ){
     		 deltaAngle = 0.5;
@@ -399,7 +399,7 @@ public class LevelIIDecoder {
     		 reflec.put(elevationNumber, new ArrayList<RadarData>());
     	 }
     	 reflec.get(elevationNumber).add(reflectData);
-    	 
+
 //    	 int[] velGates = processDataBlock(1,dbMV,buf);
 //    	 RadialData velData = new RadialData(velGates,azimuthAngle,deltaAngle);
 //    	 if (vel.get(evel) == null ){
@@ -413,7 +413,7 @@ public class LevelIIDecoder {
 //    	 }
 //    	 sw.get(evel).add(swData);
     }
-    
+
     public double getReflecGateSize() {
     	//System.out.println("Reflec "+reflecGateSize);
 		return reflecGateSize;
@@ -443,9 +443,9 @@ public class LevelIIDecoder {
     	reflecMaxRange = 460.;
     	//System.out.println("resolution "+(460./(double)numberOfGates));
     	float dataMomentRange = buf.getShort()*.001f;
-    	
+
     	//System.out.println("Data Moment Range "+dataMomentRange);
-    	
+
     	float dataMomentRangeSampleInt = buf.getShort()*.001f;
     	//System.out.println("Data Moment Range "+dataMomentRangeSampleInt);
     	if (type == 0) {
@@ -455,18 +455,18 @@ public class LevelIIDecoder {
     	} else if (type == 2) {
     		dopplerGateSize = dataMomentRangeSampleInt;
     	}
-    	
+
     	float tover = buf.getShort()*.1f;
-    	
+
         buf.getShort();
-        
+
         int controlFlag = buf.get();
        // System.out.println("Control Flag "+controlFlag);
-        
+
         int dataWordSize = buf.get();
         //System.out.println("Data word size ="+dataWordSize);
         float scale = buf.getFloat();
-        
+
         float offset = buf.getFloat();
         ///System.out.println("Scale ="+scale+" offset ="+offset);
 		if (type == 0) {
@@ -491,11 +491,11 @@ public class LevelIIDecoder {
 				}
 			}
 		}
-        
+
         int output[] = new int[numberOfGates];
-        
+
         for (int i=0; i< numberOfGates; ++i) {
-        	
+
         	int value = buf.get();
         	if (value >0) {
         		output[i] = value;
@@ -505,7 +505,7 @@ public class LevelIIDecoder {
         		//System.out.println("Got value "+value);
         		//double valueOutOf = (value-offset)/scale;
         		//System.out.println("Value real ="+valueOutOf);
-        
+
         }
         //System.out.println("-------------Done Processing data block---------------------");
         return output;

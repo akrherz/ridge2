@@ -27,7 +27,7 @@ public class StormTrackDecoder extends RadarDecoder {
     String currentStorm="";
     String watchStorm = "C6";
     ArrayList<RadarData> data = new ArrayList<RadarData>();
-    
+
     public StormTrackDecoder(BinaryReader bindecode, int numLevels) throws IOException {
         super(bindecode,numLevels);
     }
@@ -37,9 +37,9 @@ public class StormTrackDecoder extends RadarDecoder {
         process();
         return(data);
     }
-    
+
     public void process() throws IOException {
-      
+
 
             if (offsetToGraphic > 0 ) {
 //        processGraphicBlock(numberToGraphic);
@@ -53,24 +53,24 @@ public class StormTrackDecoder extends RadarDecoder {
                 //  processTabularBlock(numberToTabular);
             }
 
-        
+
     }
-    
-    
+
+
     private void processGraphicBlock(long numberToGraphic) throws IOException {
             bindecode.seek((int)(numberToGraphic*2));
             lengthOfBlock = bindecode.getInt();
             int lengthOfPages = bindecode.getShort();
     }
-    
+
     private void processTabularBlock(long numberToTabular) throws IOException {
             bindecode.seek(offsetToTabular*2);
     }
-    
+
     private void processSymbologyBlock(long numberToSymbology) throws IOException {
             bindecode.seek(offsetToSymbology*2+4);
             lengthOfBlock = bindecode.getInt();
-            
+
             processStormTrackSymbology();
     }
     private void processStormTrackSymbology() throws IOException {
@@ -81,13 +81,13 @@ public class StormTrackDecoder extends RadarDecoder {
                 lengthOfBlock -= 4;
                 int value = processPacket(packetCode, lenData);
                 lengthOfBlock -= (value);
-                
+
             }
     }
-    
+
     private int processPacket(int packetCode, int lengthOfLayer) throws IOException {
         int value = 0;
-       
+
             if (packetCode == 23){
                 value =  processPacketCode23(lengthOfLayer);
             } else if (packetCode == 24) {
@@ -103,10 +103,10 @@ public class StormTrackDecoder extends RadarDecoder {
             }  else if (packetCode ==25) {
                 value = processPacketCode25();
             }
-       
+
         return(value);
     }
-    
+
     private int processPacketCode15(int lengthOfData) throws IOException {
         int total = lengthOfData;
             while (lengthOfData > 0) {
@@ -120,12 +120,12 @@ public class StormTrackDecoder extends RadarDecoder {
                 lengthOfData -= 6;
             }
         return(total);
-        
+
     }
     private int processPacketCode19(int lengthOfData) throws IOException {
         int total = lengthOfData;
             while (lengthOfData > 0) {
-                
+
                 double iposition = bindecode.getShort()*1000/(4.0);
                 double jposition = bindecode.getShort()*1000/(4.0);
                 double probhail = bindecode.getShort();
@@ -134,7 +134,7 @@ public class StormTrackDecoder extends RadarDecoder {
                 lengthOfData -= 10;
             }
         return(total);
-        
+
     }
     private int processPacketCode25() throws IOException {
             double iposition = bindecode.getShort()*1000/(4.0);
@@ -142,7 +142,7 @@ public class StormTrackDecoder extends RadarDecoder {
             double radius = bindecode.getShort()*1000/(4.0);
             data.add(new MesocycloneData(iposition,jposition,radius));
         return(6);
-        
+
     }
     private int processPacketCode2(int lengthOfData) throws IOException {
         int total = lengthOfData;
@@ -185,7 +185,7 @@ public class StormTrackDecoder extends RadarDecoder {
                 lengthOfLayer -= (lenData+4);
             }
         return(total);
-        
+
     }
     private int processPacketCode24(int lengthOfLayer) throws IOException {
         future=true;
@@ -197,9 +197,9 @@ public class StormTrackDecoder extends RadarDecoder {
                 lengthOfLayer -= (lenData+4);
             }
         return(total);
-        
+
     }
-    
+
     public Threshold[] getThresholds() {
         return(null);
     }

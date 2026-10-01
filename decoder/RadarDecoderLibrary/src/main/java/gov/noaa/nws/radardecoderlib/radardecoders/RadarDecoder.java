@@ -32,7 +32,7 @@ public abstract class RadarDecoder  implements DecoderInterface{
     long offsetToSymbology;
     long offsetToGraphic;
     long offsetToTabular;
-    int dataLayerBytes; 
+    int dataLayerBytes;
     int radarID;
     int vcp;
     double radarHeight;
@@ -42,8 +42,8 @@ public abstract class RadarDecoder  implements DecoderInterface{
     Date scanTime;
     Date generationTime;
     ArrayList<RadarData> data = new ArrayList<RadarData>();
-    
-    
+
+
     public RadarDecoder(BinaryReader bindecode, int numLevels) throws IOException {
         this.bindecode = bindecode;
 
@@ -102,11 +102,11 @@ public abstract class RadarDecoder  implements DecoderInterface{
         bin.seek(0);
         return(bin.getShort());
     }
-     
+
      public int getSiteID() {
         return(radarID);
     }
-     
+
       public int getVCP() {
         return(vcp);
     }
@@ -129,8 +129,8 @@ public abstract class RadarDecoder  implements DecoderInterface{
     public Date getRadarGenerationTime() {
         return(generationTime);
     }
-    
-    
+
+
      public Threshold[] getThresholds() throws IOException {
         //Need to take care of strange getShort issue. Does not return negative values over -1
         Threshold[] thresholds = new Threshold[numThresholds];
@@ -140,7 +140,7 @@ public abstract class RadarDecoder  implements DecoderInterface{
             }
         return(thresholds);
     }
-    
+
     protected Threshold getValue() throws IOException {
         Threshold threshold = null;
         BitSet set = BinaryUtilities.fromByteToBitSet(bindecode.getByte());
@@ -150,7 +150,7 @@ public abstract class RadarDecoder  implements DecoderInterface{
                 if (setnew.get(j)) {
                     value = value +Math.pow(2,j);
                 }
-            } 
+            }
         if (!set.get(7)) {
             int optional = -1;
             if (set.get(0)) {
@@ -230,5 +230,5 @@ public abstract class RadarDecoder  implements DecoderInterface{
         return(threshold);
     }
 
-   
+
 }

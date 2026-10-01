@@ -11,29 +11,29 @@ public class NewFourBitStormTotalPrecipDecoder extends FourBitRadialDecoder impl
         super(bindecode, numLevels);
         checkForNull();
     }
-	
+
 	private void checkForNull() {
 		try {
 			bindecode.seek(58);
-		
+
 			int isNullValue = bindecode.getShort();
 			if (isNullValue != 0) {
 				isNull = true;
 			} else {
 				isNull = false;
 			}
-		
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	protected void process() throws IOException{
 		if (!isNull) {
 			super.process();
-		} 
+		}
 	}
 
 	public Date getStormTotalPrecipBegin() throws Exception {
@@ -42,7 +42,7 @@ public class NewFourBitStormTotalPrecipDecoder extends FourBitRadialDecoder impl
         int twoScan = bindecode.getShort();
         return(new Date((long)((twoScan*60.+(oneScan-1)*86400.)*1000.)));
 	}
-	
+
 	public Date getStormTotalPrecipEnd() throws Exception {
 		bindecode.seek(94);
         int oneScan = bindecode.getShort();

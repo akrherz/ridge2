@@ -175,7 +175,7 @@ class Nidsheader{
         catch ( IOException e )
         {
             return( false );
-        }                                 
+        }
         return true;
     }
 
@@ -3251,7 +3251,7 @@ class Nidsheader{
             pname = "NVW";
           case 56:
               pname = "N" + elevation + "S";
-          
+
             break;
           case 57:
             pname = "NVL";

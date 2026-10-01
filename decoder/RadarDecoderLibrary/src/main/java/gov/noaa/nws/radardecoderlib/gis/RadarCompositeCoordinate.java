@@ -26,7 +26,7 @@ public class RadarCompositeCoordinate {
     double rangeOfProduct;
 
     Position[] points = new Position[4];
-    
+
     public void setup(double longitude,double latitude, double binWidth, double rangeOfProduct) {
         calculator.setStartingGeographicPoint(longitude,latitude);
         this.binWidth = binWidth;
@@ -44,7 +44,7 @@ public class RadarCompositeCoordinate {
         row = rowNumber;
           ydistance = -1*(rowNumber-.5)*binWidth+rangeOfProduct+startY;
         ydistancePlus1 = -1*(rowNumber+.5)*binWidth+rangeOfProduct+startY ;
-        
+
     }
 
     public Position[] getPoints(int pixelInRow) {
@@ -57,17 +57,17 @@ public class RadarCompositeCoordinate {
             double azimuth = calculateAzimuth(xdistance, ydistance);
             calculator.setDirection(azimuth,range);
             points[0] = calculator.getDestinationPosition();
-                    
+
             range = calculateDistance(xdistancePlus1, ydistance);
             azimuth = calculateAzimuth(xdistancePlus1, ydistance);
             calculator.setDirection(azimuth, range);
             points[1] = calculator.getDestinationPosition();
-            
+
             range = calculateDistance(xdistancePlus1, ydistancePlus1);
             azimuth = calculateAzimuth(xdistancePlus1, ydistancePlus1);
             calculator.setDirection(azimuth, range);
             points[2] = calculator.getDestinationPosition();
-            
+
             range = calculateDistance(xdistance, ydistancePlus1);
             azimuth = calculateAzimuth(xdistance, ydistancePlus1);
             calculator.setDirection(azimuth, range);
@@ -80,23 +80,23 @@ public class RadarCompositeCoordinate {
         return null;
 
     }
-    
+
     public Position[] getRightEdgePoints(int pixelInRow) {
         try {
             points = new Position[2];
-      
+
             double xdistancePlus1 = (pixelInRow+.5) * binWidth-rangeOfProduct-startX;
 
             double range = calculateDistance(xdistancePlus1, ydistance);
             double azimuth = calculateAzimuth(xdistancePlus1, ydistance);
             calculator.setDirection(azimuth, range);
             points[0] = calculator.getDestinationPosition();
-            
+
             range = calculateDistance(xdistancePlus1, ydistancePlus1);
             azimuth = calculateAzimuth(xdistancePlus1, ydistancePlus1);
             calculator.setDirection(azimuth, range);
             points[1] = calculator.getDestinationPosition();
-           
+
             return points;
         } catch (TransformException ex) {
             Logger.getLogger(RadarCompositeCoordinate.class.getName()).log(Level.SEVERE, null, ex);

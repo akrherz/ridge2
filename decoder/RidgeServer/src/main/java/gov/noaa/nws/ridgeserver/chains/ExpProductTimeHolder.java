@@ -17,7 +17,7 @@ public class ExpProductTimeHolder implements TimeCheck{
     public ExpProductTimeHolder(int numberToHold) {
         this.number = numberToHold;
         set = new BoundedTreeSet<Long>(numberToHold);
-        
+
     }
 
     public boolean hasBeenProcessed(long time) {
@@ -27,7 +27,7 @@ public class ExpProductTimeHolder implements TimeCheck{
             	//System.out.println("+ETime Elapsed "+(System.nanoTime()-start));
             	return true;
         	}
-        
+
        // System.out.println("-ETime Elapsed "+(System.nanoTime()-start));
         return(false);
     	}
@@ -39,7 +39,7 @@ public class ExpProductTimeHolder implements TimeCheck{
     	}
     }
 
-   
+
 
     public void printTimes() {
     	synchronized(set) {

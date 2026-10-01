@@ -26,7 +26,7 @@ public class AMQPMessageAdapter implements MessageListener{
     public void setWriterExecutor(ThreadPoolTaskExecutor writerExecutor) {
         this.writerExecutor = writerExecutor;
     }
-    
+
     public void setStartPath(String startPath) {
 		this.startPath = startPath;
 		Logger.getLogger(AMQPMessageAdapter.class).info("Starting Path is "+startPath);
@@ -40,7 +40,7 @@ public class AMQPMessageAdapter implements MessageListener{
 	  ex.printStackTrace();
       Logger.getLogger(AMQPMessageAdapter.class.getName()).log(Level.INFO, null, ex);
  }
-		
+
 	}
 
 }

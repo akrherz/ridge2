@@ -20,11 +20,11 @@ public class DistanceCalculator {
     public double findGreatCircleDistance(double range) {
         return(ke*a*Math.asin((range*cosOfe)/(ke*a+getHeight(range))));
     }
-    
+
     public double getHeight(double range) {
         return(Math.sqrt(Math.pow(range,2)+Math.pow(ke*a,2)+2*range*ke*a*sinOfe)-ke*a);
     }
-    
+
     public static void main(String[] args) {
         DistanceCalculator distCalc = new DistanceCalculator(0.5f);
         System.out.println("Height = "+distCalc.getHeight(124.*1852.));

@@ -17,14 +17,14 @@ import org.geotools.api.referencing.operation.TransformException;
  */
 public class RadarCoordinate {
     GeodeticCalculator calculator = new GeodeticCalculator();
-    
+
 
     public void setup(double longitude,double latitude) {
         calculator.setStartingGeographicPoint(longitude,latitude);
-       
+
     }
 
-    
+
 
     public Position getPoint(Position point) {
         try {
@@ -32,8 +32,8 @@ public class RadarCoordinate {
             double azimuth = calculateAzimuth(point.getOrdinate(0), point.getOrdinate(1));
             calculator.setDirection(azimuth,range);
             return(calculator.getDestinationPosition());
-                    
-           
+
+
         } catch (TransformException ex) {
             Logger.getLogger(RadarCoordinate.class.getName()).log(Level.SEVERE, null, ex);
         }

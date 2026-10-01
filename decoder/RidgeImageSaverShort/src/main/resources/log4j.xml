@@ -9,7 +9,7 @@
 			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %c{1} [%p] - %m%n" />
 		</layout>
 	</appender>
-	
+
 	<appender name="file" class="org.apache.log4j.RollingFileAppender">
 		<param name="file" value="ridge_imagesavershort.log" />
 		<param name="MaxFileSize" value="30MB" />
@@ -18,15 +18,15 @@
 			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %c{1} [%p] - %m%n" />
 		</layout>
 	</appender>
-	
-	
+
+
 	<logger name="org.springframework">
 		<level value="fatal" />
 		<appender-ref ref="console" />
 	</logger>
 	<logger name="gov.noaa.nws">
 		<level value="info" />
-		
+
 	</logger>
 	<root>
 		<priority value="info" />

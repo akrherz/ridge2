@@ -20,7 +20,7 @@ public class RidgeImageSaverRun {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-    	
+
     	Logger.getLogger(RidgeImageSaverRun.class).info("------Starting Ridge Image Saver--------");
         ApplicationContext ctx = new ClassPathXmlApplicationContext("/ridgeImageSaverSpring.xml");
     }

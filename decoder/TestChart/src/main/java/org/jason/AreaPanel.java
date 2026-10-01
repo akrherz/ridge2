@@ -48,7 +48,7 @@ public class AreaPanel extends LocalChartPanel {
             series[i].setMaximumItemCount(100);
 
             coll.addSeries(series[i]);
-           
+
         }
          final JFreeChart chart = ChartFactory.createXYAreaChart(
             title,             // chart title
@@ -92,7 +92,7 @@ public class AreaPanel extends LocalChartPanel {
         series[seriesId].add(new FixedMillisecond(System.currentTimeMillis()),value);
     }
 
-    
+
 
 
 }

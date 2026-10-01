@@ -26,7 +26,7 @@ public class CompositeCoordinateToCRS extends RadarCoordinateToCRS {
         super(geoGraphicToCRS,radarLon,radarLat);
         this.pixelBinWidth = pixelWidth;
         this.productRange = productRange;
-        
+
         if (geoGraphicToCRS != null) hasCRS = true;
    }
 

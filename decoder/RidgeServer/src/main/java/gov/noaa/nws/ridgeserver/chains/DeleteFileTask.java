@@ -5,9 +5,9 @@ import java.io.File;
 import org.apache.log4j.Logger;
 
 public class DeleteFileTask implements Runnable{
-	
+
 	File file;
-	
+
 	DeleteFileTask(String filename) {
 		file = new File(filename);
 	}
@@ -20,7 +20,7 @@ public class DeleteFileTask implements Runnable{
 		} catch (Exception e) {
 			Logger.getLogger(DecodeTask.class).warn("Problem deleting the file "+file);
 		}
-		
+
 	}
 
 }

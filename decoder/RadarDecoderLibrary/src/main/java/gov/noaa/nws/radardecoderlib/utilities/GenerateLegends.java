@@ -23,8 +23,8 @@ public class GenerateLegends {
 //       new LegendFromColorCurveXML("C:/Jason/Java/Projects/Ridge/RadarDecoderLibrary/src/gov/noaa/nws/RadarDecoderLib/XMLConfig/ColorCurve/veloutputcolor.xml", "C:/temp/legendVelocity.png", "KTS");
     	new LegendFromColorCurveXML("/Users/jason.burks/Ridge/RadarDecoderLibrary/src/main/resources/colorcurves/ZDRColorCurveManager.xml", "RF -4.0 -3.0 -2.0 -1.0 0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0", "/tmp/zdr.png", "DB");
     	new LegendFromColorCurveXML("/Users/jason.burks/Ridge/RadarDecoderLibrary/src/main/resources/colorcurves/HIDColorCurveManager.xml", "RF UK HA GR BD HR RA WS DS IC GC BI", "/tmp/hid.png", " ");
-    
-    
+
+
     }
 
 }

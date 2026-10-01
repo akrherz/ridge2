@@ -32,23 +32,23 @@ public class LevelIIDecoderOld {
     int vcp;
     String id;
     DecimalFormat decformat = new DecimalFormat("##.#");
-    
+
     /** Creates a new instance of LevelIIDecoder */
     public LevelIIDecoderOld(BinaryReader bindecode){
         this.bindecode = bindecode;
     }
-    
+
     public void beginDecoding() {
-        
+
         try {
             long numRecords = bindecode.getSize()/(headerlength+blocksize+cmtheader);
              bindecode.seek(20);
              byte[] bytes = new byte[4];
               bindecode.getBytes(bytes);
-             
+
              id =  new String(bytes);
              System.out.println("ID ="+id);
-             
+
             //need to get the radar id or the call sign.
 //            System.out.println("Size = "+numRecords);
 //            System.out.println("Decoding");
@@ -87,7 +87,7 @@ public class LevelIIDecoderOld {
 //                    if (elevationangle == 1.3) {
 //                        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
 //                    }
-                    
+
                     bindecode.getShort(); //RDA Elevation Number
                     bindecode.getShort(); //range to first gate of reflectivity
                     bindecode.getShort(); //range to first gate of doppler data
@@ -125,18 +125,18 @@ public class LevelIIDecoderOld {
                        // System.out.println("Not found");
                     }
                 }
-                
+
 //            System.out.println("GEn Date = "+format.format(dategen));
             }
-               
-            
+
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
-    
+
    private void processRelfectivityGates(int start,int numbergates) {
-       
+
        //TODO need to account for value of 0 or 1 for range folding, etc
         try {
             bindecode.seek(start);
@@ -157,7 +157,7 @@ public class LevelIIDecoderOld {
             double[] data = new double[numbergates];
             for (int i=0; i<numbergates; ++i) {
                 data[i] = (((double)bindecode.getByteAsInt()-2.)/2.)- 63.5;
-               
+
             }
           //  fireRenderEvent(new LevelIIRadialDataLoadEvent("Level II radial Event",data,azimuthangle,deltaAngle,elevationangle,vcp,1,genDate));
         } catch (IOException ex) {
@@ -172,7 +172,7 @@ public class LevelIIDecoderOld {
             double[] data = new double[numbergates];
             for (int i=0; i<numbergates; ++i) {
                 data[i] = (((double)bindecode.getByteAsInt()-2.)/2.)- 63.5;
-               
+
             }
          //   fireRenderEvent(new LevelIIRadialDataLoadEvent("Level II radial Event",data,azimuthangle,deltaAngle,elevationangle,vcp,2,genDate));
         } catch (IOException ex) {
@@ -183,18 +183,18 @@ public class LevelIIDecoderOld {
 //     * @param args the command line arguments
 //     */
 //    public static void main(String[] args) {
-//       
+//
 //            //BasicBinaryReader bindecode = new BasicBinaryReader("C:/Jason/Data/Radar/LevelII/20060123150406.raw");
 //            BasicBinaryReader bindecode = new BasicBinaryReader("C:/Jason/Data/Radar/LevelII/ARMOR/L2_NA_000_125_20060823203057");
 //            LevelIIDecoder decoder = new LevelIIDecoder(bindecode);
 //            LevelIIDataCatcher catcher = new LevelIIDataCatcher();
 //            decoder.addDataLoadEventListener(catcher);
 //            decoder.beginDecoding();
-//        
+//
 //    }
-    
-  
 
-   
-    
+
+
+
+
 }
